@@ -77,7 +77,7 @@ flowchart TB
 
 | 資料 | 來源 | 欄位 | 頻率與保留 | 已知問題 |
 |---|---|---|---|---|
-| 微型感測器 | 民生公共物聯網 SensorThings API `https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/` | station_id、經緯度、PM2.5、相對濕度、溫度 | 約每分鐘；**API 只保留最近約 4～5 小時** | 臺中市約 20% 感測器沒有回傳；約 41% 有時回報濕度為 0；部分縣市沒有鄉鎮欄位；縣市名稱要用「臺」 |
+| 微型感測器 | 民生公共物聯網 SensorThings API `https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/` | station_id、經緯度、PM2.5、相對濕度、溫度 | 約每分鐘；**API 只保留最近約 4～5 小時** | 臺中市約 20% 感測器沒有回傳；**臺中的濕度欄位不可靠**（約 19% 回報 0，其餘正常資料有 84% 回報 90–100%，T-20），校正改用氣象署濕度；部分縣市沒有鄉鎮欄位；縣市名稱要用「臺」 |
 | 本地資料庫 | `data/raw/colife/<縣市>/YYYY-MM-DD.csv.gz` | 同上，平均成 5 分鐘，加上 n_obs | Windows 排程每 2 小時收集（`scripts/collect_scheduled.py`） | 電腦關機時會中斷 |
 | 國家空品測站 | 環境部環境資料開放平臺 | AQI、PM2.5 等 | 每小時 | 需要 API key（T-02） |
 | 氣象 | 中央氣象署開放資料平臺 | 風向、風速、降雨 | 每小時 | 需要 API key（T-02） |
@@ -138,6 +138,9 @@ flowchart TB
 | 升高門檻 | 比前 6 小時中位數高 50% | 用於計算空間一致性 C |
 | 區域型 | C ≥ 0.6 且 E < max(5, 0.3·B) | |
 | 局部型 | E ≥ max(10, 0.5·B) 且 C < 0.3，且至少 2 個鄰近感測器一起升高 | 只有一個感測器飆高 → 疑似異常 |
+| 事件 vs 持續性偏高（T-20 新增） | 事件須比自己前 6 小時基準升高 50% 以上；80% 以上時間高於背景的感測器歸為「持續性偏高」 | `spatial.label_station_events` |
+
+T-20 的初步實測與門檻建議見 `coordination/reports/T-20.md`。
 
 ## 9. Implementation
 
@@ -146,8 +149,10 @@ flowchart TB
 | `src/data/colife.py` | SensorThings API 串接、5 分鐘平均、依日期累積 | ✅ |
 | `src/data/quality.py` | 資料品質旗標與摘要 | ✅ |
 | `scripts/collect_scheduled.py`、`scripts/register_task.ps1` | Windows 排程收集 | ✅ |
-| `tests/test_colife.py` | 3 個離線測試 | ✅ |
-| `src/analytics/` | 空間型態分析、來源判斷、預測 | T-20、T-11 |
+| `tests/` | 7 個離線測試（資料串接 3 個、空間分析 4 個） | ✅ |
+| `src/analytics/spatial.py` | 空間型態分析、來源判斷（Algorithm 2）、事件型態標記 | ✅ 初步（T-20） |
+| `notebooks/T-20_spatial_eda.ipynb` | 真實資料探索與圖表 | ✅ 初步 |
+| `src/analytics/`（預測、校正） | 短期預測、測站校正 | T-11 |
 | `src/agent/`、`src/knowledge/` | Agent 與知識庫 | 期末階段 |
 
 ## 10. How to Run
@@ -171,5 +176,6 @@ Proposal 階段只寫預期成果（Expected Outcomes），見 `proposal/04_prop
 - **資料：**API 只保留約 4～5 小時，歷史資料要自行累積或向國網中心申請；本專題只收集臺中市與高雄市。
 - **感測器：**濕度資料常無效，校正依賴國家測站，而國家測站很稀疏。
 - **來源判斷：**是根據空間型態的推論，不是化學成分的源解析；能區分「局部」與「區域」，但**無法確定區域污染是境外還是國內其他地區**（T-18 爭議 1）。
-- **門檻：**初始值來自文獻與常識，需要真實事件校準，而且可能因城市而異。
+- **門檻：**初始值來自文獻與常識，需要真實事件校準，而且可能因城市而異；T-20 只有單日資料，區域型規則尚未遇到真實事件驗證。
+- **尺度：**固定的 2 km／15 km 無法描述大小不同的事件（T-20 的沿海群聚約 8 km）。
 - **健康建議：**是一般性的公衛建議，不能取代醫療建議。

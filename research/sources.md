@@ -44,3 +44,20 @@
 | S-032 | 政府網頁 | 2018 | 環境部 | 空氣品質指標（113 年前版本） | https://airtw.moenv.gov.tw/CHT/Information/Standard/AirQualityIndicator.aspx | T-06 活動建議 | Claude | verified |
 | S-033 | 論文 | 2016 | Tainio et al. | Can air pollution negate the health benefits of cycling and walking? | https://doi.org/10.1016/j.ypmed.2016.02.002 | T-06 運動取捨 | Claude | verified |
 | S-034 | 論文 | 2001 | Klepeis et al. | The National Human Activity Pattern Survey (NHAPS): a resource for assessing exposure to environmental pollutants | https://doi.org/10.1038/sj.jea.7500165 | T-06 暴露量 | Claude | verified |
+| S-035 | 論文 | 2022 | Yao et al. | ReAct: Synergizing Reasoning and Acting in Language Models | https://arxiv.org/abs/2210.03629 | T-05 AI 技術 | Claude | verified |
+| S-036 | 預印本 | 2025 | Pan & Nipu | LLM-enhanced Air Quality Monitoring Interface via Model Context Protocol | https://arxiv.org/abs/2511.03706 | T-05 AI 技術 | Claude | verified |
+| S-037 | 預印本 | 2025 | Acharya et al. | VayuChat: An LLM-Powered Conversational Interface for Air Quality Data Analytics | https://arxiv.org/abs/2511.01046 | T-05 AI 技術 | Claude | verified |
+| S-038 | 預印本 | 2026 | Vieira et al. | Large Language Model based air quality monitoring and localized alert generation | https://arxiv.org/abs/2609.17954 | T-05 AI 技術 | Claude | verified |
+| S-039 | 預印本 | 2025 | Lee et al. | LLM-based Question-Answer Framework for Sensor-driven HVAC System Interaction | https://arxiv.org/abs/2507.04748 | T-05 AI 技術 | Claude | verified |
+| S-040 | 預印本 | 2025 | Li et al. | Urban Computing in the Era of Large Language Models | https://arxiv.org/abs/2504.02009 | T-05 AI 技術 | Claude | verified |
+| S-041 | 論文 | 2020 | Wang, Lung & Liu | Application of Machine Learning for the in-Field Correction of a PM2.5 Low-Cost Sensor Network | https://doi.org/10.3390/s20175002 | T-05 AI 技術 | Claude | verified |
+| S-042 | 論文 | 2026 | Gómez, Rodríguez & Ferro | Calibration of Low-Cost Sensors for PM10 and PM2.5 Based on Artificial Intelligence for Smart Cities | https://doi.org/10.3390/s26030796 | T-05 AI 技術 | Claude | verified |
+| S-043 | 論文 | 2026 | Wathore et al. | Exploring Environmental and Temporal Performances of Machine Learning Models for Calibration of a Low-Cost PM2.5 Sensor | https://doi.org/10.1007/s44408-026-00094-6 | T-05 AI 技術 | Claude | verified |
+| S-044 | 預印本 | 2026 | Sengupta et al. | A temporal deep learning framework for calibration of low-cost air quality sensors | https://arxiv.org/abs/2604.21527 | T-05 AI 技術 | Claude | verified |
+| S-045 | 論文 | 2021 | Jain, Presto & Zimmerman | Spatial Modeling of Daily PM2.5, NO2, and CO Concentrations Measured by a Low-Cost Sensor Network | https://doi.org/10.1021/acs.est.1c02653 | T-05 AI 技術 | Claude | verified |
+| S-046 | 論文 | 2024 | Bashan, Li & Wang | Dynamics of PM2.5 and network activity during extreme pollution events | https://doi.org/10.1038/s41612-024-00716-z | T-05 AI 技術 | Claude | verified |
+| S-047 | 論文 | 2025 | Perry et al. | Detecting urban PM2.5 hotspots with mobile sensing and Gaussian process regression | https://doi.org/10.1038/s44407-025-00038-1 | T-05 AI 技術 | Claude | verified |
+| S-048 | 論文 | 2023 | Su, Chung, Lee & Huang | Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations | https://doi.org/10.1016/j.eswa.2023.121074 | T-05 AI 技術 | Claude | metadata-verified |
+| S-049 | 論文 | 2025 | Lu et al. | Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster | https://doi.org/10.1371/journal.pone.0338392 | T-05 AI 技術 | Claude | verified |
+| S-050 | 論文 | 2025 | Wu et al. | A Spatiotemporal graph attention network for PM2.5 forecasting using multi-source data | https://doi.org/10.1007/s11869-025-01818-0 | T-05 AI 技術 | Claude | metadata-verified |
+| S-051 | 預印本 | 2021 | Chen, Putra & Lin | A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks | https://arxiv.org/abs/2101.06213 | T-05 AI 技術 | Claude | verified |

@@ -1,0 +1,61 @@
+%% AirSleuth System Architecture（模組編號 ①～⑧，與 DESIGN.md 第 4 節一致）
+flowchart TB
+    U["① User / Application Scenario<br/>家長、氣喘患者、長者、運動者、通勤者"]
+    Q["② Query / Input<br/>自然語言提問 + 使用者設定檔<br/>（地點、時間、族群、活動）"]
+
+    subgraph AGENT["③ Planner & Reasoning Agent（LLM，ReAct 式推理與工具呼叫）"]
+        P1["意圖解析<br/>地點、時間窗、族群、活動強度"]
+        P2["任務拆解與工具選擇"]
+        P3["證據充分性檢查<br/>不足就擴大範圍或追加資料"]
+        P1 --> P2 --> P3
+    end
+
+    subgraph DATA["④ Data Acquisition / Retrieval"]
+        D1["微型感測器<br/>民生公共物聯網 SensorThings API<br/>約 1.1 萬個、每分鐘"]
+        D2["國家空品測站<br/>環境部開放資料"]
+        D3["氣象<br/>中央氣象署：風向、風速、降雨"]
+        D4[("本地資料庫<br/>每 2 小時排程收集")]
+        D5["資料品質檢查<br/>缺值、卡住、濕度無效"]
+        D1 --> D4
+        D4 --> D5
+        D2 --> D5
+        D3 --> D5
+    end
+
+    subgraph ANALYTICS["⑤ Analytics Engine"]
+        A1["可信度評估<br/>濕度、完整度、鄰近一致性"]
+        A2["測站錨定校正<br/>濕度修正"]
+        A3["空間型態分析<br/>區域背景、局部超量、空間一致性"]
+        A4["來源判斷<br/>局部／區域／混合／不明確"]
+        A5["短期趨勢預測<br/>未來 1～6 小時（MLR 基準）"]
+        A1 --> A2 --> A3 --> A4
+        A2 --> A5
+    end
+
+    subgraph KNOW["⑥ Domain Knowledge Integration"]
+        K1["健康指引規則<br/>2025 新版 AQI、敏感族群"]
+        K2["專家觀念庫<br/>8 個核心觀念、運動取捨"]
+        K3["文獻知識庫（RAG）<br/>已查核的 51 筆來源"]
+    end
+
+    subgraph DECIDE["⑦ Decision / Recommendation"]
+        R1["暴露評估<br/>濃度 × 時間 × 地點 × 活動強度"]
+        R2["個人風險分級<br/>依族群調整門檻"]
+        R3["產生並排序候選行動<br/>照常、改時段、改地點、降強度、室內"]
+        R4["信心程度<br/>資料可信度 × 判斷確定性"]
+        R1 --> R2 --> R3 --> R4
+    end
+
+    O["⑧ Output & Interaction<br/>一句話結論 → 原因與證據 → 具體建議 → 信心與資料來源<br/>地圖、追問、回饋"]
+
+    U --> Q --> AGENT
+    AGENT -->|呼叫工具| DATA
+    DATA --> ANALYTICS
+    ANALYTICS --> DECIDE
+    KNOW --> ANALYTICS
+    KNOW --> DECIDE
+    KNOW -.檢索依據.-> AGENT
+    DECIDE --> O
+    P3 -.證據不足：追加查詢.-> DATA
+    R4 -.信心太低：追問使用者.-> Q
+    O -.使用者回饋.-> AGENT

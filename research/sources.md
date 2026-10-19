@@ -31,3 +31,16 @@
 | S-019 | 政府公告 | 2024 | U.S. EPA | Final Reconsideration of the National Ambient Air Quality Standards for Particulate Matter | https://www.epa.gov/pm-pollution/final-reconsideration-national-ambient-air-quality-standards-particulate-matter-pm | T-18 爭議 | Claude | verified |
 | S-020 | 國際指引 | 2021 | WHO | WHO global air quality guidelines | https://www.who.int/publications/i/item/9789240034228 | T-18 爭議 | Claude | verified |
 | S-021 | 論文 | 2017 | Di et al. | Air Pollution and Mortality in the Medicare Population | https://doi.org/10.1056/NEJMoa1702747 | T-18 爭議 | Claude | verified |
+| S-022 | 新聞 | 2026 | 經濟日報（引述環境部） | 環境部：國外報告空品排名定義遭誤解 台灣空氣品質全球排名進步中 | https://udn.com/news/story/7266/9402567 | T-04 現況 | Claude | verified |
+| S-023 | 新聞 | 2024 | 公視新聞網 | 空品監測近5年污染物濃度降 PM2.5年平均濃度比去年改善 | https://news.pts.org.tw/article/730797 | T-04 現況 | Claude | verified |
+| S-024 | 論文 | 2025 | Tsai, Chen & Yang | The effect of exposure to ambient air fine particulate matter pollution on mortality among children aged under five in Taiwan | https://doi.org/10.1080/15287394.2025.2521644 | T-04、T-06 健康 | Claude | verified |
+| S-025 | 論文 | 2025 | Tsao et al. | Trends in PM2.5 and mortality risks in an industrial District of Taiwan: a 12-year analysis | https://doi.org/10.1080/09603123.2025.2568695 | T-04、T-06 健康 | Claude | verified |
+| S-026 | 論文 | 2024 | Tsai & Yang | The impacts of reduction in ambient fine particulate air pollution on natural-cause mortality in Taiwan | https://doi.org/10.1080/15287394.2024.2384396 | T-04 健康 | Claude | verified |
+| S-027 | 論文 | 2020 | Orellano et al. | Short-term exposure to particulate matter (PM10 and PM2.5), nitrogen dioxide (NO2), and ozone (O3) and all-cause and cause-specific mortality: Systematic review and meta-analysis | https://doi.org/10.1016/j.envint.2020.105876 | T-04、T-06 健康 | Claude | verified |
+| S-028 | 論文 | 2017 | D'Antoni et al. | Psychosocial and demographic predictors of adherence and non-adherence to health advice accompanying air quality warning systems: a systematic review | https://doi.org/10.1186/s12940-017-0307-4 | T-04、T-06 行為 | Claude | verified |
+| S-029 | 政府報告 | 2026 | 臺中市政府環境保護局 | 臺中市空氣品質指標分析（115 統計專題簡要分析） | https://www.epb.taichung.gov.tw/media/1441872/115統計專題簡要分析__臺中市空氣品質指標分析.pdf | T-04、T-06 新版 AQI | Claude | verified |
+| S-030 | 論文 | 2020 | Mirabelli, Ebelt & Damon | Air Quality Index and air quality awareness among adults in the United States | https://doi.org/10.1016/j.envres.2020.109185 | T-04、T-06 行為 | Claude | verified |
+| S-031 | 論文 | 2015 | Zheng et al. | Association between Air Pollutants and Asthma Emergency Room Visits and Hospital Admissions in Time Series Studies: A Systematic Review and Meta-Analysis | https://doi.org/10.1371/journal.pone.0138146 | T-06 敏感族群 | Claude | verified |
+| S-032 | 政府網頁 | 2018 | 環境部 | 空氣品質指標（113 年前版本） | https://airtw.moenv.gov.tw/CHT/Information/Standard/AirQualityIndicator.aspx | T-06 活動建議 | Claude | verified |
+| S-033 | 論文 | 2016 | Tainio et al. | Can air pollution negate the health benefits of cycling and walking? | https://doi.org/10.1016/j.ypmed.2016.02.002 | T-06 運動取捨 | Claude | verified |
+| S-034 | 論文 | 2001 | Klepeis et al. | The National Human Activity Pattern Survey (NHAPS): a resource for assessing exposure to environmental pollutants | https://doi.org/10.1038/sj.jea.7500165 | T-06 暴露量 | Claude | verified |

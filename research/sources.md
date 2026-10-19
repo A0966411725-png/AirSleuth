@@ -61,3 +61,4 @@
 | S-049 | 論文 | 2025 | Lu et al. | Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster | https://doi.org/10.1371/journal.pone.0338392 | T-05 AI 技術 | Claude | verified |
 | S-050 | 論文 | 2025 | Wu et al. | A Spatiotemporal graph attention network for PM2.5 forecasting using multi-source data | https://doi.org/10.1007/s11869-025-01818-0 | T-05 AI 技術 | Claude | metadata-verified |
 | S-051 | 預印本 | 2021 | Chen, Putra & Lin | A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks | https://arxiv.org/abs/2101.06213 | T-05 AI 技術 | Claude | verified |
+| S-052 | 國際組織說明 | 2024 | WHO | Ambient (outdoor) air pollution fact sheet | https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health | Deep Research Q3 | Claude | verified |

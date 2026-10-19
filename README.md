@@ -77,3 +77,13 @@ copy .env.example .env
 | [民生公共物聯網 空品微型感測器 API](https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/) | 約 1.1 萬個感測器的 PM2.5、溫度、濕度 |
 | [環境部環境資料開放平臺](https://data.moenv.gov.tw/) | 國家空品測站 |
 | [中央氣象署開放資料平臺](https://opendata.cwa.gov.tw/) | 風向、風速、降雨 |
+
+## 資料收集排程
+
+微型感測器 API 只保留最近約 4～5 小時的資料，所以用 Windows 工作排程器每 2 小時收集一次臺中市、高雄市的資料，存到 `data/raw/colife/`（不進版控）。
+
+```bash
+powershell -ExecutionPolicy Bypass -File scripts\register_task.ps1
+```
+
+紀錄在 `data/raw/logs/scheduled.log`。移除排程：`Unregister-ScheduledTask -TaskName "AirSleuth-colife-collect" -Confirm:$false`。

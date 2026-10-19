@@ -1,0 +1,31 @@
+<section id="gap" data-transition="fade" style="background:#F7F6F1;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Research Gap</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">兩群研究，還沒有人把它們接起來</h2>
+</div>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="width:440px;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E1E4EA;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">LLM 讓資料好查</h3>
+<p style="font-size:26px;line-height:1.5">工具呼叫、即時查詢、對話式分析</p>
+</div>
+<x-shape kind="arrow-right" style="width:120px;height:60px;background:#B9C3D3"></x-shape>
+<div style="width:480px;display:flex;flex-direction:column;gap:16px;background:#14213D;border-radius:20px;padding:40px">
+<h3 style="font-size:44px;font-weight:700;color:#F7F6F1">AirSleuth</h3>
+<p style="font-size:26px;line-height:1.5;color:#D6DCE8">判斷原因＋說明可信度＋依情境給具體建議</p>
+</div>
+<x-shape kind="arrow-left" style="width:120px;height:60px;background:#B9C3D3"></x-shape>
+<div style="width:440px;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E1E4EA;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">ML 讓數字更準</h3>
+<p style="font-size:26px;line-height:1.5">感測器校正、來源分離、時空預測</p>
+</div>
+</div>
+<table style="font-size:26px;color:#3D4656">
+<tr><th style="width:30%;text-align:left">現有研究的不足</th><th style="width:52%;text-align:left">AirSleuth 的做法</th><th style="width:18%;text-align:left">模組</th></tr>
+<tr><td>不會判斷原因</td><td>扣除區域背景，看局部超量與空間一致性</td><td>⑤</td></tr>
+<tr><td>不說明資料可信度</td><td>品質檢查、可信度評估，輸出附信心程度</td><td>④⑤⑦</td></tr>
+<tr><td>研究工具沒有即時解釋</td><td>LLM 以口語說明判斷依據與證據</td><td>③⑧</td></tr>
+<tr><td>建議不夠個人化</td><td>結合族群、時段、地點、活動強度</td><td>⑥⑦</td></tr>
+</table>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">7</p>
+<aside>歸納成一句話：現有研究分成兩群，一群讓空品資料好查，一群讓數字更準，但還沒有人把它們接起來，在台灣的公開感測網上做成一個會判斷原因、說明可信度、給個人化建議的 Agent。下面這張表是四個具體缺口，以及我們用哪個模組補上。</aside>
+</section>

@@ -1,0 +1,48 @@
+<section id="arch" data-transition="fade" style="background:#F7F6F1;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Proposed Scheme｜System Architecture</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">八個模組：LLM 負責想，程式負責算</h2>
+<div style="position:absolute;left:128px;top:340px;width:440px;height:170px;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">① 使用者情境</p>
+<p style="font-size:24px;line-height:1.4">家長、氣喘患者、運動者、長者照顧者、通勤者</p>
+</div>
+<div style="position:absolute;left:648px;top:340px;width:440px;height:170px;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">② 提問與輸入</p>
+<p style="font-size:24px;line-height:1.4">解析地點、時間窗、族群、活動強度；不明確就追問</p>
+</div>
+<div style="position:absolute;left:1168px;top:340px;width:624px;height:170px;background:#14213D;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#F7F6F1">③ Planner & Reasoning Agent（LLM）</p>
+<p style="font-size:24px;line-height:1.4;color:#D6DCE8">ReAct 式推理與工具呼叫；證據不足就追加查詢；檢查數字可追溯</p>
+</div>
+<div style="position:absolute;left:1388px;top:590px;width:404px;height:160px;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">④ 資料取得</p>
+<p style="font-size:24px;line-height:1.4">微型感測器、測站、氣象；排程收集；品質檢查</p>
+</div>
+<div style="position:absolute;left:948px;top:590px;width:380px;height:160px;background:#FFFFFF;border:3px solid #EB6834;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">⑤ 分析引擎</p>
+<p style="font-size:24px;line-height:1.4">可信度、校正、空間型態、來源判斷、預測</p>
+</div>
+<div style="position:absolute;left:508px;top:590px;width:380px;height:160px;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">⑦ 決策與建議</p>
+<p style="font-size:24px;line-height:1.4">暴露評估、風險分級、行動排序、信心程度</p>
+</div>
+<div style="position:absolute;left:128px;top:590px;width:320px;height:160px;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:30px;font-weight:700;color:#14213D">⑧ 輸出</p>
+<p style="font-size:24px;line-height:1.4">結論、原因、建議、信心</p>
+</div>
+<div style="position:absolute;left:508px;top:790px;width:820px;height:120px;background:#FCEFE8;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:30px;font-weight:700;color:#14213D">⑥ 領域知識整合</p>
+<p style="font-size:24px;line-height:1.4">2025 新版 AQI、敏感族群、8 個專家觀念、52 筆查核文獻</p>
+</div>
+<x-connector x1="568" y1="425" x2="648" y2="425" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="1088" y1="425" x2="1168" y2="425" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="1590" y1="510" x2="1590" y2="590" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="1388" y1="670" x2="1328" y2="670" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="948" y1="670" x2="888" y2="670" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="508" y1="670" x2="448" y2="670" head="end" style="color:#6B7385;border-width:3px"></x-connector>
+<x-connector x1="698" y1="790" x2="698" y2="750" head="end" style="color:#EB6834;border-width:3px"></x-connector>
+<x-connector x1="1138" y1="790" x2="1138" y2="750" head="end" style="color:#EB6834;border-width:3px"></x-connector>
+<p style="position:absolute;left:1610px;top:532px;width:180px;font-size:24px;color:#6B7385">呼叫工具</p>
+<p style="position:absolute;left:1388px;top:800px;width:404px;font-size:24px;line-height:1.4;color:#6B7385">回饋迴圈：證據不足→追加查詢；信心太低→追問使用者</p>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">11</p>
+<aside>系統架構有八個模組，資料流是一個 S 形：使用者提問，經過 ② 解析，交給 ③ LLM 規劃。LLM 呼叫工具到 ④ 取得資料，然後往左走：⑤ 分析、⑦ 決策、⑧ 輸出。⑥ 領域知識同時餵給分析和決策。最重要的設計是：LLM 只負責想，也就是規劃、推理、表達；所有數字和門檻判斷都由程式算，所以結果可以重現、可以驗證。橘色框的 ⑤ 分析引擎是我們的核心創新，來源判斷就在這裡。</aside>
+</section>

@@ -1,0 +1,40 @@
+<section id="flow" data-transition="fade" style="background:#F7F6F1;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Proposed Scheme｜Flowchart</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">流程：判斷、迴圈、例外與人機互動</h2>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1;align-self:stretch;background:#14213D;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;color:#F7F6F1;font-weight:700">開始：使用者提問</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">② 解析提問</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.3;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ 地點時間明確？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">否 → 追問使用者</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">③ 規劃查詢</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">④ 取得資料</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1.2;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ API 成功？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">否 → 本地資料庫（例外）</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.6;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ 可用感測器足夠？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">否 → 擴大範圍再查（迴圈，最多 2 次），仍不足改用測站</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.4;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">⑤ 品質、校正、來源判斷</p><p style="font-size:24px;line-height:1.4">局部／區域／混合／感測器異常</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.2;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">⑥⑦ 知識與風險評估</p><p style="font-size:24px;line-height:1.4">候選行動排序</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1.1;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ 敏感族群？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">是 → 較嚴門檻</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.4;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ 信心足夠？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">否 → 說明不確定性、給保守建議</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.1;align-self:stretch;background:#FFFFFF;border:2px solid #C9D1DD;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">⑧ 四段式輸出</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:1.3;align-self:stretch;background:#FFFFFF;border:3px solid #EB6834;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;line-height:1.4;font-weight:700;color:#14213D">◇ 使用者追問？</p><p style="font-size:24px;line-height:1.4;color:#C2501F">是 → 回到 ②（迴圈）</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#9AA6BD"></x-shape>
+<div style="flex:0.8;align-self:stretch;background:#14213D;border-radius:14px;padding:18px"><p style="font-size:24px;line-height:1.4;color:#F7F6F1;font-weight:700">結束</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">橘框＝判斷（Decision）；每列由左到右、再接下一列。完整 Mermaid 流程圖見 diagrams/flowchart.mmd</p>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">12</p>
+<aside>流程圖依作業規範包含四種元素。判斷：橘色框，共六個，例如地點時間明不明確、感測器夠不夠、是不是敏感族群、信心夠不夠。迴圈：感測器不夠時擴大範圍再查，最多兩次；使用者追問時回到解析。例外：API 失敗改用本地資料庫，感測器始終不足改用國家測站。人機互動：地點不明確時追問使用者，而不是亂猜。</aside>
+</section>

@@ -1,0 +1,35 @@
+<section id="principles" data-transition="fade" style="background:#EEF1F5;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Proposed Scheme｜設計原則</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">五條設計原則，全部來自研究發現</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;flex:1">
+<div style="display:flex;gap:28px;align-items:center;background:#FFFFFF;border-radius:16px;padding:18px 36px">
+<p style="width:90px;font-size:44px;font-weight:700;color:#C2501F">P1</p>
+<p style="flex:1;font-size:30px;font-weight:500;color:#14213D">所有數字都來自工具查詢，LLM 不自己生成</p>
+<p style="width:420px;font-size:24px;color:#6B7385">LLM 會幻覺 [S-035][S-036]</p>
+</div>
+<div style="display:flex;gap:28px;align-items:center;background:#FFFFFF;border-radius:16px;padding:18px 36px">
+<p style="width:90px;font-size:44px;font-weight:700;color:#C2501F">P2</p>
+<p style="flex:1;font-size:30px;font-weight:500;color:#14213D">先確認資料可不可信，再做判斷</p>
+<p style="width:420px;font-size:24px;color:#6B7385">高估約 40% [S-008]、實測濕度不可靠</p>
+</div>
+<div style="display:flex;gap:28px;align-items:center;background:#FFFFFF;border-radius:16px;padding:18px 36px">
+<p style="width:90px;font-size:44px;font-weight:700;color:#C2501F">P3</p>
+<p style="flex:1;font-size:30px;font-weight:500;color:#14213D">用當下的空間型態判斷來源，不引用固定比例</p>
+<p style="width:420px;font-size:24px;color:#6B7385">爭論 1；扣除區域背景 [S-045]</p>
+</div>
+<div style="display:flex;gap:28px;align-items:center;background:#FFFFFF;border-radius:16px;padding:18px 36px">
+<p style="width:90px;font-size:44px;font-weight:700;color:#C2501F">P4</p>
+<p style="flex:1;font-size:30px;font-weight:500;color:#14213D">建議結合族群、時間、地點、活動，具體可行</p>
+<p style="width:420px;font-size:24px;color:#6B7385">暴露量 [S-034]、遵從率 [S-028]</p>
+</div>
+<div style="display:flex;gap:28px;align-items:center;background:#FFFFFF;border-radius:16px;padding:18px 36px">
+<p style="width:90px;font-size:44px;font-weight:700;color:#C2501F">P5</p>
+<p style="flex:1;font-size:30px;font-weight:500;color:#14213D">每個結論都附上證據與信心程度</p>
+<p style="width:420px;font-size:24px;color:#6B7385">數字來源不一致 [S-022]、[S-011]</p>
+</div>
+</div>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">10</p>
+<aside>進入系統設計前，先說五條設計原則。重點是：這些不是我們憑空想的，每一條都對應到前面的文獻或我們的實測。最重要的是 P1：所有數字都必須來自工具查詢，LLM 只負責規劃和表達，這樣可以從根本上避免 AI 亂編數字。</aside>
+</section>

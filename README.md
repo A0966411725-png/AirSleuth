@@ -5,6 +5,17 @@
 
 **目前階段：** Proposal，2026-11-04 繳交
 
+## 繳交物一覽
+
+| 繳交項目 | 位置 |
+|---|---|
+| Proposal Document | [proposal/AirSleuth_Proposal.md](proposal/AirSleuth_Proposal.md)（各章原始檔在 `proposal/00～05`） |
+| Proposal PPT | [slides/README.md](slides/README.md)（線上簡報，可下載 .pptx／PDF，附講稿） |
+| GitHub Repository | 本 repo |
+| DESIGN.md | [DESIGN.md](DESIGN.md) |
+| 口頭問答預演 | [docs/qa_rehearsal.md](docs/qa_rehearsal.md) |
+| 文獻與來源查核 | [research/sources.md](research/sources.md)（52 筆） |
+
 ## 這個 Agent 要做什麼
 
 使用者問：「為什麼今天我家附近 PM2.5 這麼高？明天能不能帶小孩去運動？」

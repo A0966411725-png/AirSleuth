@@ -25,11 +25,14 @@ AGENTS.md            所有 AI 協作者的共用規則（先讀這個）
 CLAUDE.md            Claude（總指揮）的角色說明
 GEMINI.md            Gemini（研究員）的角色說明
 DESIGN.md            系統設計文件
+members/             每位組員的分工（gemini_姓名.md、codex.md）
+inbox/               網頁版 AI 的交件區（T-xx_姓名.md）
 coordination/        任務看板、決策紀錄、任務說明、回報
+  COMMS.md           AI 溝通頻道：提問、交接、審查結果
   TASKS.md           任務看板
   DECISIONS.md       決策紀錄
   briefs/            每個任務的詳細說明（可直接貼給 AI）
-  reports/           AI 完成任務後的回報
+  reports/           Codex 完成任務後的回報
   templates/         任務說明與回報的範本
 docs/                作業規範摘要等參考文件
 proposal/            Proposal 各章節
@@ -42,17 +45,19 @@ slides/              簡報
 
 ## 三個 AI 怎麼協作
 
-| AI | 角色 | 規則檔 |
-|---|---|---|
-| Claude | 總指揮：派工、審查、架構、整合 | `CLAUDE.md` |
-| Gemini | 研究員：文獻、數據、研究初稿 | `GEMINI.md` |
-| Codex | 工程師：資料串接、分析原型、程式 | `AGENTS.md`、`src/AGENTS.md` |
+| AI | 組員 | 角色 | 規則檔 |
+|---|---|---|---|
+| Claude | — | 總指揮：派工、審查、查核來源、架構、整合 | `CLAUDE.md` |
+| Gemini × 4 | 陳宏郁、陳彥愷、王鼎昌、周聖儒 | 研究員：分成緒論、AI 技術、領域、爭議四條線 | `GEMINI.md` |
+| Codex | 待定 | 工程師：資料串接、分析原型、程式 | `AGENTS.md`、`src/AGENTS.md` |
+
+每個人要做什麼，見 [members/](members/README.md)。
 
 **流程：**
 1. Claude 在 `coordination/TASKS.md` 派任務，詳細說明寫在 `coordination/briefs/`
-2. 組員打開 Codex 或 Gemini，跟它說「請讀 AGENTS.md，執行 T-07」，或直接把 brief 貼給它
-3. AI 完成後寫回報到 `coordination/reports/`，並把狀態改成 `review`
-4. 組員回來跟 Claude 說「審查 T-07」，Claude 驗收後標成 `done`，再派下一批任務
+2. **Gemini 組員**：把 brief 裡「貼給 Gemini 的內容」貼給 Gemini，再把完整回答上傳到 `inbox/`
+3. **Codex 組員**：在 repo 裡開 Codex，請它執行指定任務，完成後 push 分支並寫回報
+4. Claude 審查、查核來源、整合，審查結果寫在 `coordination/COMMS.md`，再派下一批任務
 
 ## 開發環境
 

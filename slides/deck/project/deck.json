@@ -1,0 +1,20 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-19T17:30:00+08:00"},
+  "lists": "css",
+  "title": "AirSleuth 空品偵探｜期末專題提案",
+  "cover": "cover",
+  "order": ["cover", "numbers", "problem", "statement", "rw-ai", "rw-domain", "gap", "mindsets", "debates", "principles", "arch", "flow", "algo", "case-local", "case-quality", "experiments", "close"],
+  "sections": {
+    "s1": {"description": "研究動機：台灣有大量公開感測資料，民眾卻只拿到數字與顏色", "start": "cover"},
+    "s2": {"description": "相關研究與研究缺口", "start": "rw-ai"},
+    "s3": {"description": "Deep Research：五個核心思維與三大爭論", "start": "mindsets"},
+    "s4": {"description": "Proposed Scheme：設計原則、架構、流程與演算法", "start": "principles"},
+    "s5": {"description": "技術可行性：真實資料的初步結果與實驗設計", "start": "case-local"}
+  },
+  "faces": {
+    "noto-sans-tc": {"family": "Noto Sans TC", "href": "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"},
+    "jetbrains-mono": {"family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"}
+  },
+  "designSystems": []
+}

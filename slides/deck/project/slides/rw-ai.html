@@ -1,0 +1,31 @@
+<section id="rw-ai" data-transition="fade" style="background:#EEF1F5;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">相關研究｜AI 技術</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">AI 技術已經做到哪裡</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">LLM Agent</h3>
+<p style="font-size:26px;line-height:1.5">ReAct 讓 LLM 邊推理邊呼叫工具，降低幻覺 [S-035]；空品 MCP 介面事實正確性 4.78／5 [S-036]</p>
+<p style="font-size:26px;line-height:1.4;color:#C2501F;font-weight:500">限制：只會「查」和「畫」，不判斷原因</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">感測器校正</h3>
+<p style="font-size:26px;line-height:1.5">台灣 39 個感測器以隨機森林校正，RMSE 18.4 → 5.9 μg/m³ [S-041]；混合模型 RMSE 降 58～63% [S-043]</p>
+<p style="font-size:26px;line-height:1.4;color:#C2501F;font-weight:500">限制：只產生更準的數字，沒接到決策</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">局部 vs 區域的分離</h3>
+<p style="font-size:26px;line-height:1.5">小波分解把局部事件從區域背景分離，R² 最多 +0.14 [S-045]；扣除背景後以高斯過程找熱點 [S-047]</p>
+<p style="font-size:26px;line-height:1.4;color:#C2501F;font-weight:500">限制：離線研究工具，沒有即時解釋</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;color:#14213D">PM2.5 預測</h3>
+<p style="font-size:26px;line-height:1.5">台灣測站的時空圖神經網路 [S-048]；多尺度動態 GNN 誤差再降 6.8～8.7% [S-049]</p>
+<p style="font-size:26px;line-height:1.4;color:#C2501F;font-weight:500">限制：越準越複雜、越難解釋</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">共整理 AI 技術文獻 17 篇（2024–2026 佔多數），完整表格見 Proposal 第 2 章</p>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">5</p>
+<aside>AI 技術分成四塊。LLM Agent：ReAct 是基礎方法，近一年已有空品領域的 LLM 系統，透過工具查即時資料，但只會查和畫。感測器校正：台灣自己就有研究，隨機森林把誤差降到原來的三分之一左右。局部與區域的分離：國外已有小波分解、高斯過程等方法，但都是離線的研究工具。預測：圖神經網路越來越準，但也越難解釋。每一塊都很成熟，但都是各做各的。</aside>
+</section>

@@ -19,3 +19,6 @@ Thumbs.db
 
 # 個人 AI 設定
 .claude/settings.local.json
+
+# 本機暫存
+.cache/

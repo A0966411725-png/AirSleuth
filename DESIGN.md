@@ -68,7 +68,7 @@ flowchart TB
 | ② | Query / Input | 解析地點、時間窗、族群、活動強度；不明確就追問 | `src/agent/parse.py` | 規劃中 |
 | ③ | Planner & Reasoning Agent | ReAct 式推理與工具呼叫、證據充分性檢查、可追溯性檢查 | `src/agent/` | 規劃中 |
 | ④ | Data Acquisition / Retrieval | 微型感測器、國家測站、氣象；本地資料庫；品質檢查 | `src/data/` | **感測器與品質檢查已完成** |
-| ⑤ | Analytics Engine | 可信度評估、校正、空間型態分析、來源判斷、短期預測 | `src/analytics/` | T-20、T-11 進行 |
+| ⑤ | Analytics Engine | 可信度評估、校正、空間型態分析、來源判斷、短期預測 | `src/analytics/` | 初步完成（T-20、T-11、T-21、T-22） |
 | ⑥ | Domain Knowledge Integration | 健康指引規則、專家觀念、文獻知識庫 | `src/knowledge/` | 內容已整理（`research/`） |
 | ⑦ | Decision / Recommendation | 暴露評估、風險分級、行動排序、信心程度 | `src/agent/recommend.py` | 規劃中 |
 | ⑧ | Output & Interaction | 四段式回答（結論、原因、建議、信心）、追問 | 待定 | 規劃中 |
@@ -142,6 +142,8 @@ flowchart TB
 
 T-20 的初步實測與門檻建議見 `coordination/reports/T-20.md`。
 
+**T-21（國家測站 60 天）：**在測站尺度找到「多站同時升高、站間差異小」的區域型候選日（臺中 7 天、高雄 4 天）。實測發現只用相對門檻（+50%）會把低濃度日的小波動選進來，因此建議「升高」同時要求**至少高 5 μg/m³**；`spatial.py` 尚未修改，等微型感測器多天資料一起驗證。見 `coordination/reports/T-21.md`。
+
 ## 9. Implementation
 
 | 路徑 | 內容 | 狀態 |
@@ -150,10 +152,12 @@ T-20 的初步實測與門檻建議見 `coordination/reports/T-20.md`。
 | `src/data/quality.py` | 資料品質旗標與摘要 | ✅ |
 | `src/data/moenv.py`、`src/data/cwa.py`、`src/data/http.py` | 國家測站、氣象站串接；政府平台的憑證處理 | ✅（T-08） |
 | `scripts/collect_scheduled.py`、`scripts/register_task.ps1`、`scripts/backfill_moenv.py` | 每小時排程收集三種資料；補抓測站歷史 | ✅ |
-| `tests/` | 9 個離線測試（資料串接 5 個、空間分析 4 個） | ✅ |
+| `tests/` | 20 個離線測試（資料串接 5、空間分析 4、預測 4、區域事件 4、校正 3） | ✅ |
 | `src/analytics/spatial.py` | 空間型態分析、來源判斷（Algorithm 2）、事件型態標記 | ✅ 初步（T-20） |
 | `notebooks/T-20_spatial_eda.ipynb` | 真實資料探索與圖表 | ✅ 初步 |
-| `src/analytics/`（預測、校正） | 短期預測、測站校正 | T-11 |
+| `src/analytics/forecast.py`、`notebooks/T-11_*` | 短期預測基準（持續性 vs 多元線性迴歸） | ✅ 初步（T-11） |
+| `src/analytics/regional.py`、`notebooks/T-21_*` | 國家測站的區域型事件候選 | ✅ 初步（T-21） |
+| `src/analytics/calibration.py`、`notebooks/T-22_*` | 共置比對、線性＋外部濕度校正 | ✅ 初步，單日資料（T-22） |
 | `src/agent/`、`src/knowledge/` | Agent 與知識庫 | 期末階段 |
 
 ## 10. How to Run
@@ -177,6 +181,7 @@ Proposal 階段只寫預期成果（Expected Outcomes），見 `proposal/04_prop
 - **資料：**API 只保留約 4～5 小時，歷史資料要自行累積或向國網中心申請；本專題只收集臺中市與高雄市。
 - **感測器：**濕度資料常無效，校正依賴國家測站，而國家測站很稀疏。
 - **來源判斷：**是根據空間型態的推論，不是化學成分的源解析；能區分「局部」與「區域」，但**無法確定區域污染是境外還是國內其他地區**（T-18 爭議 1）。
-- **門檻：**初始值來自文獻與常識，需要真實事件校準，而且可能因城市而異；T-20 只有單日資料，區域型規則尚未遇到真實事件驗證。
+- **門檻：**初始值來自文獻與常識，需要真實事件校準，而且可能因城市而異；T-20 只有單日微型感測器資料，區域型規則尚未在微型感測器上遇到真實事件驗證（T-21 已在國家測站找到候選日，但微型感測器 API 無法回補當時的資料）。
+- **校正：**T-22 的校正係數只來自一個下午，濕度範圍窄（45～87%）、沒有高濕度時段，而且國家測站小時值的時間標記慣例尚未確認。
 - **尺度：**固定的 2 km／15 km 無法描述大小不同的事件（T-20 的沿海群聚約 8 km）。
 - **健康建議：**是一般性的公衛建議，不能取代醫療建議。

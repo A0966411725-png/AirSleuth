@@ -91,7 +91,7 @@ copy .env.example .env
 
 ## 資料收集排程
 
-微型感測器 API 只保留最近約 4～5 小時的資料，所以用 Windows 工作排程器每 2 小時收集一次臺中市、高雄市的資料，存到 `data/raw/colife/`（不進版控）。
+Windows 工作排程器**每小時**收集臺中市、高雄市的三種資料，存到 `data/raw/`（不進版控）：微型感測器（API 只保留約 4～5 小時）、國家測站小時值、自動氣象站（API 只給最新一筆）。國家測站的歷史資料可用 `python -m scripts.backfill_moenv --days 60` 補抓。
 
 ```bash
 powershell -ExecutionPolicy Bypass -File scripts\register_task.ps1

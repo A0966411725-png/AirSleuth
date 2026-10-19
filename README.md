@@ -47,9 +47,9 @@ slides/              簡報
 
 | AI | 組員 | 角色 | 規則檔 |
 |---|---|---|---|
-| Claude | — | 總指揮：派工、審查、查核來源、架構、整合 | `CLAUDE.md` |
-| Gemini × 3 | 陳宏郁、陳彥愷、王鼎昌 | 研究員：緒論、AI 技術、領域與爭議 | `GEMINI.md` |
-| Codex | 李家豐 | 工程師：資料串接、分析原型、程式 | `AGENTS.md`、`src/AGENTS.md` |
+| Claude | — | 總指揮：派工、審查、查核來源、架構、整合；D 爭議線研究 | `CLAUDE.md` |
+| Gemini × 2 | 陳宏郁、陳彥愷 | 研究員：緒論、領域、AI 技術 | `GEMINI.md` |
+| Codex × 2 | 李家豐、王鼎昌 | 工程師：資料串接（李家豐）、分析引擎（王鼎昌） | `AGENTS.md`、`src/AGENTS.md` |
 
 每個人要做什麼，見 [members/](members/README.md)。
 

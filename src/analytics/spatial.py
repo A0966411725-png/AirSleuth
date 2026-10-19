@@ -5,6 +5,8 @@
     局部濃度 L  = 目標點半徑 r_local 內的中位數
     局部超量 E  = L − B
     空間一致性 C = 區域內「比自己前 baseline_hours 小時中位數升高超過 rise」的感測器比例
+    次區域一致性 C_sub = 半徑 r_sub 內升高的比例；外環一致性 C_ring = r_sub～r_region 環帶內升高的比例
+        （T-20 加入：臺中沿海的群聚約 8 km，介於 2 km 與 15 km 之間，兩層尺度描述不了）
 
 輸入：`src.data.colife.aggregate` 產生的長表（station_id、lon、lat、time、pm25、rh…）。
 輸出：每個時間點、每個目標位置的指標與來源類型。
@@ -22,6 +24,7 @@ from src.data import quality
 EARTH_RADIUS_KM = 6371.0
 
 REGIONAL = "regional"
+SUBREGIONAL = "subregional"
 LOCAL = "local"
 MIXED = "mixed"
 SENSOR_FAULT = "suspected_sensor_fault"
@@ -34,6 +37,7 @@ class Params:
     """來源判斷的參數。預設值是 DESIGN.md 第 8 節的初始值，T-20 用真實資料校準。"""
     r_local_km: float = 2.0
     r_region_km: float = 15.0
+    r_sub_km: float | None = 8.0   # 次區域尺度；設成 None 就回到只有 2 km／15 km 的兩層判斷
     min_sensors: int = 5
     baseline_hours: float = 6.0
     rise_ratio: float = 0.5        # 比自己基準高 50% 算「升高」
@@ -91,11 +95,31 @@ def metrics_at(matrix: pd.DataFrame, stations: pd.DataFrame, base: pd.DataFrame,
     B = float(now[region_ids].median())
     L = float(now[local_ids].median())
     E = L - B
-    b = base.loc[t, region_ids]
-    rising = ((now[region_ids] - b) / b) > p.rise_ratio
-    C = float(rising[b.notna()].mean()) if b.notna().any() else np.nan
+    b = base.loc[t]
+    rising = (((now - b) / b) > p.rise_ratio)[now.notna() & b.notna()]
+
+    def share(ids):
+        r = rising.reindex(ids).dropna()
+        return float(r.mean()) if len(r) else np.nan
+
+    C = share(region_ids)
     n_local_elevated = int((now[local_ids] > B + max(E, 0) / 2).sum()) if E > 0 else 0
-    return {**out, "B": B, "L": L, "E": E, "C": C, "n_local_elevated": n_local_elevated}
+    out = {**out, "B": B, "L": L, "E": E, "C": C, "n_local_elevated": n_local_elevated}
+    if p.r_sub_km:
+        sub_ids = dist.index[(dist <= p.r_sub_km) & now.notna()]
+        ring_ids = dist.index[(dist > p.r_sub_km) & (dist <= p.r_region_km) & now.notna()]
+        out.update(n_sub=len(sub_ids), C_sub=share(sub_ids), C_ring=share(ring_ids))
+    return out
+
+
+def is_subregional(C, C_sub, C_ring, n_sub, p: Params = Params()):
+    """次區域型：r_sub 內有一定比例一起升高，外環大多沒有升高，整個區域也還沒有到區域型。
+
+    參數只沿用既有的 coherence_low／coherence_high，不另外新增門檻（只有一個真實案例，避免過度擬合）。
+    可傳入純量或陣列。
+    """
+    return ((np.asarray(n_sub) >= p.min_sensors) & (np.asarray(C) < p.coherence_high)
+            & (np.asarray(C_sub) >= p.coherence_low) & (np.asarray(C_ring) < p.coherence_low))
 
 
 def classify(m: dict, p: Params = Params()) -> str:
@@ -107,6 +131,8 @@ def classify(m: dict, p: Params = Params()) -> str:
     large_excess = E >= max(p.local_excess_abs, p.local_excess_rel * B)
     if C >= p.coherence_high and small_excess:
         return REGIONAL
+    if p.r_sub_km and not np.isnan(m.get("C_sub", np.nan)) and not np.isnan(m.get("C_ring", np.nan))             and is_subregional(C, m["C_sub"], m["C_ring"], m.get("n_sub", 0), p):
+        return SUBREGIONAL
     if large_excess and C < p.coherence_low:
         return LOCAL if m["n_local_elevated"] >= p.min_local_elevated else SENSOR_FAULT
     if C >= p.coherence_high and large_excess:
@@ -174,3 +200,30 @@ def city_coherence(matrix: pd.DataFrame, base: pd.DataFrame, p: Params = Params(
     rising = (matrix - base) / base > p.rise_ratio
     valid = matrix.notna() & base.notna()
     return (rising & valid).sum(axis=1) / valid.sum(axis=1).replace(0, np.nan)
+
+
+def coherence_scan(matrix: pd.DataFrame, stations: pd.DataFrame, base: pd.DataFrame,
+                   p: Params = Params()) -> dict[str, pd.DataFrame]:
+    """以每個感測器為中心，計算每個時間點的 C（r_region 內）、C_sub（r_sub 內）、C_ring（外環）。
+
+    用矩陣乘法一次算完整個城市，用來掃描次區域型事件（以及評估誤報）。
+    回傳 {"C", "C_sub", "C_ring", "n_sub"}，每個都是「時間 × 中心感測器」的表。
+    """
+    r_sub = p.r_sub_km or p.r_local_km
+    lat = stations["lat"].to_numpy()
+    lon = stations["lon"].to_numpy()
+    dist = haversine_km(lat[:, None], lon[:, None], lat[None, :], lon[None, :])
+    masks = {"C": dist <= p.r_region_km, "C_sub": dist <= r_sub,
+             "C_ring": (dist > r_sub) & (dist <= p.r_region_km)}
+    valid = (matrix.notna() & base.notna()).to_numpy().astype(float)
+    rising = ((((matrix - base) / base) > p.rise_ratio).to_numpy() & (valid > 0)).astype(float)
+    out = {}
+    for name, mask in masks.items():
+        m = mask.T.astype(float)
+        n = valid @ m
+        with np.errstate(invalid="ignore", divide="ignore"):
+            out[name] = pd.DataFrame(np.where(n > 0, (rising @ m) / n, np.nan),
+                                     index=matrix.index, columns=matrix.columns)
+    out["n_sub"] = pd.DataFrame(matrix.notna().to_numpy().astype(float) @ masks["C_sub"].T.astype(float),
+                                index=matrix.index, columns=matrix.columns)
+    return out

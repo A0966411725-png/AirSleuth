@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 機密：絕對不要 commit
+.env
+
+# 原始資料（只把小樣本放 data/sample/）
+data/raw/
+
+# 系統與編輯器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 個人 AI 設定
+.claude/settings.local.json

@@ -1,0 +1,74 @@
+# AirSleuth 空品偵探
+
+> 結合 IoT 微型感測器與領域知識的空氣品質 Domain AI Agent
+> 物聯網數據分析與應用｜期末專題（組繳交）
+
+**目前階段：** Proposal，2026-11-04 繳交
+
+## 這個 Agent 要做什麼
+
+使用者問：「為什麼今天我家附近 PM2.5 這麼高？明天能不能帶小孩去運動？」
+
+AirSleuth 會：
+1. 理解問題：地點、時間、使用者族群
+2. 規劃要抓哪些資料：附近的微型感測器、國家測站、風向風速
+3. 分析：判斷污染比較可能是**局部來源**（施工、交通、燃燒）還是**區域或境外傳輸**，並預測短期趨勢
+4. 結合領域知識：AQI 健康指引、敏感族群建議
+5. 給出**有證據、標明不確定性**的行動建議
+
+詳細設計見 [DESIGN.md](DESIGN.md)。
+
+## 儲存庫結構
+
+```
+AGENTS.md            所有 AI 協作者的共用規則（先讀這個）
+CLAUDE.md            Claude（總指揮）的角色說明
+GEMINI.md            Gemini（研究員）的角色說明
+DESIGN.md            系統設計文件
+coordination/        任務看板、決策紀錄、任務說明、回報
+  TASKS.md           任務看板
+  DECISIONS.md       決策紀錄
+  briefs/            每個任務的詳細說明（可直接貼給 AI）
+  reports/           AI 完成任務後的回報
+  templates/         任務說明與回報的範本
+docs/                作業規範摘要等參考文件
+proposal/            Proposal 各章節
+research/            文獻、數據、來源登記表
+diagrams/            架構圖、流程圖（Mermaid）
+src/                 程式碼（Codex 主要範圍）
+data/sample/         小型資料樣本（原始資料放 data/raw/，不進版控）
+slides/              簡報
+```
+
+## 三個 AI 怎麼協作
+
+| AI | 角色 | 規則檔 |
+|---|---|---|
+| Claude | 總指揮：派工、審查、架構、整合 | `CLAUDE.md` |
+| Gemini | 研究員：文獻、數據、研究初稿 | `GEMINI.md` |
+| Codex | 工程師：資料串接、分析原型、程式 | `AGENTS.md`、`src/AGENTS.md` |
+
+**流程：**
+1. Claude 在 `coordination/TASKS.md` 派任務，詳細說明寫在 `coordination/briefs/`
+2. 組員打開 Codex 或 Gemini，跟它說「請讀 AGENTS.md，執行 T-07」，或直接把 brief 貼給它
+3. AI 完成後寫回報到 `coordination/reports/`，並把狀態改成 `review`
+4. 組員回來跟 Claude 說「審查 T-07」，Claude 驗收後標成 `done`，再派下一批任務
+
+## 開發環境
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
+```
+
+然後在 `.env` 填入 API key（申請方式見 `coordination/TASKS.md` 的 T-02）。
+
+## 資料來源
+
+| 來源 | 用途 |
+|---|---|
+| [民生公共物聯網 空品微型感測器 API](https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/) | 約 1.1 萬個感測器的 PM2.5、溫度、濕度 |
+| [環境部環境資料開放平臺](https://data.moenv.gov.tw/) | 國家空品測站 |
+| [中央氣象署開放資料平臺](https://opendata.cwa.gov.tw/) | 風向、風速、降雨 |

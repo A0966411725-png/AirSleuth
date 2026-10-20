@@ -97,4 +97,10 @@ Windows 工作排程器**每小時**收集臺中市、高雄市的三種資料�
 powershell -ExecutionPolicy Bypass -File scripts\register_task.ps1
 ```
 
-紀錄在 `data/raw/logs/scheduled.log`。移除排程：`Unregister-ScheduledTask -TaskName "AirSleuth-colife-collect" -Confirm:$false`。
+紀錄在 `data/raw/logs/scheduled.log`。
+
+**想確認有沒有收到資料：**執行下面的指令，會列出每種資料收到幾筆、哪些小時有缺口，並畫出每小時覆蓋圖（`docs/collection_status.png`）。
+
+```bash
+.venv\Scripts\python -m scripts.collection_status --png docs/collection_status.png
+```移除排程：`Unregister-ScheduledTask -TaskName "AirSleuth-colife-collect" -Confirm:$false`。

@@ -4,7 +4,7 @@
   "lists": "css",
   "title": "AirSleuth 空品偵探｜期末專題提案",
   "cover": "cover",
-  "order": ["cover", "numbers", "problem", "statement", "rw-ai", "rw-domain", "gap", "mindsets", "debates", "principles", "arch", "flow", "algo", "case-local", "case-quality", "experiments", "close"],
+  "order": ["cover", "numbers", "problem", "statement", "rw-ai", "rw-domain", "gap", "mindsets", "debates", "principles", "arch", "flow", "algo", "case-local", "case-quality", "prelim", "experiments", "close"],
   "sections": {
     "s1": {"description": "研究動機：台灣有大量公開感測資料，民眾卻只拿到數字與顏色", "start": "cover"},
     "s2": {"description": "相關研究與研究缺口", "start": "rw-ai"},

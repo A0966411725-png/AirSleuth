@@ -97,8 +97,9 @@ def _ols(X: np.ndarray, y: np.ndarray) -> np.ndarray:
 
 
 def fit(pairs: pd.DataFrame, features: list[str]) -> pd.Series:
-    """ref_pm25 = a + Σ b_i·feature_i 的係數。"""
-    coef = _ols(pairs[features].to_numpy(dtype=float), pairs["ref_pm25"].to_numpy(dtype=float))
+    """ref_pm25 = a + Σ b_i·feature_i 的係數。有缺值的列先排除（例如測站濕度缺值），否則最小平方法會失敗。"""
+    ok = pairs[features + ["ref_pm25"]].dropna()
+    coef = _ols(ok[features].to_numpy(dtype=float), ok["ref_pm25"].to_numpy(dtype=float))
     return pd.Series(coef, index=["intercept"] + features)
 
 

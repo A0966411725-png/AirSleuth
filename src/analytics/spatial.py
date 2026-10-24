@@ -41,6 +41,7 @@ class Params:
     min_sensors: int = 5
     baseline_hours: float = 6.0
     rise_ratio: float = 0.5        # 比自己基準高 50% 算「升高」
+    rise_abs: float = 5.0          # 而且至少升高 5 μg/m³：空氣很乾淨時（基準約 5），只用比例會把小波動當成升高（T-21、T-20 多天實測）
     coherence_high: float = 0.6
     coherence_low: float = 0.3
     regional_excess_abs: float = 5.0
@@ -75,6 +76,11 @@ def to_matrix(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return matrix, stations
 
 
+def is_rising(now, base, p: Params = Params()):
+    """「升高」= 比自己的基準高 rise_ratio 以上，而且絕對值至少高 rise_abs。可傳入 Series 或 DataFrame。"""
+    return (((now - base) / base) > p.rise_ratio) & ((now - base) >= p.rise_abs)
+
+
 def baseline(matrix: pd.DataFrame, hours: float) -> pd.DataFrame:
     """每個感測器在每個時間點「之前」hours 小時的中位數（不含當下）。"""
     return matrix.shift(1).rolling(f"{int(hours * 60)}min", min_periods=3).median()
@@ -96,7 +102,7 @@ def metrics_at(matrix: pd.DataFrame, stations: pd.DataFrame, base: pd.DataFrame,
     L = float(now[local_ids].median())
     E = L - B
     b = base.loc[t]
-    rising = (((now - b) / b) > p.rise_ratio)[now.notna() & b.notna()]
+    rising = is_rising(now, b, p)[now.notna() & b.notna()]
 
     def share(ids):
         r = rising.reindex(ids).dropna()
@@ -183,7 +189,7 @@ def label_station_events(ex: pd.DataFrame, base: pd.DataFrame, p: Params = Param
     b.columns = ["time", "station_id", "own_base"]
     out = ex.merge(b, on=["time", "station_id"], how="left")
     above = out["excess"] >= np.maximum(p.local_excess_abs, p.local_excess_rel * out["B"])
-    rising = out["pm25"] >= (1 + p.rise_ratio) * out["own_base"]
+    rising = is_rising(out["pm25"], out["own_base"], p)
     share_above = above.groupby(out["station_id"]).transform("mean")
 
     out["pattern"] = "normal"
@@ -196,8 +202,8 @@ def label_station_events(ex: pd.DataFrame, base: pd.DataFrame, p: Params = Param
 
 
 def city_coherence(matrix: pd.DataFrame, base: pd.DataFrame, p: Params = Params()) -> pd.Series:
-    """整個城市每個時間點的空間一致性：比自己基準升高超過 rise_ratio 的感測器比例。"""
-    rising = (matrix - base) / base > p.rise_ratio
+    """整個城市每個時間點的空間一致性：「升高」（見 is_rising）的感測器比例。"""
+    rising = is_rising(matrix, base, p)
     valid = matrix.notna() & base.notna()
     return (rising & valid).sum(axis=1) / valid.sum(axis=1).replace(0, np.nan)
 
@@ -216,7 +222,7 @@ def coherence_scan(matrix: pd.DataFrame, stations: pd.DataFrame, base: pd.DataFr
     masks = {"C": dist <= p.r_region_km, "C_sub": dist <= r_sub,
              "C_ring": (dist > r_sub) & (dist <= p.r_region_km)}
     valid = (matrix.notna() & base.notna()).to_numpy().astype(float)
-    rising = ((((matrix - base) / base) > p.rise_ratio).to_numpy() & (valid > 0)).astype(float)
+    rising = (is_rising(matrix, base, p).to_numpy() & (valid > 0)).astype(float)
     out = {}
     for name, mask in masks.items():
         m = mask.T.astype(float)

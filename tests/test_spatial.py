@@ -117,3 +117,15 @@ def test_coherence_scan_matches_metrics_at():
     for k in ("C", "C_sub", "C_ring"):
         assert abs(sc[k].loc[t, "S0808"] - m[k]) < 1e-9, k
     assert sc["n_sub"].loc[t, "S0808"] == m["n_sub"]
+
+
+def test_rising_needs_absolute_increase_in_clean_air():
+    """空氣很乾淨時（4 → 7），比例雖然超過 50%，但只升高 3 μg/m³，不算升高（T-20 多天實測）。"""
+    st = _grid()
+    mx = _matrix(st, base=4.0)
+    mx.iloc[-6:] = 7.0
+    _, kind = _run(mx, st, "S22")
+    assert kind == spatial.NO_EVENT
+    mx.iloc[-6:] = 14.0  # 4 → 14：升高 10，才算區域型
+    _, kind = _run(mx, st, "S22")
+    assert kind == spatial.REGIONAL

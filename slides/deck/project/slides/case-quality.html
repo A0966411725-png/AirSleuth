@@ -14,7 +14,7 @@
 <div style="background:#FFFFFF;border-radius:16px;padding:24px"><p style="font-size:40px;font-weight:700;color:#1C5CAB">324 → 99</p><p style="font-size:24px;line-height:1.45">加入「比自己基準升高」條件後，局部事件的感測器數</p></div>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">當天下午沒有區域型事件（空間一致性最高 0.12），區域型規則將以更多天的資料驗證</p>
-<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">15</p>
-<aside>這張是可行性驗證的另一面：資料品質。左邊是一個感測器飆到 111，但周圍 27 個都正常，如果直接相信它，就會誤報附近有污染，我們的規則把它判為疑似異常。右邊三個數字：臺中感測器的濕度欄位幾乎不能用，84% 的正常資料都回報 90% 以上，所以濕度校正要改用氣象署的資料；有 91 個感測器長期偏高，不能當成事件；第一版規則抓到 324 個候選，加上「比自己平常高」的條件後降到 99 個。最後誠實說明：當天沒有遇到區域型事件，這部分要等更多天的資料驗證。</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">10/19 單日分析。5 天資料：臺中約 28% 的資料列濕度無效；單點飆高臺中 219 個、高雄 513 個感測器出現過</p>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">16</p>
+<aside>這張是可行性驗證的另一面：資料品質。左邊是一個感測器飆到 111，但周圍 27 個都正常，如果直接相信它，就會誤報附近有污染，我們的規則把它判為疑似異常。右邊三個數字：臺中感測器的濕度欄位幾乎不能用，84% 的正常資料都回報 90% 以上，所以濕度校正要改用氣象署的資料；有 91 個感測器長期偏高，不能當成事件；第一版規則抓到 324 個候選，加上「比自己平常高」的條件後降到 99 個。累積 5 天後也一樣：單點飆高在臺中有 219 個、高雄有 513 個感測器出現過，演算法都沒有把它們當成污染。</aside>
 </section>

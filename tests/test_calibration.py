@@ -45,3 +45,13 @@ def test_linear_calibration_removes_multiplicative_bias():
     res = cal.leave_one_site_out(pairs, {"raw": [], "linear": ["sensor_pm25"]}).set_index("model")
     assert res.loc["linear", "MAE"] < 0.5 < res.loc["raw", "MAE"]
     assert abs(cal.fit(pairs, ["sensor_pm25"])["sensor_pm25"] - 1 / 1.5) < 0.02
+
+
+def test_fit_skips_rows_with_missing_humidity():
+    """多天資料中測站濕度偶有缺值；fit 要略過缺值列，不能讓最小平方法失敗（2026-10-24 實測）。"""
+    rng = np.random.default_rng(1)
+    raw = rng.uniform(5, 40, 40)
+    pairs = pd.DataFrame({"sensor_pm25": raw, "ref_pm25": raw / 1.5, "station_rh": rng.uniform(50, 90, 40)})
+    pairs.loc[[3, 17], "station_rh"] = np.nan
+    coef = cal.fit(pairs, ["sensor_pm25", "station_rh"])
+    assert coef.notna().all() and abs(coef["sensor_pm25"] - 1 / 1.5) < 0.01

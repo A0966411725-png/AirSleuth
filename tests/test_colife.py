@@ -56,3 +56,13 @@ def test_quality_flags():
     assert (flagged.loc[flagged["station_id"] == "S", "qc_flag"] == "stuck").all()
     assert flagged.loc[flagged["station_id"] == "B", "qc_flag"].tolist() == [
         "pm25_negative", "pm25_extreme", "pm25_missing", "rh_invalid"]
+
+
+def test_quality_flag_handles_duplicate_index():
+    """多個日檔合併後索引會重複；品質檢查不能因此出錯或對錯列。"""
+    times = pd.date_range("2026-10-19 10:00", periods=14, freq="5min", tz=colife.TZ)
+    a = pd.DataFrame({"station_id": "S", "time": times[:7], "pm25": 7.0, "rh": 70.0})
+    b = pd.DataFrame({"station_id": "S", "time": times[7:], "pm25": 7.0, "rh": 70.0})
+    merged = pd.concat([a, b])  # 不加 ignore_index，索引 0..6 重複兩次
+    flagged = quality.flag(merged)
+    assert len(flagged) == 14 and (flagged["qc_flag"] == "stuck").all()

@@ -14,7 +14,7 @@ cells = [
 1. 微型感測器和國家測站差多少？簡單的線性校正有沒有用？
 2. 濕度要用哪一個來源？（T-20 發現臺中微型感測器自己回報的濕度不可靠）
 
-**資料：**2026-10-19 下午到晚上（微型感測器 11:30 起，約 8 小時）。**只有一個下午，所有數字都是初步的。**
+**資料：**2026-10-19 起排程收集的多天資料（微型感測器、國家測站、氣象站，見第一個程式格的輸出）。
 **方法：**`src/analytics/calibration.py`。國家測站 1 km 內的微型感測器先各自算小時平均，再取中位數；用留一站交叉驗證評估校正。"""),
     code('''import os, sys, glob, warnings
 from pathlib import Path
@@ -31,18 +31,21 @@ plt.rcParams.update({"font.sans-serif": ["Microsoft JhengHei", "Noto Sans CJK TC
                      "figure.facecolor": "#fcfcfb", "axes.facecolor": "#fcfcfb"})
 BLUE, ORANGE, INK2 = "#2a78d6", "#eb6834", "#52514e"
 FIG = ROOT / "notebooks" / "figures"; FIG.mkdir(parents=True, exist_ok=True)
-CITIES = ["臺中市", "高雄市"]; DAY = "2026-10-19"
+CITIES = ["臺中市", "高雄市"]; SINCE = "2026-10-19"
 
 def read(path, **kw):
     df = pd.read_csv(path, **kw); df["time"] = pd.to_datetime(df["time"]).dt.tz_convert("Asia/Taipei"); return df
 
-colife = {c: read(ROOT / f"data/raw/colife/{c}/{DAY}.csv.gz", dtype={"station_id": str}) for c in CITIES}
-moenv = {c: pd.concat([read(f, dtype={"siteid": str}) for f in sorted(glob.glob(str(ROOT / f"data/raw/moenv/{c}/*.csv.gz")))[-2:]])
-            .drop_duplicates(["siteid", "time"]) for c in CITIES}
-cwa = {c: read(ROOT / f"data/raw/cwa/{c}/{DAY}.csv.gz", dtype={"station_id": str}) for c in CITIES}
+def read_days(source, city, key):
+    files = [f for f in sorted(glob.glob(str(ROOT / f"data/raw/{source}/{city}/*.csv.gz"))) if Path(f).name[:10] >= SINCE]
+    return pd.concat([read(f, dtype={key: str}) for f in files], ignore_index=True).drop_duplicates([key, "time"])
+
+colife = {c: read_days("colife", c, "station_id") for c in CITIES}
+moenv = {c: read_days("moenv", c, "siteid") for c in CITIES}
+cwa = {c: read_days("cwa", c, "station_id") for c in CITIES}
 for c in CITIES:
-    print(f"{c}: 微型感測器 {colife[c]['time'].min():%H:%M}～{colife[c]['time'].max():%H:%M}；"
-          f"氣象站觀測時間 {sorted(cwa[c]['time'].dt.strftime('%H:%M').unique())}")'''),
+    print(f"{c}: 微型感測器 {colife[c]['time'].min():%m/%d %H:%M}～{colife[c]['time'].max():%m/%d %H:%M}；"
+          f"氣象站 {cwa[c]['time'].nunique()} 個觀測時間")'''),
     md("""## 1. 國家測站的小時標記慣例
 
 測站 13:00 的值代表 12:00～12:59 還是 13:00～13:59？我們沒有找到可引用的官方說明（待查證），所以用資料比對：
@@ -107,12 +110,14 @@ for ax, c in zip(axes, CITIES):
 axes[0].set_ylabel("其他來源的相對濕度（%）"); axes[0].legend(frameon=False, loc="lower right")
 fig.suptitle("濕度來源比較：臺中的微型感測器濕度幾乎都是 100%", x=0.06, ha="left", fontsize=13)
 fig.tight_layout(); fig.savefig(FIG / "t22_fig2_humidity_sources.png", dpi=160)'''),
-    md("""## 結論（初步，只有一個下午）
+    md("""## 結論（5 天資料，2026-10-19～10-24）
 
 見 `coordination/reports/T-22.md`。重點：
-- 線性校正在留一站交叉驗證下能降低誤差；加入**測站濕度**再降低一些，但一個下午裡濕度與時段高度相關，濕度係數**不能解釋成濕度效應**。
-- 臺中微型感測器回報的濕度幾乎都是 100%，再次確認不能用；氣象站濕度與測站濕度接近，可以作為沒有測站地方的濕度來源。
-- 需要多天資料（涵蓋不同濕度、不同污染程度）才能得到可用的校正係數。"""),
+- 國家測站的小時標記，「13:00＝13:00～13:59」在兩市、兩種半徑都較吻合（官方說明仍待查證）。
+- 留一站交叉驗證：線性＋測站濕度校正，臺中 MAE 改善 22%、高雄改善 11%。單日資料時高雄改善 54% 是偶然結果。
+- 微型感測器在臺中偏高（平均 +3.2）、高雄偏低（−1.3），校正必須在地化，不能共用一組係數（呼應 S-010）。
+- 濕度係數兩市都約為 −0.10（濕度越高，感測器越高估），方向與 S-008、S-009 一致；但濕度和時段仍有相關，**不能單獨當成濕度效應的證據**。
+- 臺中微型感測器回報的濕度平均 97.7%（測站 76.9%），不能用；最近氣象站的濕度與測站只差約 5%，可作為沒有測站地方的濕度來源。"""),
 ]
 nb = nbf.v4.new_notebook(cells=cells, metadata={"kernelspec": {"name": "python3", "display_name": "Python 3"}})
 nbf.write(nb, "notebooks/T-22_calibration_prelim.ipynb")

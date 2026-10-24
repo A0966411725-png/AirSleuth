@@ -4,6 +4,8 @@ pandas==3.0.6
 numpy==2.5.4
 python-dotenv==1.2.4
 matplotlib==3.11.2
+# Pillow 13.0.0 的 DLL 會被 Windows「智慧型應用程式控制」封鎖（2026-10-24 實測），固定用 12.0.0
+pillow==12.0.0
 # 測試與 notebook
 pytest==9.1.1
 nbformat==5.11.1

@@ -1,7 +1,7 @@
 <section id="case-local" data-transition="fade" style="background:#F7F6F1;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Technical Feasibility｜真實資料</p>
-<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">已經抓到一個真實的局部型事件</h2>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">已經抓到一個真實的局部升高事件</h2>
 </div>
 <div style="display:flex;gap:32px;flex:1">
 <img src="/_blob/4c5270cb1195963914d75904aac62e04" alt="臺中市 10/19 14:40 微型感測器 PM2.5 地圖，西側沿海一群感測器被標為局部事件" style="width:600px;height:560px;object-fit:contain;background:#FCFCFB;border-radius:16px">
@@ -14,7 +14,7 @@
 </div>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">Algorithm 2 連續約 50 分鐘判為局部型（圖中橘底）。資料：民生公共物聯網 1,130 個感測器；環境部沙鹿測站 13:00–15:00</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">兩層尺度時判為局部型約 50 分鐘（橘底）；加入 8 km 次區域尺度後判為次區域型。資料：民生公共物聯網 1,130 個感測器；環境部沙鹿測站</p>
 <p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">14</p>
-<aside>這是我們用真實資料跑出來的結果，不是模擬。10 月 19 日下午，臺中西側沿海有一群感測器明顯升高，事件中心從 18 升到 40，但同一時間整個區域的背景只從 18 升到 26。我們的演算法在 14 點半之後連續約 50 分鐘判斷為局部型，和圖上看到的一致。更重要的是，事件旁邊的環境部沙鹿國家測站，同一時段也從 19 升到 32，所以這不是便宜感測器的雜訊，而是真的有污染升高。要誠實說明的是：這群升高範圍大約 8 公里，介於我們設定的 2 公里和 15 公里之間，所以之後要加入多尺度的判斷。另外，感測器資料本身沒辦法告訴我們成因是工業、港區還是海風，我們只描述空間型態。</aside>
+<aside>這是我們用真實資料跑出來的結果，不是模擬。10 月 19 日下午，臺中西側沿海有一群感測器明顯升高，事件中心從 18 升到 40，但同一時間整個區域的背景只從 18 升到 26。我們的演算法在 14 點半之後連續約 50 分鐘判斷為局部型，和圖上看到的一致。更重要的是，事件旁邊的環境部沙鹿國家測站，同一時段也從 19 升到 32，所以這不是便宜感測器的雜訊，而是真的有污染升高。另外，這群升高範圍大約 8 公里，介於 2 公里和 15 公里之間，所以我們加入了 8 公里的次區域尺度，加入後演算法改判為次區域型，比局部型更貼切；不過用 5 天資料掃描發現這條規則觸發得太頻繁，期末還要再加上濃度條件。另外，感測器資料本身沒辦法告訴我們成因是工業、港區還是海風，我們只描述空間型態。</aside>
 </section>

@@ -28,8 +28,11 @@ def _stuck_mask(df: pd.DataFrame) -> pd.Series:
 
 
 def flag(df: pd.DataFrame) -> pd.DataFrame:
-    """回傳加上 qc_flag 欄位的副本。一列有多個問題時，取最先符合的那一個。"""
-    out = df.copy()
+    """回傳加上 qc_flag 欄位的副本。一列有多個問題時，取最先符合的那一個。
+
+    索引會重設為 0..n-1：多個日檔合併後索引可能重複，重複索引會讓卡住偵測對錯列。
+    """
+    out = df.reset_index(drop=True)
     rules = [
         ("pm25_missing", out["pm25"].isna()),
         ("pm25_negative", out["pm25"] < 0),

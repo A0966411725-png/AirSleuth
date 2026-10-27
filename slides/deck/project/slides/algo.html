@@ -5,16 +5,16 @@
 </div>
 <div style="display:flex;gap:32px;flex:1">
 <div style="width:1000px;background:#14213D;border-radius:20px;padding:32px 36px">
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.45;color:#E6EAF2;white-space:nowrap">01  R ← sensors within 15 km of p<br>02  L ← sensors within 2 km of p<br>03  B ← median PM2.5 of R        ▷ 區域背景<br>04  E ← median PM2.5 of L − B    ▷ 局部超量<br>05  for each s in R:<br>06      rise_s ← (PM2.5_s − base_s) / base_s<br>07  C ← share of R with rise_s &gt; 0.5  ▷ 空間一致性<br>08  if C ≥ 0.6 and E small:   REGIONAL<br>09  elif E large and C &lt; 0.3:<br>10      if ≥ 2 sensors in L elevated: LOCAL<br>11      else: SUSPECTED_SENSOR_FAULT<br>12  elif C ≥ 0.6 and E large:  MIXED<br>13  else: NO_CLEAR_EVENT<br>14  if REGIONAL and NE wind in winter:<br>15      add evidence「可能有長程傳輸」</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.35;color:#E6EAF2;white-space:pre">01  R ← sensors within 15 km of p<br>02  L ← sensors within 2 km of p<br>03  B ← median PM2.5 of R        ▷ 區域背景<br>04  E ← median PM2.5 of L − B    ▷ 局部超量<br>05  for each s in R:<br>06      rising_s ← 比 base_s 高 50% 且 ≥ 5<br>07  C ← share of R rising        ▷ 空間一致性<br>08  C_sub, C_ring ← 8 km 內／8–15 km 外環<br>09  if C ≥ 0.6 and E small:   REGIONAL<br>10  elif C_sub ≥ 0.3 and C_ring &lt; 0.3: SUBREGIONAL<br>11  elif E large and C &lt; 0.3:<br>12      if ≥ 2 sensors in L rising: LOCAL<br>13      else: SUSPECTED_SENSOR_FAULT<br>14  elif C ≥ 0.6 and E large:  MIXED<br>15  else: NO_CLEAR_EVENT<br>16  if REGIONAL and NE wind in winter:<br>17      add evidence「可能有長程傳輸」</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:20px">
 <div style="background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px">
-<h3 style="font-size:30px;font-weight:700;color:#14213D">門檻（初始值）</h3>
+<h3 style="font-size:30px;font-weight:700;color:#14213D">門檻</h3>
 <p style="font-size:24px;line-height:1.5">E small：E &lt; max(5, 0.3B)<br>E large：E ≥ max(10, 0.5B)<br>base_s：自己前 6 小時中位數</p>
 </div>
 <div style="background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px">
 <h3 style="font-size:30px;font-weight:700;color:#14213D">實測後的修正</h3>
-<p style="font-size:24px;line-height:1.5">事件須比自己基準升高 50%；長期偏高的感測器另歸「持續性偏高」，不算事件</p>
+<p style="font-size:24px;line-height:1.5">升高要同時高 50% 且 ≥ 5 μg/m³；加入 8 km 次區域尺度；長期偏高的感測器另歸「持續性偏高」</p>
 </div>
 <div style="background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px">
 <h3 style="font-size:30px;font-weight:700;color:#14213D">為什麼重要</h3>
@@ -24,5 +24,5 @@
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">另有 Algorithm 1（主流程）與 Algorithm 3（個人化建議），見 Proposal 4.4 節；實作於 src/analytics/spatial.py</p>
 <p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">13</p>
-<aside>這是核心演算法：判斷污染是局部還是區域。概念很簡單：先算 15 公里內所有感測器的中位數當作區域背景 B，再看使用者附近 2 公里的濃度比背景高多少，這叫局部超量 E。另外算空間一致性 C：區域裡有多少比例的感測器同時升高。C 高、E 小代表整片一起升高，是區域型；E 大、C 小代表只有附近高，是局部型。但如果只有一個感測器飆高，我們判斷為疑似感測器異常。右邊是我們用真實資料測試後做的修正。這個判斷會直接改變建議：局部的才建議換地點。</aside>
+<aside>這是核心演算法：判斷污染是局部還是區域。概念很簡單：先算 15 公里內所有感測器的中位數當作區域背景 B，再看使用者附近 2 公里的濃度比背景高多少，這叫局部超量 E。另外算空間一致性 C：區域裡有多少比例的感測器同時升高。C 高、E 小代表整片一起升高，是區域型；E 大、C 小代表只有附近高，是局部型。但如果只有一個感測器飆高，我們判斷為疑似感測器異常。右邊是我們用 5 天真實資料測試後做的修正：空氣很乾淨時，只看比例會把小波動當成升高，所以加上至少 5 μg/m³；臺中那次事件約 8 公里，所以加入次區域型。這個判斷會直接改變建議：局部的才建議換地點。</aside>
 </section>

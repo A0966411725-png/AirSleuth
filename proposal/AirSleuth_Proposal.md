@@ -6,20 +6,20 @@
 
 GitHub：https://github.com/A0966411725-png/AirSleuth
 
-> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 6 章 References；標 🟡 者僅確認書目，數字需再核對原文。
+> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 5 章參考文獻；標 🟡 者僅確認書目，數字需再核對原文。
 
 ## 目錄
 
-- 1. 摘要（Abstract）
-- 2. 緒論（Introduction）
-- 3. 相關研究（Related Work）
-- 4. 深度研究（Deep Research）
-- 5. 系統設計（Proposed Scheme）
-- 6. 參考文獻（References）
+- 摘要（Abstract）
+- 1. 緒論（Introduction）
+- 2. 相關研究（Related Work）
+- 3. 深度研究（Deep Research）
+- 4. 系統設計（Proposed Scheme）
+- 5. 參考文獻（References）
 
 ---
 
-## 1. 摘要（Abstract）
+## 摘要（Abstract）
 
 **AirSleuth 空品偵探：結合 IoT 微型感測器與領域知識的空氣品質 Domain AI Agent**
 
@@ -39,7 +39,7 @@ GitHub：https://github.com/A0966411725-png/AirSleuth
 
 ---
 
-## 2. 緒論（Introduction）
+## 1. 緒論（Introduction）
 
 ### A. Attention Getter：資料已經在那裡，民眾卻只拿到一個顏色
 
@@ -86,11 +86,11 @@ PM2.5 的健康影響不只發生在長期暴露。統合分析顯示，數小�
 1. **一個可運作的 Domain AI Agent 架構**（①～⑧ 模組），把 LLM 的推理能力和確定性的分析程式結合：LLM 負責規劃與表達，數字與判斷由程式產生，結果可以重現與驗證。
 2. **一個以空間型態判斷污染來源的方法**，建立在台灣公開的微型感測網上，並以真實事件案例驗證。
 3. **一套考慮資料品質的分析流程**，包括已實作的資料串接、排程收集與品質檢查（T-07），以及對台灣微型感測器資料品質的實測分析。
-4. **一個以證據為基礎的領域知識庫**：51 筆經查核的文獻、8 個專家核心觀念、3 個專業爭議的整理，可以重複使用在其他空品應用上。
+4. **一個以證據為基礎的領域知識庫**：52 筆經查核的文獻、8 個專家核心觀念、3 個專業爭議的整理，可以重複使用在其他空品應用上。
 
 ---
 
-## 3. 相關研究（Related Work）
+## 2. 相關研究（Related Work）
 
 本章依作業規範，分成約一半的 **AI 技術**（2.1）與一半的**領域知識**（2.2），以 Article Summary Table 對照（2.3），最後歸納出研究缺口（2.4）。
 
@@ -168,7 +168,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 | [S-028] | 2017 | 民眾是否遵從空品警示 | 系統性回顧 | 風險溝通、行為改變 | 21 篇研究 | 遵從率中位數 31% | 以歐美為主 |
 | [S-033] | 2016 | 運動效益 vs 空污風險 | 風險效益模型 | 劑量反應、活動量 | 情境模擬 | 一般濃度下運動效益遠大於風險 | 長期平均，非急性 |
 
-（AI 技術 9 篇、領域知識 8 篇。完整的 51 筆來源見 `research/sources.md`。）
+（AI 技術 9 篇、領域知識 8 篇。完整的 52 筆來源見 `research/sources.md`。）
 
 ### 2.4 Existing Research → Limitations → Research Gap → Our Project
 
@@ -198,9 +198,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 
 ---
 
-## 4. 深度研究（Deep Research）
-
----
+## 3. 深度研究（Deep Research）
 
 ### Q1. 五個核心思維模式
 
@@ -300,7 +298,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 | 1 | **Why** | 為什麼 PM2.5 比 PM10 更受重視？ | WHO 指出室外空污造成的過早死亡，主要來自細懸浮微粒引起的心血管與呼吸系統疾病，約 68% 是缺血性心臟病與中風 [S-052]；短期暴露也和心血管、呼吸、腦血管死亡有關 [S-027]；所以健康指引與標準以 PM2.5 為核心 | 「因為比較小」，說不出和健康結果的關係 |
 | 2 | **Why** | 為什麼同一個地點，微型感測器和國家測站的數字會不一樣？ | 量測原理不同（光散射 vs 標準方法）；高濕度時粒子吸濕膨脹造成高估 [S-008、S-009]；位置、高度、維護狀況不同；兩者的用途不同 [S-022] | 「感測器比較便宜所以不準」 |
 | 3 | **What-if** | 如果整個臺中市的感測器都同時升高，而附近一個工廠的感測器沒有特別高，你會怎麼判斷？ | 空間一致性高、局部超量小 → 區域型事件；要看風向與季節，冬季東北風時可能有長程傳輸；**不能據此推論工廠沒有排放**，只能說它不是這次升高的主因 | 「工廠沒問題」或「是中國吹過來的」 |
-| 4 | **What-if** | 如果某一個感測器突然飆到 300 μg/m³，周圍的感測器都正常，Agent 應該怎麼處理？ | 先懷疑感測器異常（濕度、故障、近距離干擾，例如有人在旁邊燒香或抽菸）；檢查鄰近感測器、資料品質旗標與持續時間；只有多個鄰近感測器一起升高才判定為局部污染（Algorithm 2 第 11～12 行） | 「附近有嚴重污染，立刻發警報」 |
+| 4 | **What-if** | 如果某一個感測器突然飆到 300 μg/m³，周圍的感測器都正常，Agent 應該怎麼處理？ | 先懷疑感測器異常（濕度、故障、近距離干擾，例如有人在旁邊燒香或抽菸）；檢查鄰近感測器、資料品質旗標與持續時間；只有多個鄰近感測器一起升高才判定為局部污染（Algorithm 2 第 12～14 行） | 「附近有嚴重污染，立刻發警報」 |
 | 5 | **Trade-off** | AQI 黃燈時，一位有運動習慣的健康成人該不該取消晚上的慢跑？ | 一般都市濃度下，運動的好處遠大於空污的風險 [S-033]；可以調整時段、路線（避開主要道路）或強度，而不是直接取消；若有呼吸道症狀或屬於敏感族群，再提高警覺 | 「空氣不好就不要運動」 |
 | 6 | **Trade-off** | 空品警示門檻訂得越嚴越好嗎？ | 越嚴保護力越高，但警示天數變多可能造成警示疲乏 [S-017]；民眾遵從率本來就偏低 [S-028]；所以重點在建議是否具體可行，而不只是門檻高低 | 「越嚴越安全」 |
 | 7 | **Failure Case** | 用「空間型態」判斷局部或區域，在什麼情況下會判斷錯？ | 感測器太稀疏（郊區、山區）；大範圍的局部污染同時發生（例如農地大面積燃燒）會看起來像區域事件；海陸風、地形造成的累積；濕度造成多個感測器同時高估；而且它**無法分辨區域污染來自境外還是國內其他地區** | 「資料不夠多的時候」，說不出具體情境 |
@@ -310,7 +308,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 
 ---
 
-## 5. 系統設計（Proposed Scheme）
+## 4. 系統設計（Proposed Scheme）
 
 ### 4.0 設計原則：從研究發現推導出的五條規則
 
@@ -391,11 +389,11 @@ flowchart TB
    - **區域背景 B**：半徑 15 km 內可信感測器的 PM2.5 中位數
    - **局部濃度 L**：使用者所在位置半徑 2 km 內的中位數
    - **局部超量 E = L − B**
-   - **空間一致性 C**：區域內「比自己前 6 小時基準升高超過 50%」的感測器比例（借鏡 S-046 用一致變化偵測區域事件）
-4. **來源判斷：**依 E、C、鄰近感測器是否一起升高、風向，分成四類（見 Algorithm 2）。
+   - **空間一致性 C**：區域內「比自己前 6 小時基準升高超過 50%，且至少高 5 μg/m³」的感測器比例（借鏡 S-046 用一致變化偵測區域事件）；另外以 8 km 計算次區域一致性 C_sub，以 8～15 km 外環計算 C_ring
+4. **來源判斷：**依 E、C、C_sub、鄰近感測器是否一起升高、風向，分成區域型、次區域型、局部型、混合型，另外標出疑似感測器異常與無明顯事件（見 Algorithm 2）。
 5. **短期趨勢預測：**未來 1～6 小時。**基準模型用多元線性迴歸**（輸入：過去數小時 PM2.5、濕度、溫度、風速、時段），對照持續性預測（persistence）。T-11 已用國家測站 60 天資料做可行性驗證（見 4.5 節）。
 
-> 門檻（15 km、2 km、50%、0.6、0.3 等）是依文獻與常識設定的初始值，**T-20 會用真實資料校準**；T-21 在國家測站的實測建議「升高」同時要求至少高 5 μg/m³，避免低濃度時的小波動被當成升高。
+> 門檻（15 km、8 km、2 km、50%、5 μg/m³、0.6、0.3 等）原本是依文獻與常識設定的初始值，**已用 5 天真實資料校準與做敏感度測試（T-20）**：「升高」加入至少 5 μg/m³ 的絕對門檻（T-21 在國家測站也發現同樣問題），避免空氣乾淨時的小波動被當成升高；區域型門檻已用高雄 10/23 的真實事件驗證。次區域型規則目前觸發太頻繁，期末會加入「內圈濃度高於外環」的條件。
 
 #### ⑥ Domain Knowledge Integration
 
@@ -404,7 +402,7 @@ flowchart TB
 | 健康指引 | 2025 新版 AQI 的 PM2.5 門檻；各等級對一般民眾與敏感族群的建議 | 結構化規則（YAML） | S-029、S-032 |
 | 專家觀念 | 8 個核心觀念（濃度 ≠ 暴露、沒有安全閾值、短期高峰、敏感族群、運動取捨、感測器看相對、天氣決定擴散、建議要具體） | 規則 + 說明文字 | T-06 |
 | 爭議與不確定性 | 境外 vs 本地、感測器可信度、標準嚴格度的共識與未解問題 | 說明文字 | T-18 |
-| 文獻 | 已查核的 51 筆來源摘要 | 文獻知識庫（RAG） | `research/` |
+| 文獻 | 已查核的 52 筆來源摘要 | 文獻知識庫（RAG） | `research/` |
 
 **為什麼不全部交給 LLM 自己判斷：**門檻與規則寫成結構化資料，結果才一致、可以驗證；LLM 只用來把規則套到使用者情境，並用口語解釋。
 
@@ -456,7 +454,7 @@ flowchart TD
     C6 -- 否 --> Z([結束])
 ```
 
-完整版（含來源判斷的四種分支與單一感測器異常的處理）見 `diagrams/flowchart.mmd`。
+完整版（含來源判斷的各種分支與單一感測器異常的處理）見 `diagrams/flowchart.mmd`。
 
 | 流程元素 | 對應位置 |
 |---|---|
@@ -511,17 +509,19 @@ Output: src = (type, local_excess, coherence, evidence)
 04: E ← median PM2.5 of L − B                          ▷ local excess
 05: for each sensor s in R do
 06:     base_s ← median PM2.5 of s over previous 6 h
-07:     rise_s ← (PM2.5_s − base_s) / base_s
-08: C ← fraction of sensors in R with rise_s > 0.5    ▷ spatial coherence
-09: if C ≥ 0.6 and E < max(5, 0.3·B) then type ← REGIONAL
-10: else if E ≥ max(10, 0.5·B) and C < 0.3 then
-11:     if at least 2 sensors in L exceed B + E/2 then type ← LOCAL
-12:     else type ← SUSPECTED_SENSOR_FAULT            ▷ single-sensor spike
-13: else if C ≥ 0.6 and E ≥ max(10, 0.5·B) then type ← MIXED
-14: else type ← NO_CLEAR_EVENT
-15: if type = REGIONAL and W.wind_dir ∈ NE and season ∈ {autumn, winter} then
-16:     evidence ← evidence ∪ {"東北季風，可能有長程傳輸"}
-17: return (type, E, C, evidence)
+07:     rising_s ← (PM2.5_s − base_s) / base_s > 0.5 and PM2.5_s − base_s ≥ 5
+08: C ← fraction of sensors in R with rising_s        ▷ spatial coherence
+09: C_sub ← same fraction within 8 km; C_ring ← same fraction in 8–15 km ring
+10: if C ≥ 0.6 and E < max(5, 0.3·B) then type ← REGIONAL
+11: else if C_sub ≥ 0.3 and C_ring < 0.3 then type ← SUBREGIONAL   ▷ cluster of ~8 km
+12: else if E ≥ max(10, 0.5·B) and C < 0.3 then
+13:     if at least 2 sensors in L are rising then type ← LOCAL
+14:     else type ← SUSPECTED_SENSOR_FAULT            ▷ single-sensor spike
+15: else if C ≥ 0.6 and E ≥ max(10, 0.5·B) then type ← MIXED
+16: else type ← NO_CLEAR_EVENT
+17: if type = REGIONAL and W.wind_dir ∈ NE and season ∈ {autumn, winter} then
+18:     evidence ← evidence ∪ {"東北季風，可能有長程傳輸"}
+19: return (type, E, C, evidence)
 ```
 
 #### Algorithm 3：個人化建議
@@ -555,7 +555,7 @@ Output: Ranked actions, confidence level
 |---|---|---|
 | 即時資料取得 | ✅ | `src/data/colife.py` 可抓任一縣市；臺中市 1,130 個、高雄市 1,367 個感測器有即時資料 |
 | 歷史資料累積 | ✅ | Windows 排程每小時收集微型感測器、國家測站、氣象站三種資料；10/19～10/24 共 5 天**每一小時都有資料**（`scripts/collection_status.py`） |
-| 資料品質檢查 | ✅ | `src/data/quality.py` 與 3 個離線測試；臺中市實測：PM2.5 無負值與極端值，濕度無效 19.1%、疑似卡住 0.3% |
+| 資料品質檢查 | ✅ | `src/data/quality.py` 與 2 個離線測試；臺中市 5 天實測（約 161 萬筆 5 分鐘資料）：PM2.5 無負值與極端值，濕度無效 28.4%、疑似卡住 0.2%，正常資料 71.2%（高雄 99.4%） |
 | 空間型態分析 | ✅ 初步 | `src/analytics/spatial.py` 實作 Algorithm 2，4 個合成資料測試通過；在真實資料上找到臺中西側沿海的群聚升高事件（局部 L 由約 18 升到 40 μg/m³，區域背景 B 只升到約 26），Algorithm 2 連續約 50 分鐘判斷為局部型，**附近的環境部沙鹿測站同時由 19 升到 32 μg/m³**，證實不是感測器雜訊；也正確分出單點飆高（1 個感測器達 111 μg/m³、鄰近 27 個正常）與持續性偏高的感測器（T-20） |
 | 國家測站、氣象 | ✅ | 已取得 API key 並串接（`src/data/moenv.py`、`src/data/cwa.py`）；測站小時值可回溯數個月，已補抓 60 天；氣象站每小時收集 |
 | 短期預測 | ✅ 初步 | `src/analytics/forecast.py`；國家測站 60 天、後 15 天測試：多元線性迴歸在 1、3、6 小時都優於持續性預測，6 小時 MAE 改善臺中 9%、高雄 17%（T-11）|
@@ -587,7 +587,7 @@ Output: Ranked actions, confidence level
 | 濕度資料常無效 | 品質檢查標記；無效時改用氣象站濕度 |
 | 單一感測器故障誤判成局部污染 | Algorithm 2 要求至少 2 個鄰近感測器一起升高；T-20 實測證實能分出單點飆高 |
 | 長期偏高的感測器被誤判成事件 | T-20 加入「比自己前 6 小時基準升高」的條件，並把持續性偏高獨立分類 |
-| 感測器自己回報的濕度不可靠 | T-20 發現臺中 84% 的正常資料濕度回報 90–100%；改用氣象署測站濕度做校正 |
+| 感測器自己回報的濕度不可靠 | T-20 以 5 天資料發現臺中約 28% 的資料列濕度回報 0，其餘正常資料有 74% 回報 90–100%；校正改用國家測站或最近氣象站的濕度（T-22） |
 | 事件大小不一，固定半徑不夠 | 已加入 8 km 次區域尺度（T-20）；但目前觸發太頻繁，期末要求內圈濃度高於外環 |
 | 門檻是初始值 | T-20 用 5 天真實資料校準並做敏感度測試：「升高」加上至少 5 μg/m³ 的絕對門檻，避免乾淨空氣時的小波動被當成升高；區域型門檻已用高雄 10/23 事件驗證 |
 | 校正係數只來自少量資料 | T-22 目前 5 天、都在秋季；期末累積更多天後改用依日期切分的驗證，並依城市分開估計 |
@@ -595,7 +595,7 @@ Output: Ranked actions, confidence level
 
 ---
 
-## 6. 參考文獻（References）
+## 5. 參考文獻（References）
 
 - **[S-001]** 民生公共物聯網 (2026). *空品微型感測器 SensorThings API*. https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/
 - **[S-002]** 立法院法制局 (2019). *PM2.5 濃度超標問題及法制研析*. https://www.ly.gov.tw/Pages/Detail.aspx?nodeid=6590&pid=187286

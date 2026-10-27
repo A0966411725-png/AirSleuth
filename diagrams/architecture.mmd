@@ -14,7 +14,7 @@ flowchart TB
         D1["微型感測器<br/>民生公共物聯網 SensorThings API<br/>約 1.1 萬個、每分鐘"]
         D2["國家空品測站<br/>環境部開放資料"]
         D3["氣象<br/>中央氣象署：風向、風速、降雨"]
-        D4[("本地資料庫<br/>每 2 小時排程收集")]
+        D4[("本地資料庫<br/>每小時排程收集")]
         D5["資料品質檢查<br/>缺值、卡住、濕度無效"]
         D1 --> D4
         D4 --> D5
@@ -35,7 +35,7 @@ flowchart TB
     subgraph KNOW["⑥ Domain Knowledge Integration"]
         K1["健康指引規則<br/>2025 新版 AQI、敏感族群"]
         K2["專家觀念庫<br/>8 個核心觀念、運動取捨"]
-        K3["文獻知識庫（RAG）<br/>已查核的 51 筆來源"]
+        K3["文獻知識庫（RAG）<br/>已查核的 52 筆來源"]
     end
 
     subgraph DECIDE["⑦ Decision / Recommendation"]

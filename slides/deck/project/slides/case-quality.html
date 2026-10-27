@@ -9,12 +9,12 @@
 <p style="font-size:26px;line-height:1.5">一個感測器飆到 <b>111 μg/m³</b>，2 km 內 27 個都正常 → 判為<b>疑似感測器異常</b>，不會誤報成局部污染</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:18px">
-<div style="background:#FFFFFF;border-radius:16px;padding:24px"><p style="font-size:40px;font-weight:700;color:#C2501F">84%</p><p style="font-size:24px;line-height:1.45">臺中正常資料中，濕度回報 90～100%；另有 19% 回報 0 → 校正改用氣象署濕度</p></div>
+<div style="background:#FFFFFF;border-radius:16px;padding:24px"><p style="font-size:40px;font-weight:700;color:#C2501F">74%</p><p style="font-size:24px;line-height:1.45">臺中正常資料中，濕度回報 90～100%；另有 28% 回報 0 → 校正改用測站或氣象站濕度</p></div>
 <div style="background:#FFFFFF;border-radius:16px;padding:24px"><p style="font-size:40px;font-weight:700;color:#14213D">91 個</p><p style="font-size:24px;line-height:1.45">臺中長期高於背景的感測器 → 歸為持續性偏高，不算事件</p></div>
 <div style="background:#FFFFFF;border-radius:16px;padding:24px"><p style="font-size:40px;font-weight:700;color:#1C5CAB">324 → 99</p><p style="font-size:24px;line-height:1.45">加入「比自己基準升高」條件後，局部事件的感測器數</p></div>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">10/19 單日分析。5 天資料：臺中約 28% 的資料列濕度無效；單點飆高臺中 219 個、高雄 513 個感測器出現過</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">濕度為 10/19～10/24 共 5 天；其餘為 10/19 單日。5 天中單點飆高臺中 219 個、高雄 513 個感測器出現過</p>
 <p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">16</p>
-<aside>這張是可行性驗證的另一面：資料品質。左邊是一個感測器飆到 111，但周圍 27 個都正常，如果直接相信它，就會誤報附近有污染，我們的規則把它判為疑似異常。右邊三個數字：臺中感測器的濕度欄位幾乎不能用，84% 的正常資料都回報 90% 以上，所以濕度校正要改用氣象署的資料；有 91 個感測器長期偏高，不能當成事件；第一版規則抓到 324 個候選，加上「比自己平常高」的條件後降到 99 個。累積 5 天後也一樣：單點飆高在臺中有 219 個、高雄有 513 個感測器出現過，演算法都沒有把它們當成污染。</aside>
+<aside>這張是可行性驗證的另一面：資料品質。左邊是一個感測器飆到 111，但周圍 27 個都正常，如果直接相信它，就會誤報附近有污染，我們的規則把它判為疑似異常。右邊三個數字：臺中感測器的濕度欄位幾乎不能用，5 天資料中有 28% 回報 0，其餘正常資料有 74% 回報 90% 以上，所以濕度校正要改用國家測站或氣象站的資料；有 91 個感測器長期偏高，不能當成事件；第一版規則抓到 324 個候選，加上「比自己平常高」的條件後降到 99 個。累積 5 天後也一樣：單點飆高在臺中有 219 個、高雄有 513 個感測器出現過，演算法都沒有把它們當成污染。</aside>
 </section>

@@ -80,7 +80,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 | [S-028] | 2017 | 民眾是否遵從空品警示 | 系統性回顧 | 風險溝通、行為改變 | 21 篇研究 | 遵從率中位數 31% | 以歐美為主 |
 | [S-033] | 2016 | 運動效益 vs 空污風險 | 風險效益模型 | 劑量反應、活動量 | 情境模擬 | 一般濃度下運動效益遠大於風險 | 長期平均，非急性 |
 
-（AI 技術 9 篇、領域知識 8 篇。完整的 51 筆來源見 `research/sources.md`。）
+（AI 技術 9 篇、領域知識 8 篇。完整的 52 筆來源見 `research/sources.md`。）
 
 ## 2.4 Existing Research → Limitations → Research Gap → Our Project
 

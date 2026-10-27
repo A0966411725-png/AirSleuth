@@ -41,6 +41,14 @@
 - **連結：**https://doi.org/10.1016/j.atmosenv.2024.120867
 - **重點（待核對）：**搜尋摘要顯示，跨境傳輸佔澎湖 PM2.5 的 28%～61%、東沙的 36%～77%，東北季風期間影響最強。
 - **限制：**數字未能直接讀取原文；外島幾乎沒有本地排放，**結果不能直接套用到台灣本島**。
+- **處理（2026-10-27）：**出版社網站的機器人驗證一直無法通過，Proposal 正文改引同一研究團隊、摘要可在 PubMed 讀到的東沙研究 S-063。
+
+#### S-063 Huang, Yuan et al.（2024）：東沙島三年觀測（✅）
+- **來源：**Huang, Z.-Y., Yuan, C.-S., Yen, P.-H., Tu, I.-C., Tseng, Y.-L. *Environmental Pollution* 356, 124378（2024）
+- **連結：**https://doi.org/10.1016/j.envpol.2024.124378（摘要：PubMed 38885829）
+- **方法：**連續三年採樣，依後推軌跡分群傳輸路徑，以 CMB 受體模式解析來源。
+- **重點：**高濃度出現在冬春東北季風期間，來自華北、華中、朝鮮半島與日本的西側通道；長程傳輸自秋季起逐漸增加，佔 PM2.5 的 **52.1%～74.3%**，除夏季外各季影響都很大。
+- **限制：**東沙幾乎沒有本地排放，**不能代表台灣本島**；正好說明「境外影響大小取決於地點與季節」。
 
 ### 支持觀點 B：本地排放才是主要來源，特別是高污染事件
 
@@ -236,6 +244,7 @@
 | S-005 | 2019 | 南台灣高污染事件的來源 | 化學成分 + CMB 受體模式 | 化學指紋、衍生性氣膠 | 高屏三站事件採樣 | 以本地來源為主，人為排放 67%～70% | 僅事件期間 |
 | S-006 🟡 | 2026 | 高壓迴流下南台灣 PM2.5 來源 | CMAQ-ISAM | 天氣型態、成分歸屬 | KPEx 觀測實驗 | （待核對）邊界條件約五到六成 | 特定天氣型態 |
 | S-007 🟡 | 2024 | 外島 PM2.5 長程傳輸 | 化學指紋、源解析 | 海洋氣膠 | 澎湖、東沙 | （待核對）跨境 28%～77% | 外島不能代表本島 |
+| S-063 | 2024 | 東沙 PM2.5 長程傳輸 | 三年採樣、軌跡分群、CMB | 海洋氣膠 | 東沙島 | 長程傳輸 52.1%～74.3%（夏季除外） | 外島不能代表本島 |
 | S-008 | 2021 | 低成本感測器的全國性校正 | 線性與多元迴歸 | 吸濕成長 | 16 州約 12,000 筆共置資料 | 原始讀數高估約 40%，加濕度項改善 | 單一型號 |
 | S-009 | 2024 | 高濕度地區的校正 | MLR、半監督分群 | 吸濕成長的非線性 | 美國東南部 2021–2023 | 誤差再降 16%～23%，RH > 50% 呈非線性 | 美國東南部 |
 | S-010 | 2022 | 校正模型的比較 | 8 種模型比較 | 吸濕成長模型 | 北美 47 個共置站 | 模型表現因地而異 | 北美 |
@@ -275,6 +284,7 @@
 | S-005 | 2019 | Shen et al. | Chemical fingerprint and source apportionment of PM2.5 in highly polluted events of southern Taiwan | https://doi.org/10.1007/s11356-019-07328-8 | ✅ |
 | S-006 | 2026 | Chuang et al. | Simulating the PM2.5 in southern Taiwan under high-pressure return flow during the Kao-Ping Experiment (KPEx) | https://doi.org/10.1016/j.atmosres.2026.109286 | 🟡 |
 | S-007 | 2024 | Yuan et al. | Long-range transport and source apportionment of marine fine particles in the Taiwan Strait and South China Sea Intersection | https://doi.org/10.1016/j.atmosenv.2024.120867 | 🟡 |
+| S-063 | 2024 | Huang, Yuan, Yen, Tu & Tseng | Temporal variations and chemical characteristics of marine PM2.5 at Dongsha Islands, South China Sea: Three-year measurement | https://doi.org/10.1016/j.envpol.2024.124378 | ✅ |
 | S-008 | 2021 | Barkjohn, Gantt & Clements | Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor | https://doi.org/10.5194/amt-14-4617-2021 | ✅ |
 | S-009 | 2024 | Mathieu-Campbell et al. | Calibration of PurpleAir low-cost particulate matter sensors: model development for air quality under high relative humidity conditions | https://doi.org/10.5194/amt-17-6735-2024 | ✅ |
 | S-010 | 2022 | Nilson et al. | Development and evaluation of correction models for a low-cost fine particulate matter monitor | https://doi.org/10.5194/amt-15-3315-2022 | ✅ |

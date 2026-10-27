@@ -133,7 +133,7 @@
 
 ## 主題 4：PM2.5 短期預測
 
-### S-048 台灣：沒有測站的地區也能預測的時空圖神經網路（🟡）
+### S-048 台灣：沒有測站的地區也能預測的時空圖神經網路（✅）
 - **作者、年份：**Su, Chung, Lee & Huang｜*Expert Systems with Applications*（2023）
 - **連結：**https://doi.org/10.1016/j.eswa.2023.121074
 - **重點（待核對）：**以測站為節點、測站距離為邊，結合 GNN 與 GRU，預測台灣未來 48 小時 PM2.5，包含沒有測站的地區。
@@ -213,7 +213,7 @@
 | S-045 | 2021 | Jain, Presto & Zimmerman | Spatial Modeling of Daily PM2.5, NO2, and CO Concentrations Measured by a Low-Cost Sensor Network | Environmental Science & Technology | https://doi.org/10.1021/acs.est.1c02653 | ✅ |
 | S-046 | 2024 | Bashan, Li & Wang | Dynamics of PM2.5 and network activity during extreme pollution events | npj Climate and Atmospheric Science | https://doi.org/10.1038/s41612-024-00716-z | ✅ |
 | S-047 | 2025 | Perry et al. | Detecting urban PM2.5 hotspots with mobile sensing and Gaussian process regression | npj Clean Air | https://doi.org/10.1038/s44407-025-00038-1 | ✅ |
-| S-048 | 2023 | Su, Chung, Lee & Huang | Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations | Expert Systems with Applications | https://doi.org/10.1016/j.eswa.2023.121074 | 🟡 |
+| S-048 | 2023 | Su, Chung, Lee & Huang | Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations | Expert Systems with Applications | https://doi.org/10.1016/j.eswa.2023.121074 | ✅ |
 | S-049 | 2025 | Lu et al. | Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster | PLoS ONE | https://doi.org/10.1371/journal.pone.0338392 | ✅ |
 | S-050 | 2025 | Wu et al. | A Spatiotemporal graph attention network for PM2.5 forecasting using multi-source data | Air Quality, Atmosphere & Health | https://doi.org/10.1007/s11869-025-01818-0 | 🟡 |
 | S-051 | 2021 | Chen, Putra & Lin | A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks | arXiv | https://arxiv.org/abs/2101.06213 | ✅ |

@@ -13,8 +13,8 @@ CHAPTERS = ["00_abstract.md", "01_introduction.md", "02_related_work.md", "03_de
 HEADER = """# 05 References
 
 > 由 `research/sources.md` 自動產生（`python scripts/build_references.py`），只列出 Proposal 正文（00～04 章）實際引用的來源。
-> 標 🟡 的來源已確認文獻存在與書目正確，但未能讀取原文，引用的數字需再核對。
 """
+NOTE = "> 標 🟡 的來源已確認文獻存在與書目正確，但未能讀取原文，引用的數字需再核對。\n"
 
 
 def cited_ids() -> set[str]:
@@ -40,7 +40,7 @@ def main() -> None:
     unverified = sorted(s for s in cited & table.keys() if table[s]["status"] not in ("verified", "metadata-verified"))
     if missing or unverified:
         sys.exit(f"引用未登記：{missing}；未查核：{unverified}")
-    lines = [HEADER]
+    lines = [HEADER + (NOTE if any(table[s]["status"] == "metadata-verified" for s in cited) else "")]
     for sid in sorted(cited):
         s = table[sid]
         mark = "🟡 " if s["status"] == "metadata-verified" else ""

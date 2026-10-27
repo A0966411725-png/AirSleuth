@@ -1,14 +1,12 @@
 # 05 References
 
 > 由 `research/sources.md` 自動產生（`python scripts/build_references.py`），只列出 Proposal 正文（00～04 章）實際引用的來源。
-> 標 🟡 的來源已確認文獻存在與書目正確，但未能讀取原文，引用的數字需再核對。
 
 - **[S-001]** 民生公共物聯網 (2026). *空品微型感測器 SensorThings API*. https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/
 - **[S-002]** 立法院法制局 (2019). *PM2.5 濃度超標問題及法制研析*. https://www.ly.gov.tw/Pages/Detail.aspx?nodeid=6590&pid=187286
 - **[S-003]** 國家衛生研究院 (2020). *空氣污染 PM2.5 是什麼？從哪裡來？*. https://science.nhri.edu.tw/health/319/
 - **[S-004]** Chuang et al. (2020). *Study on the impact of three Asian industrial regions on PM2.5 in Taiwan and the process analysis during transport*. https://doi.org/10.5194/acp-20-14947-2020
 - **[S-005]** Shen et al. (2019). *Chemical fingerprint and source apportionment of PM2.5 in highly polluted events of southern Taiwan*. https://doi.org/10.1007/s11356-019-07328-8
-- **[S-007]** 🟡 Yuan et al. (2024). *Long-range transport and source apportionment of marine fine particles in the Taiwan Strait and South China Sea Intersection*. https://doi.org/10.1016/j.atmosenv.2024.120867
 - **[S-008]** Barkjohn, Gantt & Clements (2021). *Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor*. https://doi.org/10.5194/amt-14-4617-2021
 - **[S-009]** Mathieu-Campbell et al. (2024). *Calibration of PurpleAir low-cost particulate matter sensors: model development for air quality under high relative humidity conditions*. https://doi.org/10.5194/amt-17-6735-2024
 - **[S-010]** Nilson et al. (2022). *Development and evaluation of correction models for a low-cost fine particulate matter monitor*. https://doi.org/10.5194/amt-15-3315-2022
@@ -47,7 +45,7 @@
 - **[S-045]** Jain, Presto & Zimmerman (2021). *Spatial Modeling of Daily PM2.5, NO2, and CO Concentrations Measured by a Low-Cost Sensor Network*. https://doi.org/10.1021/acs.est.1c02653
 - **[S-046]** Bashan, Li & Wang (2024). *Dynamics of PM2.5 and network activity during extreme pollution events*. https://doi.org/10.1038/s41612-024-00716-z
 - **[S-047]** Perry et al. (2025). *Detecting urban PM2.5 hotspots with mobile sensing and Gaussian process regression*. https://doi.org/10.1038/s44407-025-00038-1
-- **[S-048]** 🟡 Su, Chung, Lee & Huang (2023). *Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations*. https://doi.org/10.1016/j.eswa.2023.121074
+- **[S-048]** Su, Chung, Lee & Huang (2023). *Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations*. https://doi.org/10.1016/j.eswa.2023.121074
 - **[S-049]** Lu et al. (2025). *Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster*. https://doi.org/10.1371/journal.pone.0338392
 - **[S-051]** Chen, Putra & Lin (2021). *A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks*. https://arxiv.org/abs/2101.06213
 - **[S-052]** WHO (2024). *Ambient (outdoor) air pollution fact sheet*. https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
@@ -61,5 +59,6 @@
 - **[S-060]** Health Effects Institute (2025). *State of Global Air 2025*. https://www.stateofglobalair.org/news-events/2025/new-state-global-air-2025-report-shows-nearly-nine-ten-global-air-pollution-deaths
 - **[S-061]** Ku et al. (2025). *Does ambient PM2.5 reduce the protective association of leisure-time physical activity with mortality? A systematic review, meta-analysis, and individual-level pooled analysis of cohort studies involving 1.5 million adults*. https://doi.org/10.1186/s12916-025-04496-y
 - **[S-062]** Cibin et al. (2025). *Promoting air quality-related awareness and behavioural change: A rapid review of communication interventions integrating behavioural, science communication and socio-ecological perspectives*. https://doi.org/10.1016/j.envc.2025.101237
+- **[S-063]** Huang, Yuan, Yen, Tu & Tseng (2024). *Temporal variations and chemical characteristics of marine PM2.5 at Dongsha Islands, South China Sea: Three-year measurement*. https://doi.org/10.1016/j.envpol.2024.124378
 
 共 58 筆。

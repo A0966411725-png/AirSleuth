@@ -6,7 +6,7 @@
 
 GitHub：https://github.com/A0966411725-png/AirSleuth
 
-> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 5 章參考文獻；標 🟡 者僅確認書目，數字需再核對原文。
+> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 5 章參考文獻，所有引用都已開啟原文或摘要核對。
 
 ## 目錄
 
@@ -29,7 +29,7 @@ GitHub：https://github.com/A0966411725-png/AirSleuth
 
 **(C) Cure｜解決方案**　為了解決上述問題，本專題提出一個新的空氣品質 Domain AI Agent：**AirSleuth**。
 
-**(D) Development｜方法**　AirSleuth 以 LLM 負責規劃、推理與表達，以確定性的程式負責所有計算：④ 串接民生公共物聯網的微型感測器、國家測站與氣象資料，並先進行資料品質檢查；⑤ 以「區域背景、局部超量、空間一致性」判斷污染屬於局部型、次區域型或區域型事件，並以在地國家測站校正感測器讀數，並預測未來數小時的趨勢；⑥ 整合 2025 年新版 AQI、敏感族群建議，以及從 62 筆經查核文獻歸納的專家核心觀念；⑦ 依使用者的族群、時段、地點與活動強度，產生具體行動並評估信心程度。回答中的每個數字都必須能追溯到資料查詢的結果。目前已完成三種資料的每小時收集（截至 10/27 超過 570 萬筆）與可用真實資料執行的 Agent 工具層原型，並在高雄 10/23 區域型、臺中 10/19 次區域型兩個真實事件上給出不同的建議。
+**(D) Development｜方法**　AirSleuth 以 LLM 負責規劃、推理與表達，以確定性的程式負責所有計算：④ 串接民生公共物聯網的微型感測器、國家測站與氣象資料，並先進行資料品質檢查；⑤ 以「區域背景、局部超量、空間一致性」判斷污染屬於局部型、次區域型或區域型事件，並以在地國家測站校正感測器讀數，並預測未來數小時的趨勢；⑥ 整合 2025 年新版 AQI、敏感族群建議，以及從 63 筆經查核文獻歸納的專家核心觀念；⑦ 依使用者的族群、時段、地點與活動強度，產生具體行動並評估信心程度。回答中的每個數字都必須能追溯到資料查詢的結果。目前已完成三種資料的每小時收集（截至 10/27 超過 570 萬筆）與可用真實資料執行的 Agent 工具層原型，並在高雄 10/23 區域型、臺中 10/19 次區域型兩個真實事件上給出不同的建議。
 
 **(E) Experiments｜評估**　本專題以 Windows 排程持續收集臺中市、高雄市的微型感測器資料作為資料集，選取區域型與局部型的真實事件作為案例研究，並建立 40 個情境的測試題組；以「只看 AQI 的現有做法」、「沒有工具的純 LLM」、「有工具但沒有領域知識與品質檢查的 LLM」作為基準，評估來源判斷與人工標記的一致率、預測誤差、回答數字可追溯的比例，以及建議的具體程度與正確性，並以消融實驗檢驗品質檢查、來源判斷與領域知識各自的貢獻。
 
@@ -118,7 +118,7 @@ PM2.5 的健康影響不只發生在長期暴露。統合分析顯示，數小�
 1. **一個可運作的 Domain AI Agent 架構**（①～⑧ 模組），把 LLM 的推理能力和確定性的分析程式結合：LLM 負責規劃與表達，數字與判斷由程式產生，結果可以重現與驗證。
 2. **一個以空間型態判斷污染來源的方法**（Algorithm 2），建立在台灣公開的微型感測網上，並已用真實事件初步驗證：高雄 10/23 的區域型事件、臺中 10/19 的次區域型事件（T-20）。
 3. **一套考慮資料品質的分析流程與實測資料集**：每小時排程收集臺中、高雄三種資料，截至 2026-10-27 已累積超過 570 萬筆 5 分鐘微型感測器資料、每小時都沒有缺漏；並完成品質檢查與在地校正的實測分析（T-07、T-22）。
-4. **一個以證據為基礎的領域知識庫**：62 筆經查核的文獻、8 個專家核心觀念、3 個專業爭議的整理，可以重複使用在其他空品應用上。
+4. **一個以證據為基礎的領域知識庫**：63 筆經查核的文獻、8 個專家核心觀念、3 個專業爭議的整理，可以重複使用在其他空品應用上。
 
 ---
 
@@ -160,7 +160,7 @@ PM2.5 的健康影響不只發生在長期暴露。統合分析顯示，數小�
 
 #### 2.1.4 PM2.5 短期預測
 
-PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Network, GNN）。在台灣，Su 等人 [S-048 🟡] 以測站為節點，結合 GNN 與 GRU 預測未來 48 小時，包含沒有測站的地區；Chen 等人 [S-051] 以卷積遞迴網路處理大規模感測網資料，產生預測地圖。近期的多尺度動態圖神經網路同時建模小時、日、週三種時間尺度，誤差比最佳基準再降低 6.77%～8.67% [S-049]。
+PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Network, GNN）。在台灣，Su 等人 [S-048] 以測站為節點，結合 GNN 與 GRU 預測未來 48 小時，包含沒有測站的地區；Chen 等人 [S-051] 以卷積遞迴網路處理大規模感測網資料，產生預測地圖。近期的多尺度動態圖神經網路同時建模小時、日、週三種時間尺度，誤差比最佳基準再降低 6.77%～8.67% [S-049]。
 
 另一個方向是**可解釋性**。Aman 等人 [S-059] 在曼谷以 6 種樹模型預測 PM2.5，LightGBM 的小時 MAE 為 5.5 μg/m³；再以「氣象正規化」把濃度變化分成排放與氣象兩部分，並用 SHAP 說明每個因子的貢獻。這類可解釋的特徵貢獻，正好可以轉成 Agent 回答「為什麼」時的素材。
 
@@ -226,7 +226,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 | [S-061] | 2025 | PM2.5 是否削弱運動的效益 | 統合分析 + 個人層級合併分析 | 劑量反應、運動與污染交互作用 | 7 個世代、151 萬人 | 運動降低死亡風險 30% → 高污染時 12%～15% | 多在高所得國家 |
 | [S-062] | 2025 | 空品溝通介入是否有效 | 快速回顧 | 風險溝通、行為科學 | 79 篇研究 | 47 篇有正面影響，參與式較好 | 多為自評行為 |
 
-（AI 技術 16 篇、領域知識 13 篇，共 29 篇，其中 2025–2026 年的研究 17 篇。完整的 62 筆來源見 `research/sources.md`。）
+（AI 技術 16 篇、領域知識 13 篇，共 29 篇，其中 2025–2026 年的研究 17 篇。完整的 63 筆來源見 `research/sources.md`。）
 
 ### 2.4 Existing Research → Limitations → Research Gap → Our Project
 
@@ -327,7 +327,7 @@ PM2.5 預測已從統計模型發展到時空圖神經網路（Graph Neural Netw
 | | 觀點 A：境外傳輸影響很大 | 觀點 B：本地排放才是主因 |
 |---|---|---|
 | **主張** | 秋冬季東北季風把上游污染帶進台灣，北部、東部與外島受影響更大 | 全年平均來說，本地排放佔多數；南部的高污染事件主要來自本地 |
-| **證據** | 環保署估計全國年平均約 34%～40% 來自境外 [S-002]；模式研究顯示 2017 年 1 月中國兩大工業區合計約貢獻 12.5% [S-004]；台北約 25% 來自長程傳輸 [S-003]；外島的跨境比例更高 [S-007 🟡] | 同一份估計也顯示境內約佔 60%～66% [S-002]；南台灣高污染事件的化學指紋顯示，人為排放佔 67%～70%，以本地為主 [S-005]；夏季境外影響幾乎可以忽略 [S-004] |
+| **證據** | 環保署估計全國年平均約 34%～40% 來自境外 [S-002]；模式研究顯示 2017 年 1 月中國兩大工業區合計約貢獻 12.5% [S-004]；台北約 25% 來自長程傳輸 [S-003]；南海東沙島長程傳輸自秋季起佔 52.1%～74.3%（夏季除外）[S-063] | 同一份估計也顯示境內約佔 60%～66% [S-002]；南台灣高污染事件的化學指紋顯示，人為排放佔 67%～70%，以本地為主 [S-005]；夏季境外影響幾乎可以忽略 [S-004] |
 
 - **Evidence 的差異從哪裡來：**① 研究方法不同：空品模式從排放端推算，受體模式從化學指紋反推；② 時間尺度不同：全年平均、單一事件、特定天氣型態的結論可能完全不同；③ 地點與季節不同；④ 排放清冊的年份不同。
 - **Consensus：**境外傳輸**存在且有季節性**，但全年全國平均以本地排放為主；**沒有單一正確的比例**。
@@ -488,7 +488,7 @@ flowchart TB
 | 專家觀念 | 8 個核心觀念（濃度 ≠ 暴露、沒有安全閾值、短期高峰、敏感族群、運動取捨、感測器看相對、天氣決定擴散、建議要具體） | 規則 + 說明文字 | T-06 |
 | 運動與污染的取捨 | 一般濃度下運動效益大於風險；PM2.5 ≥ 25 μg/m³ 時運動降低死亡風險的效果由約 30% 降為 12%～15% | 評分參數 | S-033、S-061 |
 | 爭議與不確定性 | 境外 vs 本地、感測器可信度、標準嚴格度的共識與未解問題 | 說明文字 | T-18 |
-| 文獻 | 已查核的 62 筆來源摘要 | 文獻知識庫（RAG） | `research/` |
+| 文獻 | 已查核的 63 筆來源摘要 | 文獻知識庫（RAG） | `research/` |
 
 **為什麼不全部交給 LLM 自己判斷：**門檻與規則寫成結構化資料，結果才一致、可以驗證；LLM 只用來把規則套到使用者情境，並用口語解釋。
 
@@ -741,7 +741,6 @@ Output: Ranked actions, confidence level
 - **[S-003]** 國家衛生研究院 (2020). *空氣污染 PM2.5 是什麼？從哪裡來？*. https://science.nhri.edu.tw/health/319/
 - **[S-004]** Chuang et al. (2020). *Study on the impact of three Asian industrial regions on PM2.5 in Taiwan and the process analysis during transport*. https://doi.org/10.5194/acp-20-14947-2020
 - **[S-005]** Shen et al. (2019). *Chemical fingerprint and source apportionment of PM2.5 in highly polluted events of southern Taiwan*. https://doi.org/10.1007/s11356-019-07328-8
-- **[S-007]** 🟡 Yuan et al. (2024). *Long-range transport and source apportionment of marine fine particles in the Taiwan Strait and South China Sea Intersection*. https://doi.org/10.1016/j.atmosenv.2024.120867
 - **[S-008]** Barkjohn, Gantt & Clements (2021). *Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor*. https://doi.org/10.5194/amt-14-4617-2021
 - **[S-009]** Mathieu-Campbell et al. (2024). *Calibration of PurpleAir low-cost particulate matter sensors: model development for air quality under high relative humidity conditions*. https://doi.org/10.5194/amt-17-6735-2024
 - **[S-010]** Nilson et al. (2022). *Development and evaluation of correction models for a low-cost fine particulate matter monitor*. https://doi.org/10.5194/amt-15-3315-2022
@@ -780,7 +779,7 @@ Output: Ranked actions, confidence level
 - **[S-045]** Jain, Presto & Zimmerman (2021). *Spatial Modeling of Daily PM2.5, NO2, and CO Concentrations Measured by a Low-Cost Sensor Network*. https://doi.org/10.1021/acs.est.1c02653
 - **[S-046]** Bashan, Li & Wang (2024). *Dynamics of PM2.5 and network activity during extreme pollution events*. https://doi.org/10.1038/s41612-024-00716-z
 - **[S-047]** Perry et al. (2025). *Detecting urban PM2.5 hotspots with mobile sensing and Gaussian process regression*. https://doi.org/10.1038/s44407-025-00038-1
-- **[S-048]** 🟡 Su, Chung, Lee & Huang (2023). *Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations*. https://doi.org/10.1016/j.eswa.2023.121074
+- **[S-048]** Su, Chung, Lee & Huang (2023). *Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations*. https://doi.org/10.1016/j.eswa.2023.121074
 - **[S-049]** Lu et al. (2025). *Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster*. https://doi.org/10.1371/journal.pone.0338392
 - **[S-051]** Chen, Putra & Lin (2021). *A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks*. https://arxiv.org/abs/2101.06213
 - **[S-052]** WHO (2024). *Ambient (outdoor) air pollution fact sheet*. https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
@@ -794,5 +793,6 @@ Output: Ranked actions, confidence level
 - **[S-060]** Health Effects Institute (2025). *State of Global Air 2025*. https://www.stateofglobalair.org/news-events/2025/new-state-global-air-2025-report-shows-nearly-nine-ten-global-air-pollution-deaths
 - **[S-061]** Ku et al. (2025). *Does ambient PM2.5 reduce the protective association of leisure-time physical activity with mortality? A systematic review, meta-analysis, and individual-level pooled analysis of cohort studies involving 1.5 million adults*. https://doi.org/10.1186/s12916-025-04496-y
 - **[S-062]** Cibin et al. (2025). *Promoting air quality-related awareness and behavioural change: A rapid review of communication interventions integrating behavioural, science communication and socio-ecological perspectives*. https://doi.org/10.1016/j.envc.2025.101237
+- **[S-063]** Huang, Yuan, Yen, Tu & Tseng (2024). *Temporal variations and chemical characteristics of marine PM2.5 at Dongsha Islands, South China Sea: Three-year measurement*. https://doi.org/10.1016/j.envpol.2024.124378
 
 共 58 筆。

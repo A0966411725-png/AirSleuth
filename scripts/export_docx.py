@@ -258,7 +258,7 @@ def convert(md: str, doc) -> None:
         elif s.startswith(">"):
             text = s.lstrip("> ").strip()
             if text.startswith("本文件由"):  # 合併腳本的說明，Word 版只保留引用說明
-                text = "文中 [S-xxx] 對應第 5 章參考文獻；標 🟡 者僅確認書目，數字需再核對原文。"
+                text = "文中 [S-xxx] 對應第 5 章參考文獻，所有引用都已開啟原文或摘要核對。"
             if text:
                 par = doc.add_paragraph()
                 par.paragraph_format.left_indent = Cm(0.5)

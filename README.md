@@ -14,7 +14,7 @@
 | GitHub Repository | 本 repo |
 | DESIGN.md | [DESIGN.md](DESIGN.md) |
 | 口頭問答預演 | [docs/qa_rehearsal.md](docs/qa_rehearsal.md) |
-| 文獻與來源查核 | [research/sources.md](research/sources.md)（62 筆） |
+| 文獻與來源查核 | [research/sources.md](research/sources.md)（63 筆） |
 
 ## 這個 Agent 要做什麼
 

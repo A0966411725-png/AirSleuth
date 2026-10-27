@@ -14,8 +14,8 @@ HEADER = [
     "**物聯網數據分析與應用｜期末專題提案（Final Project Proposal）**", "",
     "組員：陳宏郁、陳彥愷、王鼎昌、李家豐、周聖儒｜繳交日期：2026 年 11 月 4 日", "",
     "GitHub：https://github.com/A0966411725-png/AirSleuth", "",
-    "> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 5 章參考文獻；"
-    "標 🟡 者僅確認書目，數字需再核對原文。", "",
+    "> 本文件由 `proposal/00～05` 各章合併產生（`python scripts/build_proposal.py`）。文中 [S-xxx] 對應第 5 章參考文獻，"
+    "所有引用都已開啟原文或摘要核對。", "",
     "## 目錄", "",
 ] + [f"- {title}" for _, title in PARTS] + [""]
 

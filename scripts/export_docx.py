@@ -16,6 +16,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from PIL import Image
 from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
@@ -192,6 +193,20 @@ def add_figure(doc, n):
     add_inline(cap, CAPTIONS[n], size=10, color=GRAY)
 
 
+def add_image(doc, caption: str, path: str) -> None:
+    """Markdown 圖片 ![圖說](相對路徑)：路徑相對於 proposal/。寬圖用滿版心，直式圖縮小。"""
+    file = (SRC.parent / path).resolve()
+    w, h = Image.open(file).size
+    width = TEXT_WIDTH_CM if w / h >= 1.6 else (14.0 if w / h >= 1.0 else 11.0)
+    par = doc.add_paragraph()
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    par.paragraph_format.keep_with_next = True
+    par.add_run().add_picture(str(file), width=Cm(width))
+    cap = doc.add_paragraph()
+    cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    add_inline(cap, caption, size=10, color=GRAY)
+
+
 def convert(md: str, doc) -> None:
     lines = md.splitlines()
     i, figure, new_page = 0, 0, False
@@ -236,6 +251,8 @@ def convert(md: str, doc) -> None:
             par = doc.add_paragraph(style=f"Heading {len(m.group(1)) - 1}")
             par.paragraph_format.page_break_before, new_page = new_page, False
             add_inline(par, m.group(2))
+        elif m := re.match(r"^!\[(.*)\]\((.+)\)$", s):
+            add_image(doc, m.group(1), m.group(2))
         elif re.match(r"^完整版.*diagrams/flowchart", s):
             pass  # Word 版的流程圖直接放完整版，不需要這句
         elif s.startswith(">"):

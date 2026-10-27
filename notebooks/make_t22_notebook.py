@@ -32,13 +32,15 @@ plt.rcParams.update({"font.sans-serif": ["Microsoft JhengHei", "Noto Sans CJK TC
 BLUE, ORANGE, INK2 = "#2a78d6", "#eb6834", "#52514e"
 FIG = ROOT / "notebooks" / "figures"; FIG.mkdir(parents=True, exist_ok=True)
 CITIES = ["臺中市", "高雄市"]; SINCE = "2026-10-19"
+UNTIL = pd.Timestamp("2026-10-24 11:35", tz="Asia/Taipei")  # 固定在回報使用的 5 天，之後新增的資料不影響結果
 
 def read(path, **kw):
     df = pd.read_csv(path, **kw); df["time"] = pd.to_datetime(df["time"]).dt.tz_convert("Asia/Taipei"); return df
 
 def read_days(source, city, key):
     files = [f for f in sorted(glob.glob(str(ROOT / f"data/raw/{source}/{city}/*.csv.gz"))) if Path(f).name[:10] >= SINCE]
-    return pd.concat([read(f, dtype={key: str}) for f in files], ignore_index=True).drop_duplicates([key, "time"])
+    df = pd.concat([read(f, dtype={key: str}) for f in files], ignore_index=True).drop_duplicates([key, "time"])
+    return df[df["time"] <= UNTIL].reset_index(drop=True)
 
 colife = {c: read_days("colife", c, "station_id") for c in CITIES}
 moenv = {c: read_days("moenv", c, "siteid") for c in CITIES}
@@ -84,7 +86,7 @@ for ax, c in zip(axes, CITIES):
     ax.set_xlim(lim); ax.set_ylim(lim)
 axes[0].set_ylabel("國家測站（μg/m³）"); axes[0].legend(frameon=False, loc="upper left")
 fig.colorbar(sc, ax=axes, label="測站相對濕度（%）", shrink=0.85)
-fig.suptitle("微型感測器 vs 國家測站（10/19 下午到晚上，虛線為 1:1）", x=0.06, y=1.03, ha="left", fontsize=13)
+fig.suptitle("微型感測器 vs 國家測站（10/19～10/24 共 5 天，虛線為 1:1）", x=0.06, y=1.03, ha="left", fontsize=13)
 fig.savefig(FIG / "t22_fig1_collocation.png", dpi=160, bbox_inches="tight")'''),
     md("## 3. 三種濕度來源的比較"),
     code('''near = pd.concat([cal.nearest_weather(moenv[c], cwa[c]) for c in CITIES])

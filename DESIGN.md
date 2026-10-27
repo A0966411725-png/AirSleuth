@@ -65,12 +65,12 @@ flowchart TB
 | 編號 | 模組 | 職責 | 實作位置 | 狀態 |
 |---|---|---|---|---|
 | ① | User / Application Scenario | 家長、氣喘患者、運動者、長者照顧者、通勤者 | — | 已定義 |
-| ② | Query / Input | 解析地點、時間窗、族群、活動強度；不明確就追問 | `src/agent/parse.py` | 規劃中 |
-| ③ | Planner & Reasoning Agent | ReAct 式推理與工具呼叫、證據充分性檢查、可追溯性檢查 | `src/agent/` | 規劃中 |
+| ② | Query / Input | 解析地點、時間窗、族群、活動強度；不明確就追問 | `src/agent/pipeline.py`（`Query`） | 原型：結構化輸入；自然語言解析待期末 |
+| ③ | Planner & Reasoning Agent | ReAct 式推理與工具呼叫、證據充分性檢查、可追溯性檢查 | `src/agent/`（`pipeline.py`、`tools.py`、`schema.py`） | 原型：固定流程＋8 個工具與 JSON 規格；LLM 規劃待期末 |
 | ④ | Data Acquisition / Retrieval | 微型感測器、國家測站、氣象；本地資料庫；品質檢查 | `src/data/` | **感測器與品質檢查已完成** |
 | ⑤ | Analytics Engine | 可信度評估、校正、空間型態分析、來源判斷、短期預測 | `src/analytics/` | 初步完成（T-20、T-11、T-21、T-22） |
-| ⑥ | Domain Knowledge Integration | 健康指引規則、專家觀念、文獻知識庫 | `src/knowledge/` | 內容已整理（`research/`） |
-| ⑦ | Decision / Recommendation | 暴露評估、風險分級、行動排序、信心程度 | `src/agent/recommend.py` | 規劃中 |
+| ⑥ | Domain Knowledge Integration | 健康指引規則、專家觀念、文獻知識庫 | `src/knowledge/health.py`、`research/` | 原型：新版 AQI、敏感族群、運動取捨規則已實作 |
+| ⑦ | Decision / Recommendation | 暴露評估、風險分級、行動排序、信心程度 | `src/knowledge/health.py`、`src/agent/pipeline.py` | 原型：Algorithm 3 排序與信心程度已實作 |
 | ⑧ | Output & Interaction | 四段式回答（結論、原因、建議、信心）、追問 | 待定 | 規劃中 |
 
 ## 5. Data
@@ -150,13 +150,13 @@ flowchart TB
 | `src/data/quality.py` | 資料品質旗標與摘要 | ✅ |
 | `src/data/moenv.py`、`src/data/cwa.py`、`src/data/http.py` | 國家測站、氣象站串接；政府平台的憑證處理 | ✅（T-08） |
 | `scripts/collect_scheduled.py`、`scripts/register_task.ps1`、`scripts/backfill_moenv.py` | 每小時排程收集三種資料；補抓測站歷史 | ✅ |
-| `tests/` | 27 個離線測試（資料串接與品質 6、空間分析 9、預測 4、區域事件 4、校正 4） | ✅ |
+| `tests/` | 33 個離線測試（資料串接與品質 6、空間分析 9、預測 4、區域事件 4、校正 4、Agent 原型 6） | ✅ |
 | `src/analytics/spatial.py` | 空間型態分析、來源判斷（Algorithm 2）、事件型態標記 | ✅ 初步（T-20） |
 | `notebooks/T-20_spatial_eda.ipynb` | 真實資料探索與圖表 | ✅ 初步 |
 | `src/analytics/forecast.py`、`notebooks/T-11_*` | 短期預測基準（持續性 vs 多元線性迴歸） | ✅ 初步（T-11） |
 | `src/analytics/regional.py`、`notebooks/T-21_*` | 國家測站的區域型事件候選 | ✅ 初步（T-21） |
-| `src/analytics/calibration.py`、`notebooks/T-22_*` | 共置比對、線性＋外部濕度校正 | ✅ 初步，5 天共置資料：MAE 改善臺中 22%、高雄 11%（T-22） |
-| `src/agent/`、`src/knowledge/` | Agent 與知識庫 | 期末階段 |
+| `src/analytics/calibration.py`、`notebooks/T-22_*` | 共置比對、線性＋外部濕度校正 | ✅ 初步，5 天共置資料：MAE 改善臺中 23%、高雄 11%（T-22） |
+| `src/agent/`、`src/knowledge/`、`docs/agent_demo/` | Agent 工具層原型（8 個工具、Algorithm 1／3、四段式回答與工具紀錄）；三個真實情境的輸出 | ✅ 原型；LLM 規劃待期末 |
 
 ## 10. How to Run
 

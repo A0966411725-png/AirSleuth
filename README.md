@@ -9,12 +9,12 @@
 
 | 繳交項目 | 位置 |
 |---|---|
-| Proposal Document | [proposal/AirSleuth_Proposal.md](proposal/AirSleuth_Proposal.md)（各章原始檔在 `proposal/00～05`） |
+| Proposal Document | [proposal/AirSleuth_Proposal.docx](proposal/AirSleuth_Proposal.docx)（Word）、[PDF](proposal/AirSleuth_Proposal.pdf)、[Markdown](proposal/AirSleuth_Proposal.md)；各章原始檔在 `proposal/00～05` |
 | Proposal PPT | [slides/README.md](slides/README.md)（線上簡報，可下載 .pptx／PDF，附講稿） |
 | GitHub Repository | 本 repo |
 | DESIGN.md | [DESIGN.md](DESIGN.md) |
 | 口頭問答預演 | [docs/qa_rehearsal.md](docs/qa_rehearsal.md) |
-| 文獻與來源查核 | [research/sources.md](research/sources.md)（52 筆） |
+| 文獻與來源查核 | [research/sources.md](research/sources.md)（62 筆） |
 
 ## 這個 Agent 要做什麼
 
@@ -28,6 +28,20 @@ AirSleuth 會：
 5. 給出**有證據、標明不確定性**的行動建議
 
 詳細設計見 [DESIGN.md](DESIGN.md)。
+
+## 快速試跑
+
+```bash
+pip install -r requirements.txt
+python -m pytest -q tests                      # 33 個離線測試
+python -m src.agent.demo --case kaohsiung      # Agent 原型：高雄 10/23 區域型事件（需要 data/raw 的收集資料）
+python -m src.agent.schema                     # 給 LLM function calling 用的工具規格
+python -m scripts.collection_status            # 資料收集狀況
+```
+
+原型輸出範例（含每一步的工具呼叫紀錄）見 [docs/agent_demo/](docs/agent_demo/)。
+
+重建繳交文件：`python scripts/build_references.py` → `python scripts/build_proposal.py` → `python scripts/export_docx.py`。
 
 ## 儲存庫結構
 

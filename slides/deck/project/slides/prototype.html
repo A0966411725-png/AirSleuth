@@ -1,0 +1,31 @@
+<section id="prototype" data-transition="fade" style="background:#EEF1F5;color:#3D4656;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:700;color:#C2501F;letter-spacing:2px">Technical Feasibility｜Agent 原型</p>
+<h2 style="font-size:64px;font-weight:700;color:#14213D;line-height:1.15">原型已能用真實資料跑完整流程</h2>
+</div>
+<div style="display:flex;gap:32px;flex:1">
+<div style="width:520px;background:#14213D;border-radius:20px;padding:32px 36px;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:26px;font-weight:700;color:#F2A27E">8 個工具，依 Algorithm 1 串接</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:22px;line-height:1.6;color:#E6EAF2;white-space:pre">④ get_microsensors
+④ assess_quality
+⑤ source_attribution
+④ get_station／get_weather
+⑤ calibrate
+⑤ forecast_trend
+⑥ retrieve_knowledge
+→ 四段式回答＋工具紀錄</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<table style="font-size:24px;color:#3D4656">
+<tr><th style="width:36%;text-align:left">真實情境</th><th style="width:26%;text-align:left">判斷</th><th style="width:38%;text-align:left">第一順位建議</th></tr>
+<tr><td>高雄前金 10/23 11:30<br>孩童要運動</td><td><b>區域型</b><br>C = 0.90</td><td>降低強度<br><b>不建議換地點</b></td></tr>
+<tr><td>臺中沿海 10/19 14:40<br>一般民眾要運動</td><td><b>次區域型</b><br>8 km 內 38%、外環 4%</td><td><b>換到 8 km 外</b><br>（背景約 22 μg/m³）</td></tr>
+<tr><td>臺中西屯 10/21 10:00<br>氣喘患者散步</td><td>沒有明顯事件<br>C = 0</td><td>照原計畫進行</td></tr>
+</table>
+<div style="background:#FFFFFF;border-radius:16px;padding:20px 24px"><p style="font-size:24px;line-height:1.5"><b>同一套規則，空間型態不同，建議就不同。</b>高雄案例中，國家測站最新小時值仍是 5，微型感測器已看到約 20 μg/m³ 的升高。</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">python -m src.agent.demo --case kaohsiung；數字全部來自工具計算；全部 33 個離線測試通過。期末把固定流程換成 LLM 規劃</p>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">18</p>
+<aside>除了個別的分析模組，我們也把整條流程串起來，做成可以執行的 Agent 原型。左邊是 8 個工具：取資料、品質檢查、來源判斷、查測站和氣象、校正、預測、取領域知識，最後組成四段式回答，並記錄每一次工具呼叫，所以每個數字都查得到出處。右邊是同一個原型在三個真實情境的輸出：高雄那次是區域型，所以建議孩童降低強度，但不建議換地點；臺中沿海是次區域型，建議換到 8 公里外；平常日沒有事件，就照常活動。同一套規則，空間型態不同，建議就不同，這就是我們和只看 AQI 的工具最大的差別。另外，高雄案例裡國家測站因為要等整點結束才發布，最新值還是 5，微型感測器已經看到 20，這也說明了用微型感測器的價值。Proposal 階段先用固定的流程，期末會換成 LLM 自己規劃要呼叫哪些工具。</aside>
+</section>

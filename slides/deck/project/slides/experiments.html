@@ -6,15 +6,15 @@
 <table style="font-size:26px;color:#3D4656">
 <tr><th style="width:20%;text-align:left">項目</th><th style="width:80%;text-align:left">設計</th></tr>
 <tr><td><b>Dataset</b></td><td>排程收集的臺中、高雄微型感測器資料；國家測站與氣象署資料</td></tr>
-<tr><td><b>Case Study</b></td><td>已有高雄 10/23 區域型、臺中 10/19 次區域型真實案例；期末補混合型與冬季事件，展示完整推理過程</td></tr>
+<tr><td><b>Case Study</b></td><td>40 個真實情境（區域、次區域／局部、無事件、資料不足各 10），四個系統回答同樣題目</td></tr>
 <tr><td><b>Baseline</b></td><td>① 只看 AQI　② 沒有工具的純 LLM　③ 有工具但沒有知識與品質檢查的 LLM</td></tr>
-<tr><td><b>Metrics</b></td><td>來源判斷與人工標記一致率、預測 MAE（對照持續性預測）、數字可追溯比例、建議的具體程度</td></tr>
+<tr><td><b>Metrics</b></td><td>來源判斷一致率（雙人標記、Cohen's κ）、預測 MAE、數字可追溯率、建議品質 0–2 分；消融：拿掉品質檢查／來源判斷／領域知識</td></tr>
 </table>
 <div style="display:flex;gap:24px">
 <div style="flex:1;background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px"><h3 style="font-size:30px;font-weight:700;color:#14213D">預期成果</h3><p style="font-size:24px;line-height:1.5">能回答「為什麼」與「怎麼做」；數字都能追溯到資料；明顯事件與人工判斷一致</p></div>
 <div style="flex:1;background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px"><h3 style="font-size:30px;font-weight:700;color:#14213D">已知限制</h3><p style="font-size:24px;line-height:1.5">只能分局部與區域，無法確定區域污染來自境外或國內；混合型與稀疏地區較不穩定</p></div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1500px;font-size:24px;color:#6B7385">以上為預期成果，非實驗結果</p>
-<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">18</p>
-<aside>期末的實驗設計。資料用我們自己排程收集的感測器資料。基準有三個：只看 AQI 的現有做法、沒有工具的純 LLM、以及有工具但沒有領域知識與品質檢查的 LLM，這樣可以分別證明「判斷原因」、「工具查詢」、「領域知識與品質檢查」各自的貢獻。指標包含來源判斷的一致率、預測誤差、數字可追溯的比例。最後強調：這些都是預期成果，不是已經跑出來的結果；限制也先說清楚，我們只能分局部和區域，不能斷定境外還是國內。</aside>
+<p style="position:absolute;right:128px;bottom:64px;width:100px;text-align:right;font-size:24px;color:#6B7385">19</p>
+<aside>期末的實驗設計。資料用我們自己排程收集的感測器資料。基準有三個：只看 AQI 的現有做法、沒有工具的純 LLM、以及有工具但沒有領域知識與品質檢查的 LLM，這樣可以分別證明「判斷原因」、「工具查詢」、「領域知識與品質檢查」各自的貢獻。測試題組是 40 個真實情境，四種情境各 10 個；指標包含來源判斷的一致率、預測誤差、數字可追溯的比例與建議品質。另外做消融實驗，分別拿掉品質檢查、來源判斷、領域知識，看指標掉多少，證明每個模組都有貢獻。最後強調：這些都是預期成果，不是已經跑出來的結果；限制也先說清楚，我們只能分局部和區域，不能斷定境外還是國內。</aside>
 </section>

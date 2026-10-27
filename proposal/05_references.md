@@ -1,6 +1,6 @@
 # 05 References
 
-> 由 `research/sources.md` 自動產生，只列出 Proposal 正文（01～04 章）實際引用的來源。
+> 由 `research/sources.md` 自動產生（`python scripts/build_references.py`），只列出 Proposal 正文（00～04 章）實際引用的來源。
 > 標 🟡 的來源已確認文獻存在與書目正確，但未能讀取原文，引用的數字需再核對。
 
 - **[S-001]** 民生公共物聯網 (2026). *空品微型感測器 SensorThings API*. https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/
@@ -51,5 +51,15 @@
 - **[S-049]** Lu et al. (2025). *Multi-scale dynamic graph neural network for PM2.5 concentration prediction in regional station cluster*. https://doi.org/10.1371/journal.pone.0338392
 - **[S-051]** Chen, Putra & Lin (2021). *A Novel Prediction Approach for Exploring PM2.5 Spatiotemporal Propagation Based on Convolutional Recursive Neural Networks*. https://arxiv.org/abs/2101.06213
 - **[S-052]** WHO (2024). *Ambient (outdoor) air pollution fact sheet*. https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
+- **[S-053]** Ma, Ran, Song & Gao (2026). *Multi-agent AI for end-to-end air quality analysis and decision support*. https://doi.org/10.1038/s44407-026-00102-4
+- **[S-054]** Gao et al. (2025). *Instructor-Worker Large Language Model System for Policy Recommendation: a Case Study on Air Quality Analysis of the January 2025 Los Angeles Wildfires*. https://arxiv.org/abs/2503.00566
+- **[S-055]** Rahman et al. (2025). *LLM-Based Data Science Agents: A Survey of Capabilities, Challenges, and Future Directions*. https://arxiv.org/abs/2510.04023
+- **[S-056]** Xu et al. (2026). *The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration*. https://arxiv.org/abs/2603.22862
+- **[S-057]** Frischmon et al. (2026). *Spatial and temporal approaches for differentiating local source and background air quality impacts using low-cost sensor networks*. https://doi.org/10.5194/egusphere-2026-4589
+- **[S-058]** Tzeng, Lai & Huang (2023). *Spatially Adaptive Calibrations of AirBox PM2.5 Data*. https://doi.org/10.1111/biom.13819
+- **[S-059]** Aman et al. (2025). *Machine learning-based quantification and separation of emissions and meteorological effects on PM2.5 in Greater Bangkok*. https://doi.org/10.1038/s41598-025-99094-6
+- **[S-060]** Health Effects Institute (2025). *State of Global Air 2025*. https://www.stateofglobalair.org/news-events/2025/new-state-global-air-2025-report-shows-nearly-nine-ten-global-air-pollution-deaths
+- **[S-061]** Ku et al. (2025). *Does ambient PM2.5 reduce the protective association of leisure-time physical activity with mortality? A systematic review, meta-analysis, and individual-level pooled analysis of cohort studies involving 1.5 million adults*. https://doi.org/10.1186/s12916-025-04496-y
+- **[S-062]** Cibin et al. (2025). *Promoting air quality-related awareness and behavioural change: A rapid review of communication interventions integrating behavioural, science communication and socio-ecological perspectives*. https://doi.org/10.1016/j.envc.2025.101237
 
-共 48 筆。
+共 58 筆。

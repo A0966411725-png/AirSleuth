@@ -113,7 +113,7 @@ powershell -ExecutionPolicy Bypass -File scripts\register_task.ps1
 
 紀錄在 `data/raw/logs/scheduled.log`。
 
-**想確認有沒有收到資料：**執行下面的指令，會列出每種資料收到幾筆、哪些小時有缺口，並畫出每小時覆蓋圖（`docs/collection_status.png`）。
+**想確認有沒有收到資料**：執行下面的指令，會列出每種資料收到幾筆、哪些小時有缺口，並畫出每小時覆蓋圖（`docs/collection_status.png`）。
 
 ```bash
 .venv\Scripts\python -m scripts.collection_status --png docs/collection_status.png

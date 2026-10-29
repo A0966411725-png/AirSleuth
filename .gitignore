@@ -22,3 +22,6 @@ Thumbs.db
 
 # 本機暫存
 .cache/
+
+# 繳交資料夾（本機整理用，檔案都已在 repo 其他位置）
+繳交_Proposal_1104/

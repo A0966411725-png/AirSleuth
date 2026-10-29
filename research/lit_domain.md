@@ -1,6 +1,6 @@
 # T-06 領域端文獻
 
-> 負責：Claude｜日期：2026-10-19｜用途：Related Work 的領域那一半、Deep Research Q1（五個核心思維）與 Q3（十個深度問題）的素材
+> 日期：2026-10-19｜用途：Related Work 的領域那一半、Deep Research Q1（五個核心思維）與 Q3（十個深度問題）的素材
 > 查核狀態：✅ 已開啟原文或摘要核對；🟡 只確認書目。編號對應 `research/sources.md`。
 > 專家之間的爭議（境外 vs 本地、感測器可信度、標準嚴格度）見 `research/lit_controversies.md`（T-18），這裡不重複。
 

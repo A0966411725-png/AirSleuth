@@ -1,6 +1,6 @@
 # 01 Introduction 緒論
 
-> 負責：Claude（T-13）｜版本：2026-10-19 初稿；2026-10-27 補強真實事件與研究問題
+> 版本：2026-10-19 初稿；2026-10-27 補強真實事件與研究問題
 > 回答：**Why is this project worth doing?**
 > 文中的 [S-xxx] 對應 `research/sources.md`；素材見 `research/evidence.md`。
 

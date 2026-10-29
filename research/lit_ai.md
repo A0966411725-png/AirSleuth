@@ -1,6 +1,6 @@
 # T-05 AI 技術端文獻
 
-> 負責：Claude｜日期：2026-10-19｜用途：Related Work 的 AI 技術那一半、Research Gap
+> 日期：2026-10-19｜用途：Related Work 的 AI 技術那一半、Research Gap
 > 查核狀態：✅ 已讀摘要核對；🟡 只確認書目（摘要無法讀取），數字引用前需人工核對。編號對應 `research/sources.md`。
 > 感測器校正的經典研究（S-008～S-011）已在 T-18 整理，這裡只補充機器學習方法。
 

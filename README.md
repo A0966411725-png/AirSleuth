@@ -46,43 +46,18 @@ python -m scripts.collection_status            # 資料收集狀況
 ## 儲存庫結構
 
 ```
-AGENTS.md            所有 AI 協作者的共用規則（先讀這個）
-CLAUDE.md            Claude（總指揮）的角色說明
-GEMINI.md            Gemini（研究員）的角色說明
 DESIGN.md            系統設計文件
-members/             每位組員的分工（gemini_姓名.md、codex.md）
-inbox/               網頁版 AI 的交件區（T-xx_姓名.md）
-coordination/        任務看板、決策紀錄、任務說明、回報
-  COMMS.md           AI 溝通頻道：提問、交接、審查結果
-  TASKS.md           任務看板
-  DECISIONS.md       決策紀錄
-  briefs/            每個任務的詳細說明（可直接貼給 AI）
-  reports/           Codex 完成任務後的回報
-  templates/         任務說明與回報的範本
-docs/                作業規範摘要等參考文件
-proposal/            Proposal 各章節
-research/            文獻、數據、來源登記表
-diagrams/            架構圖、流程圖（Mermaid）
-src/                 程式碼（Codex 主要範圍）
+proposal/            Proposal 各章節與合併後的 Word／PDF
+research/            文獻、數據、來源登記表（sources.md）
+diagrams/            架構圖、流程圖（Mermaid 與 PNG）
+src/                 程式碼：data（資料串接）、analytics（分析引擎）、knowledge（領域知識）、agent（Agent 原型）
+tests/               離線測試
+scripts/             資料收集排程、文件產生腳本
+notebooks/           分析 notebook 與圖
+docs/                作業規範摘要、分析紀錄（analysis/）、Agent 原型輸出、問答預演
 data/sample/         小型資料樣本（原始資料放 data/raw/，不進版控）
 slides/              簡報
 ```
-
-## 三個 AI 怎麼協作
-
-| AI | 組員 | 角色 | 規則檔 |
-|---|---|---|---|
-| Claude | — | 總指揮：派工、審查、查核來源、架構、整合；D 爭議線研究 | `CLAUDE.md` |
-| Gemini × 2 | 陳宏郁、陳彥愷 | 研究員：緒論、領域、AI 技術 | `GEMINI.md` |
-| Codex × 2 | 李家豐、王鼎昌 | 工程師：資料串接（李家豐）、分析引擎（王鼎昌） | `AGENTS.md`、`src/AGENTS.md` |
-
-每個人要做什麼，見 [members/](members/README.md)。
-
-**流程：**
-1. Claude 在 `coordination/TASKS.md` 派任務，詳細說明寫在 `coordination/briefs/`
-2. **Gemini 組員**：把 brief 裡「貼給 Gemini 的內容」貼給 Gemini，再把完整回答上傳到 `inbox/`
-3. **Codex 組員**：在 repo 裡開 Codex，請它執行指定任務，完成後 push 分支並寫回報
-4. Claude 審查、查核來源、整合，審查結果寫在 `coordination/COMMS.md`，再派下一批任務
 
 ## 開發環境
 
@@ -93,7 +68,7 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-然後在 `.env` 填入 API key（申請方式見 `coordination/TASKS.md` 的 T-02）。
+然後在 `.env` 填入 API key：環境部環境資料開放平臺（`MOENV_API_KEY`）與中央氣象署開放資料平臺（`CWA_API_KEY`）註冊會員後即可申請。
 
 ## 資料來源
 

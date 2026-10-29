@@ -1,6 +1,6 @@
 # 03 Deep Research：三大核心問題
 
-> 負責：Claude（T-09、T-19）｜版本：2026-10-19 初稿
+> 版本：2026-10-19 初稿
 > 文中的 [S-xxx] 對應 `research/sources.md`；素材見 `research/lit_domain.md`、`research/lit_controversies.md`。
 
 ---

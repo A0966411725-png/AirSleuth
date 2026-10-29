@@ -93,7 +93,7 @@ fc.metrics(t.loc[ok, "target"], t.loc[ok, "pred"]), fc.metrics(t.loc[ok, "target
 coef.round(3)'''),
     md("""## 4. 小結
 
-文字結論整理在 `coordination/reports/T-11.md`。注意：測試期只有約 15 天、單一季節（秋季），不能代表冬季東北季風期間的表現。"""),
+文字結論整理在 `docs/analysis/T-11_短期預測基準.md`。注意：測試期只有約 15 天、單一季節（秋季），不能代表冬季東北季風期間的表現。"""),
 ]
 nb = nbf.v4.new_notebook(); nb["cells"] = cells
 nb.metadata["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}

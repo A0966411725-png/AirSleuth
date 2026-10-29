@@ -1,6 +1,6 @@
 # DESIGN.md — AirSleuth 系統設計文件
 
-> 由總指揮（Claude）維護。依作業規範，這份文件要讓「原開發者不在時，下一位開發者也能理解、執行、驗證並繼續開發」。
+> 依作業規範，這份文件要讓「原開發者不在時，下一位開發者也能理解、執行、驗證並繼續開發」。
 > 章節順序照規範：Problem → Requirements → Architecture → Components → Data → AI/Analytics → Domain Knowledge → Algorithm → Implementation → How to Run → Results
 > 狀態：**Proposal 版（2026-10-19 初版，2026-10-27 更新）**。第 9、11 節在期末階段補完。
 > 詳細論述見 `proposal/04_proposed_scheme.md`；文中的 `S-xxx` 對應 `research/sources.md`。
@@ -140,7 +140,7 @@ flowchart TB
 | 局部型 | E ≥ max(10, 0.5·B) 且 C < 0.3，且至少 2 個鄰近感測器一起升高 | 只有一個感測器飆高 → 疑似異常 |
 | 事件 vs 持續性偏高 | 80% 以上時間高於背景的感測器歸為「持續性偏高」，不算事件 | `spatial.label_station_events` |
 
-完整的多天驗證與限制見 `coordination/reports/T-20.md`；國家測站 60 天的區域型候選見 `coordination/reports/T-21.md`。
+完整的多天驗證與限制見 `docs/analysis/T-20_空間型態分析.md`；國家測站 60 天的區域型候選見 `docs/analysis/T-21_國家測站區域型事件.md`。
 
 ## 9. Implementation
 

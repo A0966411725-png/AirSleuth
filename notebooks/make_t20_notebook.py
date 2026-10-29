@@ -271,7 +271,7 @@ pd.DataFrame(rows)'''))
 
 cells.append(md("""## 10. 小結
 
-文字結論整理在 `coordination/reports/T-20.md`（多天版本）。"""))
+文字結論整理在 `docs/analysis/T-20_空間型態分析.md`（多天版本）。"""))
 
 nb = nbf.v4.new_notebook()
 nb["cells"] = cells

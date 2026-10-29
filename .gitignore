@@ -25,3 +25,12 @@ Thumbs.db
 
 # 繳交資料夾（本機整理用，檔案都已在 repo 其他位置）
 繳交_Proposal_1104/
+
+# 內部工作紀錄（只留本機）
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+src/AGENTS.md
+members/
+coordination/
+inbox/

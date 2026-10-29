@@ -1,6 +1,6 @@
 # 02 Related Work 相關研究
 
-> 負責：Claude（T-12）｜版本：2026-10-19 初稿；2026-10-27 補強 2025–2026 文獻
+> 版本：2026-10-19 初稿；2026-10-27 補強 2025–2026 文獻
 > 文中的 [S-xxx] 對應 `research/sources.md`，所有引用都已開啟原文或摘要核對。
 > 素材：`research/lit_ai.md`（AI 技術）、`research/lit_domain.md`（領域知識）、`research/lit_controversies.md`（專業爭議）
 

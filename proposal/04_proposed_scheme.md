@@ -1,6 +1,6 @@
 # 04 Proposed Scheme 系統設計
 
-> 負責：Claude（T-10）｜版本：2026-10-19 初稿
+> 版本：2026-10-19 初稿
 > 模組編號 ①～⑧ 與 `DESIGN.md` 第 4 節一致；圖檔原始碼在 `diagrams/`。
 > 文中的 `S-xxx` 對應 `research/sources.md`；「實測」指本專題 T-07 對民生公共物聯網資料的實際分析。
 

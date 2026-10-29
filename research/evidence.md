@@ -1,6 +1,6 @@
 # T-04 Attention Getter 證據
 
-> 負責：Claude｜日期：2026-10-19｜用途：Abstract 的 A 段、Introduction 的 A–D 段
+> 日期：2026-10-19｜用途：Abstract 的 A 段、Introduction 的 A–D 段
 > 查核狀態：✅ 已開啟原文或摘要核對；🟡 只確認書目，數字引用前需人工核對。編號對應 `research/sources.md`。
 
 ## 1. 台灣 PM2.5 的現況與趨勢

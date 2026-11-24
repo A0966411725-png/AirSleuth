@@ -63,7 +63,7 @@ TOOLS_C = [
 ]
 ACTION_WORDS = [  # 依出現位置最早者判定第一順位建議的類別
     ("shift_place", ["換到", "換個地點", "換地點", "其他地區", "別的地方", "別區", "移動到", "8 km", "8 公里", "8公里", "其他區"]),
-    ("shift_time", ["延後", "晚一點", "稍後再", "等到", "改天", "傍晚再", "晚上再", "明天再", "小時後再", "改時段", "避開"]),
+    ("shift_time", ["延後", "晚一點", "稍後再", "等到", "改天", "傍晚再", "晚上再", "明天再", "小時後再", "改時段"]),
     ("move_indoor", ["室內", "待在家", "留在家", "關閉門窗", "關窗", "在家運動", "健身房"]),
     ("lower_intensity", ["降低強度", "降低運動強度", "輕度", "緩和", "伸展", "改成散步", "縮短", "減少戶外", "減少時間",
                          "不要太激烈", "放慢", "強度"]),
@@ -177,8 +177,41 @@ def run_d(q: dict, client: ThrottledClient) -> dict:
 
 
 # ---- 評分 ----------------------------------------------------------------------------------------------------
+JUDGE_PROMPT = """你是評分員。下面是使用者的問題和一個空氣品質助理的回答，請判斷兩件事：
+1. action：回答中「第一優先」建議使用者採取的行動，只能是以下之一：
+   as_planned（可以照原計畫進行、照常活動）
+   lower_intensity（降低強度、縮短時間、改成較輕的活動）
+   shift_time（延後、改時段）
+   shift_place（換到其他地點）
+   move_indoor（改到室內、待在家）
+   no_advice（沒有針對目前情況給出明確行動，例如只請使用者自己去查資料）
+   回答若先給條件式說法（「如果 AQI 高於…就…」），以它對「目前情況」最優先的建議為準。
+2. states_current_value：回答是否宣稱了使用者所在地「目前」的具體空品數值（PM2.5 濃度或 AQI 數值）。
+只輸出 JSON：{{"action": "...", "states_current_value": true 或 false}}
+
+使用者問題：{question}
+
+助理回答：
+{answer}"""
+
+
+def judge(q: dict, cfg: str, text: str, client: ThrottledClient) -> dict:
+    """LLM 評審（同一個 Gemini 模型）：判斷第一優先行動與是否宣稱目前數值。結果快取；準確度用 AirSleuth 的已知答案驗證。"""
+    path = CACHE / "judge" / f"{cfg}_{q['id']}.json"
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    content, _ = client.generate([{"role": "user", "parts": [{"text": JUDGE_PROMPT.format(question=q["question"], answer=text)}]}])
+    raw = _text_of(content)
+    m = re.search(r"\{.*\}", raw, re.S)
+    out = json.loads(m.group(0)) if m else {"action": "unparsed", "states_current_value": None}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
 def recommendation_part(text: str) -> str:
-    m = re.search(r"建議[^\n]{0,6}\n?(.*?)(\n\*\*|\Z)", text, re.S)
+    m = re.search(r"\*\*建議\*\*[：:]?\s*\n?(.*?)(\n\*\*|\Z)", text, re.S) or \
+        re.search(r"\n#+[^\n]*建議[^\n]*\n(.*?)(\n#+ |\n\*\*|\Z)", text, re.S)
     return m.group(1) if m and m.group(1).strip() else text
 
 
@@ -206,7 +239,7 @@ ASKS = re.compile(r"哪一?區|哪裡|在哪|哪個地方|什麼地方|請(告�
 DECLINES = re.compile(r"不支援|無法|只支援|僅支援|不在.{0,6}範圍|只能回答|僅能|沒有.{0,6}資料|不提供|專注|範圍外|僅限")
 
 
-def score(q: dict, cfg: str, out: dict, g: dict | None) -> dict:
+def score(q: dict, cfg: str, out: dict, g: dict | None, verdict: dict | None = None) -> dict:
     text = out["text"]
     numbers = NUMBER_WITH_UNIT.findall(text)
     row = {"id": q["id"], "type": q["type"], "config": CONFIGS[cfg], "n_numbers": len(numbers),
@@ -214,10 +247,13 @@ def score(q: dict, cfg: str, out: dict, g: dict | None) -> dict:
     if q["type"] == "answer":
         ref = out["trace"] if cfg in "acd" else g["trace"]
         bad = unsupported_numbers(text, ref)
-        key = out.get("key") or classify_action(text)
-        row.update(untraceable=len(bad), any_untraceable=len(bad) > 0, action=key, gold=g["key"], gold_type=g["type"],
-                   agree=key == g["key"], spatial_error=g["type"] == "regional" and mentions_shift_place(text),
-                   missed_shift_place=g["key"] == "shift_place" and not mentions_shift_place(text))
+        key = out.get("key") or (verdict or {}).get("action") or classify_action(text)
+        row.update(untraceable=len(bad), any_untraceable=len(bad) > 0, action=key, keyword_action=classify_action(text),
+                   gold=g["key"], gold_type=g["type"], agree=key == g["key"],
+                   fabricated_current=cfg == "b" and bool((verdict or {}).get("states_current_value")),
+                   spatial_error=g["type"] == "regional" and (key == "shift_place" or mentions_shift_place(text)),
+                   missed_shift_place=g["key"] == "shift_place" and not mentions_shift_place(text),
+                   facts_key=out.get("facts_key"))
     elif q["type"] == "clarify":
         row["correct"] = bool(ASKS.search(text)) and not re.search(r"μg/m³|µg/m³", text)
     elif q["type"] == "refuse":
@@ -253,9 +289,13 @@ def main() -> None:
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(json.dumps(_json_safe(out), ensure_ascii=False, indent=1), encoding="utf-8")
                 print(f"{q['id']} {CONFIGS[cfg]}：{out.get('seconds')} 秒", flush=True)
-            rows.append(score(q, cfg, out, g))
+            verdict = judge(q, cfg, out["text"], client) if q["type"] == "answer" and cfg != "a" else None
+            rows.append(score(q, cfg, out, g, verdict))
     res = pd.DataFrame(rows)
     save_table(res, "e4_scores.csv")
+    d = res[(res["config"] == CONFIGS["d"]) & (res["type"] == "answer")]
+    print(f"評審驗證：AirSleuth 回答的第一優先行動，評審判斷與系統實際排序一致 {(d['action'] == d['facts_key']).mean():.0%}"
+          f"（{len(d)} 題）；關鍵字法一致 {(d['keyword_action'] == d['facts_key']).mean():.0%}")
     summarize(res)
 
 
@@ -268,6 +308,7 @@ def summarize(res: pd.DataFrame) -> None:
         out.append({"做法": name,
                     "數字可追溯率": 1 - a["untraceable"].sum() / num if num else np.nan,
                     "含無法追溯數字的回答": a["any_untraceable"].mean(),
+                    "宣稱沒有根據的即時數值": a["fabricated_current"].mean(),
                     "建議一致率": a["agree"].mean(),
                     "區域型卻建議換地點": int(a["spatial_error"].sum()),
                     "局部／次區域型沒建議換地點": int(a["missed_shift_place"].sum()),

@@ -164,8 +164,10 @@ def calibrate(city: str, sensor_pm25: float, rh: float | None) -> dict:
             "note": f"在地校正（{city}，4 週共置資料，線性＋氣象站濕度 {rh:.0f}%）"}
 
 
-def retrieve_knowledge(group: str, activity: str, src_type: str) -> dict:
-    """⑥ 取出與這次問題相關的領域規則與依據。"""
+def retrieve_knowledge(group: str = "all", activity: str = "all", src_type: str = "all") -> dict:
+    """⑥ 取出與這次問題相關的領域規則與依據；觀念題（沒有指定族群或活動）回傳全部規則。"""
+    if "all" in (group, activity):
+        return {"rules": list(health.RULES.values())}
     keys = ["aqi_2025", "exposure", "exercise" if activity != "rest" else "no_threshold"]
     if group in health.SENSITIVE_GROUPS:
         keys.append("sensitive")

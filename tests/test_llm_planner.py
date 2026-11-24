@@ -150,3 +150,19 @@ def test_model_fallback_on_overload_quota_and_timeout():
     assert model == "m3"
     assert [u.split("/models/")[1].split(":")[0] for u in session.urls] == ["m1", "m1", "m2", "m3"]
     assert all("key=" not in u for u in session.urls)   # key 只放在標頭
+
+
+def test_concept_question_uses_knowledge_tool(tmp_path):
+    fake = FakeClient([call("retrieve_knowledge"), text("新版 AQI 的「普通」是 12.5～30.4 μg/m³（S-029）。")])
+    result = Planner(fake, root=tmp_path).ask("新版 AQI 的普通是多少？", TIME)
+    assert result.kind == "knowledge"
+    assert result.trace[0]["tool"] == "retrieve_knowledge"
+    assert len(result.trace[0]["result"]["rules"]) >= 6     # 不帶參數 → 全部規則
+
+
+def test_concept_answer_with_invented_number_is_not_returned(tmp_path):
+    wrong = text("新版 AQI 的「普通」是 15.5～35.4 μg/m³。")   # E4 實際發生過：舊版範圍
+    fake = FakeClient([wrong, wrong])                        # 重寫時仍沒查工具、仍是錯的數字
+    result = Planner(fake, root=tmp_path).ask("新版 AQI 的普通是多少？", TIME)
+    assert result.kind == "fallback"
+    assert "15.5" not in result.text and "12.5–30.4" in result.text

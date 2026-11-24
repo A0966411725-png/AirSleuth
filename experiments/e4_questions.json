@@ -8,7 +8,7 @@
   {"id": "A07", "type": "answer", "time": "2026-10-19 14:40", "question": "台中西屯區現在適合去公園打球嗎？", "city": "臺中市", "district": "西屯區", "group": "general", "activity": "exercise", "hours": 1},
   {"id": "A08", "type": "answer", "time": "2026-10-19 14:40", "question": "我爸媽住台中沙鹿，想在附近走走，可以嗎？", "city": "臺中市", "district": "沙鹿區", "group": "elderly", "activity": "walk", "hours": 1},
   {"id": "A09", "type": "answer", "time": "2026-10-21 10:00", "question": "我在台中西屯，有氣喘，想散步去上班，可以嗎？", "city": "臺中市", "district": "西屯區", "group": "asthma", "activity": "walk", "hours": 0.5},
-  {"id": "A10", "type": "answer", "time": "2026-10-21 10:00", "question": "高雄田寮區現在可以去爬山嗎？", "city": "高雄市", "district": "田寮區", "group": "general", "activity": "exercise", "hours": 2},
+  {"id": "A10", "type": "answer", "time": "2026-10-21 10:00", "question": "高雄田寮區現在可以去爬山嗎？", "city": "高雄市", "district": "田寮區", "group": "general", "activity": "exercise", "hours": 1},
   {"id": "A11", "type": "answer", "time": "2026-10-21 10:00", "question": "我在高雄三民區，想帶孩子去打球兩個小時", "city": "高雄市", "district": "三民區", "group": "child", "activity": "exercise", "hours": 2},
   {"id": "A12", "type": "answer", "time": "2026-10-21 10:00", "question": "我心臟不好，住高雄內門，現在出去曬太陽坐一下可以嗎？", "city": "高雄市", "district": "內門區", "group": "heart", "activity": "rest", "hours": 1},
   {"id": "A13", "type": "answer", "time": "2026-10-29 19:00", "question": "我在台中大里，晚上想去運動公園慢跑，空氣好嗎？", "city": "臺中市", "district": "大里區", "group": "general", "activity": "exercise", "hours": 1},

@@ -47,16 +47,19 @@ PLANNER_TOOLS = [
          "hours": {"type": "NUMBER", "description": "預計在戶外停留幾小時，預設 1"}},
          "required": ["city", "lat", "lon", "group", "activity"]}},
     {"name": "retrieve_knowledge",
-     "description": "取得與使用者族群、活動、污染型態相關的領域規則與文獻依據（例如為什麼敏感族群要提前一級）。",
+     "description": "取得領域規則與文獻依據：新版 AQI 範圍、敏感族群、運動取捨、暴露量、污染型態（區域／次區域／局部）的差別、"
+                    "微型感測器的可信度。觀念題不需要地點，不帶參數就會回傳全部規則。",
      "parameters": {"type": "OBJECT", "properties": {
-         "group": {"type": "STRING", "enum": GROUPS}, "activity": {"type": "STRING", "enum": ACTIVITIES},
-         "src_type": {"type": "STRING", "enum": SOURCE_TYPES}}, "required": ["group", "activity", "src_type"]}},
+         "group": {"type": "STRING", "enum": GROUPS + ["all"]}, "activity": {"type": "STRING", "enum": ACTIVITIES + ["all"]},
+         "src_type": {"type": "STRING", "enum": SOURCE_TYPES + ["all"]}}, "required": []}},
 ]
 
 SYSTEM_PROMPT = """你是 AirSleuth 空品偵探，一個分析臺灣 PM2.5 的領域 AI Agent。查詢時間（現在）是 {time}（台灣時間）。
 
 規則：
-1. 回答空品問題前，先用 resolve_place 確認地點，再用 analyze_air_quality 分析。地點不明確時，先問使用者在哪一區，不要猜。
+1. 回答某個地點的空品問題前，先用 resolve_place 確認地點，再用 analyze_air_quality 分析。地點不明確時，先問使用者在哪一區，不要猜。
+   觀念題（例如為什麼小孩要提早注意、區域型和局部型的差別、AQI 範圍、微型感測器準不準、空污時運動有沒有好處）
+   不需要地點：先呼叫 retrieve_knowledge（不帶參數），只根據回傳的規則回答，並附上規則中的來源編號。
 2. 只支援臺中市、高雄市。其他地方要直接說明不支援，不要編資料。
 3. 所有數字（濃度、比例、距離、風速）只能照抄工具結果，不能自己估算或換算出新數字。
 4. 不可以改變工具給的建議排序、風險等級與信心程度；可以用口語解釋原因。
@@ -69,7 +72,7 @@ SYSTEM_PROMPT = """你是 AirSleuth 空品偵探，一個分析臺灣 PM2.5 的�
    **建議**：照工具排序列出建議。
    **信心**：信心程度與原因。
    最後一行寫「資料來源：民生公共物聯網微型感測器、環境部國家空品測站、中央氣象署自動氣象站」。
-7. 問題和空氣品質無關時，簡短說明你只能回答 PM2.5 與戶外活動的問題。"""
+7. 只有和空氣品質、PM2.5、戶外活動完全無關的問題，才簡短說明你只能回答這類問題。"""
 
 NUMBER_WITH_UNIT = re.compile(r"(\d+(?:\.\d+)?)\s*(μg/m³|µg/m³|μg/m3|ug/m3|微克|%|％|公里|km|m/s|公尺/秒)")
 
@@ -77,7 +80,7 @@ NUMBER_WITH_UNIT = re.compile(r"(\d+(?:\.\d+)?)\s*(μg/m³|µg/m³|μg/m3|ug/m3|
 @dataclass
 class PlannerResult:
     text: str
-    kind: str                    # answer（LLM 回答且通過檢查）、clarify（追問）、refuse（不支援／無關）、fallback（確定性流程）
+    kind: str                    # answer（空品分析）、knowledge（觀念題）、clarify（追問）、refuse（不支援／無關）、fallback（確定性流程）
     model: str | None = None
     trace: list[dict] = field(default_factory=list)
     facts: dict | None = None
@@ -106,8 +109,7 @@ class Planner:
             state["answer"] = answer
             return {"ok": True, "facts": answer.facts, "reference_answer": answer.to_text()}
         if name == "retrieve_knowledge":
-            return tools.retrieve_knowledge(args.get("group", "general"), args.get("activity", "exercise"),
-                                            args.get("src_type", "no_clear_event"))
+            return tools.retrieve_knowledge(args.get("group", "all"), args.get("activity", "all"), args.get("src_type", "all"))
         return {"ok": False, "error": f"沒有這個工具：{name}。可用的工具：{', '.join(t['name'] for t in PLANNER_TOOLS)}"}
 
     # ---- 主流程 ---------------------------------------------------------------------------------------------
@@ -137,8 +139,8 @@ class Planner:
                                                            "response": _json_safe(result)}})
                 contents.append({"role": "user", "parts": responses})
             text = _text_of(content)
-            if "answer" not in state:  # 沒有做分析：追問地點、不支援或與空品無關
-                return PlannerResult(text, classify_reply(text, trace), model, trace, None, history=contents)
+            if "answer" not in state:  # 沒有做分析：觀念題、追問地點、不支援或與空品無關
+                return self._checked_reply(text, trace, contents, system, model)
             bad = unsupported_numbers(text, trace)
             if bad:
                 contents.append({"role": "user", "parts": [{"text":
@@ -154,6 +156,31 @@ class Planner:
             return PlannerResult(text, "answer", model, trace, state["answer"].facts, notes, contents)
         except (LLMUnavailable, LLMError) as exc:
             return self._fallback(question, time, contents, trace, model, f"LLM 暫時無法使用（{exc}），改用確定性流程", state)
+
+    def _checked_reply(self, text: str, trace: list[dict], contents: list[dict], system: str, model: str | None) -> PlannerResult:
+        """沒有做空品分析的回覆也要過數字可追溯檢查（E4 發現：觀念題曾直接答出舊版 AQI 範圍「15.5～35.4」）。"""
+        kind = "knowledge" if any(t.get("tool") == "retrieve_knowledge" for t in trace) else classify_reply(text, trace)
+        bad = unsupported_numbers(text, trace)
+        if bad:
+            contents.append({"role": "user", "parts": [{"text":
+                f"以下數字沒有出處：{'、'.join(bad)}。請先呼叫 retrieve_knowledge，只用工具結果裡的數字重寫，不要新增數字。"}]})
+            content, model = self.client.generate(contents, system, PLANNER_TOOLS)
+            contents.append(content)
+            for call in [p["functionCall"] for p in content.get("parts", []) if "functionCall" in p]:
+                result = self._execute(call["name"], call.get("args", {}), "", {}) if call["name"] == "retrieve_knowledge" \
+                    else {"ok": False, "error": "重寫時只能查領域知識"}
+                trace.append({"step": len(trace) + 1, "tool": call["name"], "args": call.get("args", {}), "result": _json_safe(result)})
+                contents.append({"role": "user", "parts": [{"functionResponse": {"name": call["name"], "id": call.get("id"),
+                                                                                  "response": _json_safe(result)}}]})
+                content, model = self.client.generate(contents, system, PLANNER_TOOLS)
+                contents.append(content)
+            text = _text_of(content)
+            if unsupported_numbers(text, trace):
+                rules = "\n".join(f"- {r}" for r in health.RULES.values())
+                return PlannerResult("以下是 AirSleuth 依據的領域規則（LLM 的回答含有找不到出處的數字，所以改列原始規則）：\n" + rules,
+                                     "fallback", model, trace, None, [f"數字找不到出處：{'、'.join(bad)}"], contents)
+            kind = "knowledge" if any(t.get("tool") == "retrieve_knowledge" for t in trace) else kind
+        return PlannerResult(text, kind, model, trace, None, history=contents)
 
     def _fallback(self, question: str, time: str, contents: list[dict], trace: list[dict] | None = None,
                   model: str | None = None, note: str = "", state: dict | None = None) -> PlannerResult:

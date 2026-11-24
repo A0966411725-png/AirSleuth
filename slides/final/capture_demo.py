@@ -43,6 +43,8 @@ def ask(page: Page, question: str) -> None:
 
 
 def main() -> None:
+    import sys
+    parts = sys.argv[1:] or ["chat", "replay", "about"]
     OUT.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch(channel="msedge", headless=True)
@@ -50,30 +52,33 @@ def main() -> None:
         page.goto(URL)
         wait_idle(page, 3000)
 
-        # 1. 對話：高雄區域型事件（LLM 規劃＋工具紀錄）
-        ask(page, "我在高雄前金區，現在可以帶小孩去公園跑步嗎？")
-        page.screenshot(path=OUT / "01_chat_kaohsiung.png", full_page=True)
-        page.get_by_text("工具呼叫紀錄", exact=False).last.click()
-        wait_idle(page)
-        page.screenshot(path=OUT / "02_chat_trace.png", full_page=True)
+        if "chat" in parts:
+            # 1. 對話：高雄區域型事件（LLM 規劃＋工具紀錄）
+            ask(page, "我在高雄前金區，現在可以帶小孩去公園跑步嗎？")
+            page.screenshot(path=OUT / "01_chat_kaohsiung.png", full_page=True)
+            page.get_by_text("工具呼叫紀錄", exact=False).last.click()
+            wait_idle(page)
+            page.screenshot(path=OUT / "02_chat_trace.png", full_page=True)
+            # 2. 對話：沒有說地點 → 追問
+            page.reload()
+            wait_idle(page, 3000)
+            ask(page, "現在適合出去跑步嗎？")
+            page.screenshot(path=OUT / "03_chat_clarify.png", full_page=True)
 
-        # 2. 對話：沒有說地點 → 追問
-        page.reload()
-        wait_idle(page, 3000)
-        ask(page, "現在適合出去跑步嗎？")
-        page.screenshot(path=OUT / "03_chat_clarify.png", full_page=True)
+        if "replay" in parts:
+            # 3. 事件重播：高雄區域型、臺中沿海次區域型、高雄彌陀局部型
+            go(page, "🗺️ 真實事件重播")
+            page.wait_for_timeout(6000)
+            page.screenshot(path=OUT / "04_replay_kaohsiung.png", full_page=True)
+            for name, label in (("05_replay_taichung.png", "臺中沿海 10/19 次區域型事件（2026-10-19 14:40）"),
+                                ("07_replay_local.png", "高雄彌陀 11/17 局部型事件（2026-11-17 12:00）")):
+                pick(page, "選擇事件", label)
+                page.wait_for_timeout(6000)
+                page.screenshot(path=OUT / name, full_page=True)
 
-        # 3. 事件重播：高雄區域型、臺中沿海次區域型
-        go(page, "🗺️ 真實事件重播")
-        page.wait_for_timeout(6000)
-        page.screenshot(path=OUT / "04_replay_kaohsiung.png", full_page=True)
-        pick(page, "選擇事件", "臺中沿海 10/19 次區域型事件（2026-10-19 14:40）")
-        page.wait_for_timeout(6000)
-        page.screenshot(path=OUT / "05_replay_taichung.png", full_page=True)
-
-        # 4. 資料與方法
-        go(page, "📊 資料與方法")
-        page.screenshot(path=OUT / "06_about.png", full_page=True)
+        if "about" in parts:
+            go(page, "📊 資料與方法")
+            page.screenshot(path=OUT / "06_about.png", full_page=True)
         browser.close()
     print("截圖已存到", OUT)
 

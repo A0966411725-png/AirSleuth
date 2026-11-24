@@ -144,7 +144,7 @@ def page_replay(root: Path) -> None:
     f = res["facts"]
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("目前 PM2.5（校正後）", f"{f['pm25_now']} μg/m³")
-    m2.metric("新版 AQI", f["aqi_category"])
+    m2.metric("新版 AQI", f["aqi_category"].replace("對敏感族群", "敏感族群").replace("對所有族群", "所有族群"))
     m3.metric("來源型態", TYPE_NAMES[f["source_type"]].split("（")[0])
     m4.metric("信心", f["confidence"])
     left, right = st.columns([3, 2])

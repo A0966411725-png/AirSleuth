@@ -35,3 +35,9 @@ members/
 coordination/
 inbox/
 AirSleuth空品偵探_Proposal繳交檔.zip
+
+# 期末影片的大檔（語音快取、含旁白的簡報、MP4；影片上傳 YouTube）
+slides/final/audio/
+slides/final/*_旁白.pptx
+slides/final/*.mp4
+slides/final/shots/cropped/

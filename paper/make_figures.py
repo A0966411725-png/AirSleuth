@@ -39,30 +39,54 @@ def arrow(ax, a, b, color=GREY):
     ax.add_patch(FancyArrowPatch(a, b, arrowstyle="-|>", mutation_scale=10, color=color, lw=1.1))
 
 
-def fig1_architecture():
+FIG1_TEXT = {
+    "en": [("(1) User scenario", "parents, asthma patients,\nrunners, commuters"),
+           ("(2) Query / input", "place, time, group,\nactivity; clarify if missing"),
+           ("(3) Planner & reasoning (LLM)", "Gemini function calling (ReAct); never computes numbers;\nnumber-traceability check before answering"),
+           ("(4) Data acquisition", "micro sensors, stations,\nweather; quality flags"),
+           ("(5) Analytics engine", "calibration, spatial\nattribution, forecast"),
+           ("(7) Decision", "personal risk level,\naction ranking, confidence"),
+           ("(8) Output", "conclusion, evidence,\nactions, confidence, trace"),
+           ("(6) Domain knowledge", "2025 AQI bands, sensitive groups one level earlier,\nexposure = concentration x ventilation x time (cited rules)"),
+           "tool calls"],
+    "zh": [("① 使用者情境", "家長、氣喘患者、\n運動者、通勤族"),
+           ("② 提問與輸入", "地點、時間、族群、活動\n不明確就追問"),
+           ("③ 規劃與推理（LLM）", "Gemini function calling（ReAct）；不自己算數字\n回答前做數字可追溯檢查"),
+           ("④ 資料取得", "微型感測器、測站、氣象\n品質檢查"),
+           ("⑤ 分析引擎", "在地校正、空間來源判斷\n短期預測"),
+           ("⑦ 決策與建議", "個人風險等級、\n行動排序、信心程度"),
+           ("⑧ 輸出", "結論、原因、建議、\n信心、工具紀錄"),
+           ("⑥ 領域知識", "新版 AQI、敏感族群提前一級\n暴露 = 濃度 × 換氣量 × 時間（附文獻依據）"),
+           "呼叫工具"],
+}
+
+
+def fig1_architecture(lang: str = "en", out: Path | None = None):
+    t = FIG1_TEXT[lang]
+    if lang == "zh":
+        plt.rcParams["font.family"] = ["Microsoft JhengHei", "DejaVu Sans"]
     fig, ax = plt.subplots(figsize=(7.2, 3.6))
     ax.set_xlim(0, 10)
     ax.set_ylim(0, 5)
     ax.axis("off")
     w, h = 2.15, 0.95
-    box(ax, 0.1, 3.8, w, h, "(1) User scenario", "parents, asthma patients,\nrunners, commuters")
-    box(ax, 2.6, 3.8, w, h, "(2) Query / input", "place, time, group,\nactivity; clarify if missing")
-    box(ax, 5.1, 3.8, 4.8, h, "(3) Planner & reasoning (LLM)", "Gemini function calling (ReAct); never computes numbers;\nnumber-traceability check before answering",
-        fc=NAVY, tc="white")
-    box(ax, 7.6, 2.2, 2.3, h, "(4) Data acquisition", "micro sensors, stations,\nweather; quality flags")
-    box(ax, 5.1, 2.2, 2.3, h, "(5) Analytics engine", "calibration, spatial\nattribution, forecast", ec=ORANGE)
-    box(ax, 2.6, 2.2, 2.3, h, "(7) Decision", "personal risk level,\naction ranking, confidence")
-    box(ax, 0.1, 2.2, 2.3, h, "(8) Output", "conclusion, evidence,\nactions, confidence, trace")
-    box(ax, 2.6, 0.55, 4.8, 0.95, "(6) Domain knowledge", "2025 AQI bands, sensitive groups one level earlier,\nexposure = concentration x ventilation x time (cited rules)",
-        fc="#fcefe8", ec=ORANGE)
+    box(ax, 0.1, 3.8, w, h, *t[0])
+    box(ax, 2.6, 3.8, w, h, *t[1])
+    box(ax, 5.1, 3.8, 4.8, h, *t[2], fc=NAVY, tc="white")
+    box(ax, 7.6, 2.2, 2.3, h, *t[3])
+    box(ax, 5.1, 2.2, 2.3, h, *t[4], ec=ORANGE)
+    box(ax, 2.6, 2.2, 2.3, h, *t[5])
+    box(ax, 0.1, 2.2, 2.3, h, *t[6])
+    box(ax, 2.6, 0.55, 4.8, 0.95, *t[7], fc="#fcefe8", ec=ORANGE)
     for a, b in [((2.25, 4.27), (2.6, 4.27)), ((4.75, 4.27), (5.1, 4.27)), ((8.75, 3.8), (8.75, 3.15)),
                  ((7.6, 2.67), (7.4, 2.67)), ((5.1, 2.67), (4.9, 2.67)), ((2.6, 2.67), (2.4, 2.67))]:
         arrow(ax, a, b)
     arrow(ax, (3.75, 1.5), (3.75, 2.2), ORANGE)
     arrow(ax, (6.25, 1.5), (6.25, 2.2), ORANGE)
-    ax.text(9.0, 3.45, "tool calls", fontsize=7, color=GREY)
+    ax.text(9.0, 3.45, t[8], fontsize=7, color=GREY)
     fig.tight_layout()
-    fig.savefig(OUT / "fig1_architecture.png", dpi=300)
+    fig.savefig(out or OUT / "fig1_architecture.png", dpi=300)
+    plt.rcParams["font.family"] = "DejaVu Sans"
 
 
 def fig2_cases():
@@ -138,6 +162,7 @@ def fig4_agent():
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     fig1_architecture()
+    fig1_architecture("zh", ROOT / "slides" / "final" / "architecture_zh.png")
     fig2_cases()
     fig3_attribution()
     fig4_agent()

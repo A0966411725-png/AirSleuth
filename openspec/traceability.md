@@ -24,4 +24,6 @@ Research claims → OpenSpec requirements → implementation → verification. E
 
 ## Status
 
-Specs under `openspec/specs/` describe behaviour that is implemented and tested at the Proposal stage (2026-10-27). Changes under `openspec/changes/` are planned for the final stage; their tasks are checked off as they are implemented, and each change is archived after its tests and experiments pass.
+- 2026-10-27 (Proposal stage): `data-acquisition`, `data-quality`, `source-attribution`, `sensor-calibration`, `pm25-forecasting`, `health-recommendation`, `agent-answer` implemented and tested.
+- 2026-11-24: `add-llm-planner` and `add-evaluation-suite` implemented, verified (52 offline tests; experiments E1–E4 in `experiments/results/`) and archived into `specs/llm-planner` and `specs/evaluation`.
+- `add-demo-site`: the app and sample data are done; the change is archived after the public deployment URL is added to the README.

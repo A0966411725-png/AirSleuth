@@ -7,7 +7,7 @@
 | 位置 | 內容 |
 |---|---|
 | `config.yaml` | 專案背景與撰寫規則（給人和 AI 共同遵守） |
-| `specs/` | **目前已實作**的能力，每項都有需求與情境 |
+| `specs/` | **目前已實作**的能力（9 項），每項都有需求與情境 |
 | `changes/` | **期末要新增**的變更，每項都有 proposal、design、tasks 與新增的需求 |
 | `traceability.md` | 追溯矩陣：研究問題與主張 → 需求 → 程式 → 測試或實驗 |
 
@@ -22,14 +22,16 @@
 | `pm25-forecasting` | ⑤ | 不偷看未來的 1／3／6 小時預測與基準比較 |
 | `health-recommendation` | ⑥⑦ | Algorithm 3：敏感族群提前一級、依空間型態給行動、效益減風險排序 |
 | `agent-answer` | ③⑧ | 四段式回答、數字可追溯、信心程度、資料不足時降級 |
+| `llm-planner` | ②③ | Gemini 規劃：理解問題、追問、function calling、數字可追溯檢查、模型與確定性備援（2026-11-24 由變更歸檔） |
+| `evaluation` | — | E1～E4 可重跑的實驗與比較基準（2026-11-24 由變更歸檔） |
 
 ## 期末變更（changes）
 
-| 變更 | 內容 |
+| 變更 | 狀態 |
 |---|---|
-| `add-llm-planner` | 接上 Gemini：理解問題、追問、function calling、數字可追溯檢查、沒有 key 時用確定性流程 |
-| `add-demo-site` | Streamlit demo：對話、真實事件重播、工具呼叫紀錄 |
-| `add-evaluation-suite` | 實驗 E1～E4：預測、校正、來源判斷（半合成）、40 題 Agent 比較 |
+| `add-llm-planner` | ✅ 已完成並歸檔（`changes/archive/2026-11-24-add-llm-planner/`），需求併入 `specs/llm-planner` |
+| `add-evaluation-suite` | ✅ 已完成並歸檔（`changes/archive/2026-11-24-add-evaluation-suite/`），需求併入 `specs/evaluation` |
+| `add-demo-site` | 網站已完成；等 repo 擁有者部署到 Streamlit Community Cloud、取得公開網址後歸檔 |
 
 ## 怎麼使用
 

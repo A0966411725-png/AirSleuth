@@ -1,0 +1,10 @@
+{
+ "text": "臺南市並不在我的服務範圍內，我目前僅支援臺中市與高雄市的空氣品質分析，因此無法為您查詢台南安平的空品狀況。若您在臺中或高雄有活動需求，歡迎隨時詢問！",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.5
+}

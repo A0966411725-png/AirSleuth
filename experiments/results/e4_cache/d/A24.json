@@ -1,0 +1,113 @@
+{
+ "text": "**結論**：高雄旗津區目前 PM2.5 約 30 μg/m³（新版 AQI「普通」），污染屬於資料不足，無法判斷。對長者的最建議做法是：延後約 6 小時再出門（預估降到 18 μg/m³）。\n\n**為什麼**：\n- 最近的國家測站「林園」（614.7 km）11:00 測得 PM2.5 為 30 μg/m³，風速 2.3 m/s。\n- 氣象站「東沙島」顯示風向 70°、風速 4.0 m/s、濕度 73%。\n- 未來預測趨勢：1 小時後約 24.6、3 小時後約 20.1、6 小時後約 18 μg/m³。\n\n**建議**：\n1. 延後約 6 小時再出門（預估降到 18 μg/m³）\n2. 改到室內並關閉門窗（可開空氣清淨機）\n3. 縮短戶外時間，改成靜態活動\n4. 資料可信度偏低：敏感族群請以國家測站數值為準，保守安排活動\n\n**信心**：低。原因包含：2 km 內可信感測器 0 個、感測器偏少、來源判斷不確定、未校正。\n\n資料來源：民生公共物聯網微型感測器、環境部國家空品測站、中央氣象署自動氣象站",
+ "kind": "answer",
+ "trace": [
+  {
+   "step": 1,
+   "tool": "resolve_place",
+   "args": {
+    "text": "高雄旗津區"
+   },
+   "result": {
+    "ok": true,
+    "city": "高雄市",
+    "district": "旗津區",
+    "lat": 17.89522,
+    "lon": 117.11966,
+    "source": "行政區代表點（中央氣象署氣象站座標平均）"
+   }
+  },
+  {
+   "step": 2,
+   "tool": "analyze_air_quality",
+   "args": {
+    "lon": 117.11966,
+    "place": "高雄旗津區",
+    "hours": 1,
+    "group": "elderly",
+    "city": "高雄市",
+    "lat": 17.89522,
+    "activity": "walk"
+   },
+   "result": {
+    "ok": true,
+    "facts": {
+     "has_data": true,
+     "query": {
+      "city": "高雄市",
+      "lat": 17.89522,
+      "lon": 117.11966,
+      "time": "2026-11-17 12:00",
+      "group": "elderly",
+      "activity": "walk",
+      "hours": 1.0,
+      "place": "高雄旗津區"
+     },
+     "pm25_now": 30.0,
+     "calibrated": false,
+     "aqi_category": "普通",
+     "personal_level": "對敏感族群不健康",
+     "group_name": "長者",
+     "source_type": "insufficient_data",
+     "source_type_name": "資料不足，無法判斷",
+     "indicators": {
+      "B": null,
+      "L": null,
+      "E": null,
+      "C": null,
+      "C_sub": null,
+      "C_ring": null,
+      "n_local": 0,
+      "n_region": null
+     },
+     "local_radius_km": null,
+     "station": {
+      "sitename": "林園",
+      "distance_km": 614.7,
+      "time": "2026-11-17 11:00:00+08:00",
+      "pm25": 30.0,
+      "wind_speed": 2.3
+     },
+     "weather": {
+      "station_name": "東沙島",
+      "wind_dir": 70.0,
+      "wind_speed": 4.0,
+      "rh": 73.0
+     },
+     "forecast_local": {
+      "1": 24.6,
+      "3": 20.1,
+      "6": 18.0
+     },
+     "station_spike": false,
+     "away_pm25": null,
+     "actions": [
+      "延後約 6 小時再出門（預估降到 18 μg/m³）",
+      "改到室內並關閉門窗（可開空氣清淨機）",
+      "縮短戶外時間，改成靜態活動",
+      "資料可信度偏低：敏感族群請以國家測站數值為準，保守安排活動"
+     ],
+     "top_action": "延後約 6 小時再出門（預估降到 18 μg/m³）",
+     "action_keys": [
+      "shift_time",
+      "move_indoor",
+      "lower_intensity"
+     ],
+     "confidence": "低",
+     "confidence_reasons": [
+      "2 km 內可信感測器 0 個",
+      "感測器偏少",
+      "來源判斷不確定",
+      "未校正"
+     ]
+    },
+    "reference_answer": "**結論**：高雄旗津區目前 PM2.5 約 30 μg/m³（新版 AQI「普通」），屬於資料不足，無法判斷。對長者的建議是：延後約 6 小時再出門（預估降到 18 μg/m³）。\n\n**為什麼**：\n- 最近的國家測站「林園」（614.7 km）11:00 為 30 μg/m³，風速 2.3 m/s\n- 氣象站「東沙島」：風向 70°、風速 4.0 m/s、濕度 73%\n- 未來趨勢（MLR）：1 小時後約 25、3 小時後約 20、6 小時後約 18 μg/m³\n- 新版 AQI：良好 0–12.4、普通 12.5–30.4、對敏感族群不健康 30.5–50.4 μg/m³（S-029）\n- 暴露量取決於濃度 × 換氣量 × 停留時間（S-034）\n\n**建議**：\n1. 延後約 6 小時再出門（預估降到 18 μg/m³）\n2. 改到室內並關閉門窗（可開空氣清淨機）\n3. 縮短戶外時間，改成靜態活動\n4. 資料可信度偏低：敏感族群請以國家測站數值為準，保守安排活動\n\n**信心：低**。2 km 內可信感測器 0 個；感測器偏少；來源判斷不確定；未校正\n\n**資料來源**：民生公共物聯網微型感測器；環境部國家空品測站；中央氣象署自動氣象站；查詢時間 2026-11-17 12:00"
+   }
+  }
+ ],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": "shift_time",
+ "calls": 3,
+ "seconds": 13.4
+}

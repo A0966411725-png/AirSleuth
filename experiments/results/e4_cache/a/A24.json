@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「林園」11:00 為 30 μg/m³（新版 AQI「普通」）。建議：照常活動",
+ "key": "as_planned",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "52",
+    "sitename": "林園",
+    "distance_km": 614.7,
+    "time": "2026-11-17 11:00:00+08:00",
+    "pm25": 30.0,
+    "rh": 63.0,
+    "wind_speed": 2.3,
+    "wind_dir": 237.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

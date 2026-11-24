@@ -83,7 +83,7 @@ def initials(given: str) -> str:
     for p in parts:
         if not p:
             continue
-        out.append("-".join(q[0] + "." for q in p.split("-") if q))
+        out.append("-".join(q[0].upper() + "." for q in p.split("-") if q))
     return "".join(out)
 
 
@@ -96,7 +96,9 @@ def format_ref(r: dict) -> str:
     if r["kind"] == "web":
         author, title = WEB_EN[r["sid"]]
         return f"{author}. {title}. Available online: {r['url']} (accessed on 24 November 2026)."
-    names = [f"{a['family']}, {initials(a['given'])}" if a.get("given") else a["family"] for a in r["authors"]]
+    def family(name: str) -> str:  # Crossref 有時回傳全大寫的姓
+        return name.title() if name.isupper() else name
+    names = [f"{family(a['family'])}, {initials(a['given'])}" if a.get("given") else family(a["family"]) for a in r["authors"]]
     if len(names) > 10:
         names = names[:10] + ["et al."]
     authors = "; ".join(names[:-1]) + (" " if names[-1] == "et al." else "; ") + names[-1] if len(names) > 1 else names[0]
@@ -171,6 +173,7 @@ def add_table(doc, rows: list[list[str]], widths: list[float] | None = None):
             cell.width = Cm(13.86 * (widths[j] if widths else 1) / total)
             par = cell.paragraphs[0]
             par.style = doc.styles["MDPI_4.2_table_body"]
+            par.paragraph_format.keep_with_next = i < len(rows) - 1   # 表格不要被拆到兩頁
             add_runs(par, value, size=9)
             if i == 0:
                 for r in par.runs:
@@ -184,6 +187,8 @@ def add_table(doc, rows: list[list[str]], widths: list[float] | None = None):
 
 def caption(doc, style: str, label: str, text: str) -> None:
     par = doc.add_paragraph(style=style)
+    if style.startswith("MDPI_4.1"):   # 表格標題要和表格在同一頁
+        par.paragraph_format.keep_with_next = True
     run = par.add_run(label + " ")
     run.bold = True
     add_runs(par, text)
@@ -241,9 +246,9 @@ def main() -> None:
         if line.startswith("## Back Matter"):
             back = True
         elif line.startswith("## "):
-            doc.add_paragraph(line[3:], style="MDPI_2.1_heading1")
+            doc.add_paragraph(line[3:], style="MDPI_2.1_heading1").paragraph_format.keep_with_next = True
         elif line.startswith("### "):
-            doc.add_paragraph(line[4:], style="MDPI_2.2_heading2")
+            doc.add_paragraph(line[4:], style="MDPI_2.2_heading2").paragraph_format.keep_with_next = True
         elif line.startswith("!["):
             m = re.match(r"!\[(Figure \d+\.)\s*(.*)\]\((.+?)\)(?:\{width=([\d.]+)\})?", line)
             par = doc.add_paragraph(style="MDPI_5.2_figure")

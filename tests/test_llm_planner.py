@@ -166,3 +166,14 @@ def test_concept_answer_with_invented_number_is_not_returned(tmp_path):
     result = Planner(fake, root=tmp_path).ask("新版 AQI 的普通是多少？", TIME)
     assert result.kind == "fallback"
     assert "15.5" not in result.text and "12.5–30.4" in result.text
+
+
+def test_concept_question_falls_back_to_rules_when_llm_fails(tmp_path):
+    # E4 實際發生：已查過領域知識，LLM 寫回答時 503 → 應列出規則，而不是「找不到地點」
+    fake = FakeClient([call("retrieve_knowledge"), LLMUnavailable("503")])
+    result = Planner(fake, root=tmp_path).ask("區域型污染和局部型污染有什麼不同？", TIME)
+    assert result.kind == "fallback"
+    assert "區域型" in result.text and "局部型" in result.text
+    assert "找不到這個地點" not in result.text
+    no_key = Planner(GeminiClient(key=""), root=tmp_path).ask("為什麼小孩要比大人更早注意空氣品質？", TIME)
+    assert "敏感族群" in no_key.text

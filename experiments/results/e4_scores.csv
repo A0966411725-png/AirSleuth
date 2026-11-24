@@ -1,0 +1,145 @@
+id,type,config,n_numbers,calls,seconds,untraceable,any_untraceable,action,keyword_action,gold,gold_type,agree,fabricated_current,spatial_error,missed_shift_place,facts_key,correct
+A01,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,lower_intensity,regional,False,False,False,False,,
+A01,answer,純 LLM,0,1,2.7,0.0,False,move_indoor,lower_intensity,lower_intensity,regional,False,False,False,False,,
+A01,answer,LLM＋原始資料工具,3,3,12.7,1.0,True,as_planned,unknown,lower_intensity,regional,False,False,False,False,,
+A01,answer,AirSleuth,18,3,10.9,0.0,False,lower_intensity,lower_intensity,lower_intensity,regional,True,False,False,False,lower_intensity,
+A02,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,,
+A02,answer,純 LLM,0,1,3.1,0.0,False,lower_intensity,as_planned,as_planned,regional,False,False,False,False,,
+A02,answer,LLM＋原始資料工具,7,3,13.2,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,,
+A02,answer,AirSleuth,14,3,12.6,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,as_planned,
+A03,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,,
+A03,answer,純 LLM,0,1,4.3,0.0,False,shift_time,shift_time,as_planned,regional,False,False,False,False,,
+A03,answer,LLM＋原始資料工具,6,3,12.3,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,,
+A03,answer,AirSleuth,19,3,13.2,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,as_planned,
+A04,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,lower_intensity,regional,False,False,False,False,,
+A04,answer,純 LLM,0,1,5.1,0.0,False,move_indoor,shift_place,lower_intensity,regional,False,False,True,False,,
+A04,answer,LLM＋原始資料工具,2,3,11.7,1.0,True,as_planned,lower_intensity,lower_intensity,regional,False,False,False,False,,
+A04,answer,AirSleuth,18,3,12.8,0.0,False,lower_intensity,lower_intensity,lower_intensity,regional,True,False,False,False,lower_intensity,
+A05,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,shift_place,subregional,False,False,False,True,,
+A05,answer,純 LLM,0,1,4.6,0.0,False,move_indoor,lower_intensity,shift_place,subregional,False,False,False,True,,
+A05,answer,LLM＋原始資料工具,8,3,13.3,1.0,True,shift_time,shift_time,shift_place,subregional,False,False,False,True,,
+A05,answer,AirSleuth,23,3,13.5,0.0,False,shift_place,shift_place,shift_place,subregional,True,False,False,False,shift_place,
+A06,answer,只看 AQI,1,0,0.0,0.0,False,lower_intensity,lower_intensity,move_indoor,subregional,False,False,False,False,,
+A06,answer,純 LLM,0,1,4.1,0.0,False,as_planned,as_planned,move_indoor,subregional,False,True,False,False,,
+A06,answer,LLM＋原始資料工具,5,3,14.0,1.0,True,shift_time,as_planned,move_indoor,subregional,False,False,False,False,,
+A06,answer,AirSleuth,15,3,13.3,0.0,False,move_indoor,move_indoor,move_indoor,subregional,True,False,False,False,move_indoor,
+A07,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A07,answer,純 LLM,0,1,3.9,0.0,False,as_planned,unknown,as_planned,no_clear_event,True,True,False,False,,
+A07,answer,LLM＋原始資料工具,5,3,13.2,1.0,True,lower_intensity,lower_intensity,as_planned,no_clear_event,False,False,False,False,,
+A07,answer,AirSleuth,14,3,13.1,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A08,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,move_indoor,no_clear_event,False,False,False,False,,
+A08,answer,純 LLM,0,1,4.8,0.0,False,as_planned,as_planned,move_indoor,no_clear_event,False,False,False,False,,
+A08,answer,LLM＋原始資料工具,7,3,12.5,1.0,True,lower_intensity,unknown,move_indoor,no_clear_event,False,False,False,False,,
+A08,answer,AirSleuth,11,3,13.1,0.0,False,move_indoor,move_indoor,move_indoor,no_clear_event,True,False,False,False,move_indoor,
+A09,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A09,answer,純 LLM,0,1,3.6,0.0,False,shift_place,lower_intensity,as_planned,no_clear_event,False,False,False,False,,
+A09,answer,LLM＋原始資料工具,11,3,14.3,1.0,True,as_planned,lower_intensity,as_planned,no_clear_event,True,False,False,False,,
+A09,answer,AirSleuth,17,3,11.4,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A10,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,subregional,True,False,False,False,,
+A10,answer,純 LLM,0,1,3.0,0.0,False,lower_intensity,lower_intensity,as_planned,subregional,False,True,False,False,,
+A10,answer,LLM＋原始資料工具,0,3,13.3,0.0,False,as_planned,as_planned,as_planned,subregional,True,False,False,False,,
+A10,answer,AirSleuth,18,3,13.1,0.0,False,as_planned,as_planned,as_planned,subregional,True,False,False,False,as_planned,
+A11,answer,只看 AQI,1,0,0.0,0.0,False,lower_intensity,lower_intensity,lower_intensity,no_clear_event,True,False,False,False,,
+A11,answer,純 LLM,0,1,3.5,0.0,False,lower_intensity,lower_intensity,lower_intensity,no_clear_event,True,True,False,False,,
+A11,answer,LLM＋原始資料工具,12,3,13.7,0.0,False,shift_time,lower_intensity,lower_intensity,no_clear_event,False,False,False,False,,
+A11,answer,AirSleuth,17,3,16.8,0.0,False,lower_intensity,lower_intensity,lower_intensity,no_clear_event,True,False,False,False,lower_intensity,
+A12,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,move_indoor,subregional,False,False,False,False,,
+A12,answer,純 LLM,0,1,3.5,0.0,False,move_indoor,move_indoor,move_indoor,subregional,True,False,False,False,,
+A12,answer,LLM＋原始資料工具,7,3,17.4,0.0,False,move_indoor,move_indoor,move_indoor,subregional,True,False,False,False,,
+A12,answer,AirSleuth,19,3,13.5,0.0,False,move_indoor,move_indoor,move_indoor,subregional,True,False,False,False,move_indoor,
+A13,answer,只看 AQI,1,0,0.0,0.0,False,move_indoor,move_indoor,as_planned,no_clear_event,False,False,False,False,,
+A13,answer,純 LLM,0,1,3.5,0.0,False,lower_intensity,lower_intensity,as_planned,no_clear_event,False,True,False,False,,
+A13,answer,LLM＋原始資料工具,3,3,13.7,0.0,False,move_indoor,move_indoor,as_planned,no_clear_event,False,False,False,False,,
+A13,answer,AirSleuth,15,3,16.8,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A14,answer,只看 AQI,1,0,0.0,0.0,False,move_indoor,move_indoor,as_planned,no_clear_event,False,False,False,False,,
+A14,answer,純 LLM,0,1,7.4,0.0,False,no_advice,as_planned,as_planned,no_clear_event,False,False,False,False,,
+A14,answer,LLM＋原始資料工具,4,3,15.6,1.0,True,move_indoor,move_indoor,as_planned,no_clear_event,False,False,False,False,,
+A14,answer,AirSleuth,14,3,13.2,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A15,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A15,answer,純 LLM,0,1,4.8,0.0,False,move_indoor,move_indoor,as_planned,no_clear_event,False,False,False,False,,
+A15,answer,LLM＋原始資料工具,10,3,12.2,0.0,False,lower_intensity,lower_intensity,as_planned,no_clear_event,False,False,False,False,,
+A15,answer,AirSleuth,15,3,21.8,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A16,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A16,answer,純 LLM,0,1,3.5,0.0,False,lower_intensity,as_planned,as_planned,no_clear_event,False,True,False,False,,
+A16,answer,LLM＋原始資料工具,4,3,13.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A16,answer,AirSleuth,12,3,17.2,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A17,answer,只看 AQI,1,0,0.0,0.0,False,lower_intensity,lower_intensity,lower_intensity,regional,True,False,False,False,,
+A17,answer,純 LLM,0,1,3.8,0.0,False,lower_intensity,as_planned,lower_intensity,regional,True,False,False,False,,
+A17,answer,LLM＋原始資料工具,3,3,14.2,0.0,False,shift_time,shift_place,lower_intensity,regional,False,False,True,False,,
+A17,answer,AirSleuth,17,3,13.2,0.0,False,move_indoor,move_indoor,lower_intensity,regional,False,False,False,False,move_indoor,
+A18,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,,
+A18,answer,純 LLM,0,1,3.6,0.0,False,lower_intensity,lower_intensity,as_planned,regional,False,True,False,False,,
+A18,answer,LLM＋原始資料工具,6,3,14.0,1.0,True,shift_time,lower_intensity,as_planned,regional,False,False,False,False,,
+A18,answer,AirSleuth,21,3,13.1,0.0,False,as_planned,as_planned,as_planned,regional,True,False,False,False,as_planned,
+A19,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,move_indoor,subregional,False,False,False,False,,
+A19,answer,純 LLM,0,1,4.3,0.0,False,lower_intensity,lower_intensity,move_indoor,subregional,False,True,False,False,,
+A19,answer,LLM＋原始資料工具,7,3,13.0,1.0,True,lower_intensity,lower_intensity,move_indoor,subregional,False,False,False,False,,
+A19,answer,AirSleuth,22,3,13.1,0.0,False,move_indoor,move_indoor,move_indoor,subregional,True,False,False,False,move_indoor,
+A20,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,shift_time,no_clear_event,False,False,False,False,,
+A20,answer,純 LLM,0,1,4.0,0.0,False,lower_intensity,lower_intensity,shift_time,no_clear_event,False,True,False,False,,
+A20,answer,LLM＋原始資料工具,1,3,13.5,0.0,False,lower_intensity,lower_intensity,shift_time,no_clear_event,False,False,False,False,,
+A20,answer,AirSleuth,18,3,13.1,0.0,False,shift_time,shift_time,shift_time,no_clear_event,True,False,False,False,shift_time,
+A21,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,shift_place,local,False,False,False,True,,
+A21,answer,純 LLM,0,1,3.9,0.0,False,shift_place,shift_time,shift_place,local,True,True,False,True,,
+A21,answer,LLM＋原始資料工具,2,3,14.1,0.0,False,lower_intensity,lower_intensity,shift_place,local,False,False,False,True,,
+A21,answer,AirSleuth,20,3,13.5,0.0,False,shift_place,shift_place,shift_place,local,True,False,False,False,shift_place,
+A22,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,shift_place,local,False,False,False,True,,
+A22,answer,純 LLM,0,1,3.6,0.0,False,lower_intensity,as_planned,shift_place,local,False,False,False,True,,
+A22,answer,LLM＋原始資料工具,1,3,14.0,1.0,True,as_planned,unknown,shift_place,local,False,False,False,True,,
+A22,answer,AirSleuth,18,3,13.4,0.0,False,shift_place,shift_place,shift_place,local,True,False,False,False,shift_place,
+A23,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A23,answer,純 LLM,0,1,3.0,0.0,False,lower_intensity,as_planned,as_planned,no_clear_event,False,False,False,False,,
+A23,answer,LLM＋原始資料工具,7,3,13.2,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,,
+A23,answer,AirSleuth,8,3,13.1,0.0,False,as_planned,as_planned,as_planned,no_clear_event,True,False,False,False,as_planned,
+A24,answer,只看 AQI,1,0,0.0,0.0,False,as_planned,as_planned,shift_time,insufficient_data,False,False,False,False,,
+A24,answer,純 LLM,0,1,4.1,0.0,False,shift_time,lower_intensity,shift_time,insufficient_data,True,True,False,False,,
+A24,answer,LLM＋原始資料工具,0,3,12.7,0.0,False,shift_time,shift_time,shift_time,insufficient_data,True,False,False,False,,
+A24,answer,AirSleuth,10,3,13.4,0.0,False,shift_time,shift_time,shift_time,insufficient_data,True,False,False,False,shift_time,
+C01,clarify,純 LLM,0,1,4.7,,,,,,,,,,,,True
+C01,clarify,LLM＋原始資料工具,0,1,6.0,,,,,,,,,,,,True
+C01,clarify,AirSleuth,0,2,9.0,,,,,,,,,,,,True
+C02,clarify,純 LLM,0,1,4.6,,,,,,,,,,,,True
+C02,clarify,LLM＋原始資料工具,0,1,3.9,,,,,,,,,,,,True
+C02,clarify,AirSleuth,0,1,5.4,,,,,,,,,,,,True
+C03,clarify,純 LLM,0,1,9.0,,,,,,,,,,,,False
+C03,clarify,LLM＋原始資料工具,0,2,5.6,,,,,,,,,,,,True
+C03,clarify,AirSleuth,0,1,3.8,,,,,,,,,,,,True
+C04,clarify,純 LLM,0,1,5.8,,,,,,,,,,,,False
+C04,clarify,LLM＋原始資料工具,0,2,7.5,,,,,,,,,,,,True
+C04,clarify,AirSleuth,0,2,8.4,,,,,,,,,,,,True
+C05,clarify,純 LLM,0,1,5.2,,,,,,,,,,,,True
+C05,clarify,LLM＋原始資料工具,0,1,4.0,,,,,,,,,,,,True
+C05,clarify,AirSleuth,0,1,5.8,,,,,,,,,,,,True
+C06,clarify,純 LLM,0,1,5.9,,,,,,,,,,,,True
+C06,clarify,LLM＋原始資料工具,0,1,2.6,,,,,,,,,,,,True
+C06,clarify,AirSleuth,0,1,3.7,,,,,,,,,,,,True
+R01,refuse,純 LLM,0,1,6.1,,,,,,,,,,,,False
+R01,refuse,LLM＋原始資料工具,0,1,3.0,,,,,,,,,,,,True
+R01,refuse,AirSleuth,0,1,4.8,,,,,,,,,,,,True
+R02,refuse,純 LLM,0,1,6.0,,,,,,,,,,,,False
+R02,refuse,LLM＋原始資料工具,0,2,7.5,,,,,,,,,,,,True
+R02,refuse,AirSleuth,0,1,4.5,,,,,,,,,,,,True
+R03,refuse,純 LLM,0,1,5.4,,,,,,,,,,,,True
+R03,refuse,LLM＋原始資料工具,0,1,3.3,,,,,,,,,,,,True
+R03,refuse,AirSleuth,0,1,4.2,,,,,,,,,,,,True
+R04,refuse,純 LLM,0,1,7.7,,,,,,,,,,,,False
+R04,refuse,LLM＋原始資料工具,0,1,1.7,,,,,,,,,,,,False
+R04,refuse,AirSleuth,0,1,13.6,,,,,,,,,,,,True
+R05,refuse,純 LLM,0,1,5.1,,,,,,,,,,,,False
+R05,refuse,LLM＋原始資料工具,0,1,4.5,,,,,,,,,,,,True
+R05,refuse,AirSleuth,0,1,1.0,,,,,,,,,,,,True
+K01,knowledge,純 LLM,0,1,7.2,,,,,,,,,,,,True
+K01,knowledge,LLM＋原始資料工具,0,1,4.3,,,,,,,,,,,,True
+K01,knowledge,AirSleuth,0,2,6.0,,,,,,,,,,,,True
+K02,knowledge,純 LLM,0,1,14.4,,,,,,,,,,,,True
+K02,knowledge,LLM＋原始資料工具,0,1,2.8,,,,,,,,,,,,True
+K02,knowledge,AirSleuth,2,2,13.8,,,,,,,,,,,,True
+K03,knowledge,純 LLM,0,1,11.9,,,,,,,,,,,,True
+K03,knowledge,LLM＋原始資料工具,0,1,3.3,,,,,,,,,,,,True
+K03,knowledge,AirSleuth,0,2,7.3,,,,,,,,,,,,True
+K04,knowledge,純 LLM,0,1,13.4,,,,,,,,,,,,True
+K04,knowledge,LLM＋原始資料工具,0,1,3.4,,,,,,,,,,,,True
+K04,knowledge,AirSleuth,1,2,8.8,,,,,,,,,,,,True
+K05,knowledge,純 LLM,0,1,5.1,,,,,,,,,,,,False
+K05,knowledge,LLM＋原始資料工具,0,1,4.1,,,,,,,,,,,,False
+K05,knowledge,AirSleuth,4,2,7.7,,,,,,,,,,,,True

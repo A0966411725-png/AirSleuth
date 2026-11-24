@@ -188,6 +188,12 @@ class Planner:
         trace = list(trace or [])
         answer = (state or {}).get("answer")
         if answer is None:
+            # 觀念題（或已經查過領域知識）：列出規則本身，不要回「找不到地點」（E4：LLM 寫回答時遇到 503）
+            knowledge = next((t["result"] for t in trace if t.get("tool") == "retrieve_knowledge"), None)
+            if knowledge or (CONCEPT.search(question) and not geo.resolve_place(question)["ok"]):
+                rules = (knowledge or tools.retrieve_knowledge())["rules"]
+                text = "以下是 AirSleuth 依據的領域規則：\n" + "\n".join(f"- {r}" for r in rules) + f"\n\n_（{note}）_"
+                return PlannerResult(text, "fallback", model, trace, None, [note], contents)
             parsed = parse_question(question, contents)
             if not parsed["ok"]:
                 return PlannerResult(parsed["message"] + "（LLM 未使用）", "clarify" if parsed["reason"] != "unsupported" else "refuse",
@@ -199,6 +205,7 @@ class Planner:
 
 
 # ---- 沒有 LLM 時的規則式問題解析 ------------------------------------------------------------------------------
+CONCEPT = re.compile(r"為什麼|差別|不同|是多少|範圍|可以相信|可信|準不準|準嗎|好處|效益|什麼是|意思|原理")
 GROUP_WORDS = [("child", ["小孩", "孩子", "孩童", "兒童", "小朋友", "寶寶", "嬰兒", "幼兒"]),
                ("elderly", ["長輩", "長者", "老人", "阿公", "阿嬤", "爺爺", "奶奶", "外公", "外婆"]),
                ("asthma", ["氣喘", "哮喘"]), ("heart", ["心臟", "心血管", "高血壓"])]

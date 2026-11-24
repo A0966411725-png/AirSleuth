@@ -1,0 +1,10 @@
+{
+ "text": "本系統目前僅支援**臺中市**與**高雄市**的空氣品質分析，無法查詢臺北市信義區的資料，請見諒！",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.7
+}

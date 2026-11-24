@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「前金」09:00 為 30 μg/m³（新版 AQI「普通」）。建議：降低強度",
+ "key": "lower_intensity",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "56",
+    "sitename": "前金",
+    "distance_km": 2.8,
+    "time": "2026-10-21 09:00:00+08:00",
+    "pm25": 30.0,
+    "rh": 73.0,
+    "wind_speed": 1.7,
+    "wind_dir": 22.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

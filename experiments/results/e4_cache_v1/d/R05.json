@@ -1,0 +1,10 @@
+{
+ "text": "你好！我是 AirSleuth 空品偵探，我只能回答 PM2.5 與戶外活動相關的問題，無法為您預測股市走勢喔！如果您有關於臺中市或高雄市的空氣品質、戶外活動建議等問題，歡迎隨時詢問！",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.0
+}

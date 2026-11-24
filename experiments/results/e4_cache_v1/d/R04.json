@@ -1,0 +1,10 @@
+{
+ "text": "這個問題和空氣品質無關，我只能回答 PM2.5 與戶外活動的問題喔！",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.1
+}

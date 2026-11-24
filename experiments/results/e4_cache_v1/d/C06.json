@@ -1,0 +1,10 @@
+{
+ "text": "請問您目前人在臺中市或高雄市哪一個行政區呢？",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.7
+}

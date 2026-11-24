@@ -1,0 +1,46 @@
+A01 AirSleuth：10.9 秒
+A02 AirSleuth：12.6 秒
+A03 AirSleuth：13.2 秒
+A04 AirSleuth：12.8 秒
+A05 AirSleuth：13.5 秒
+A06 AirSleuth：13.3 秒
+A07 AirSleuth：13.1 秒
+A08 AirSleuth：13.1 秒
+A09 AirSleuth：11.4 秒
+A10 AirSleuth：13.1 秒
+A11 AirSleuth：16.8 秒
+A12 AirSleuth：13.5 秒
+A13 AirSleuth：16.8 秒
+A14 AirSleuth：13.2 秒
+A15 AirSleuth：21.8 秒
+A16 AirSleuth：17.2 秒
+A17 AirSleuth：13.2 秒
+A18 AirSleuth：13.1 秒
+A19 AirSleuth：13.1 秒
+A20 AirSleuth：13.1 秒
+A21 AirSleuth：13.5 秒
+A22 AirSleuth：13.4 秒
+A23 AirSleuth：13.1 秒
+A24 AirSleuth：13.4 秒
+C01 AirSleuth：9.0 秒
+C02 AirSleuth：5.4 秒
+C03 AirSleuth：3.8 秒
+C04 AirSleuth：8.4 秒
+C05 AirSleuth：5.8 秒
+C06 AirSleuth：3.7 秒
+R01 AirSleuth：4.8 秒
+R02 AirSleuth：4.5 秒
+R03 AirSleuth：4.2 秒
+R04 AirSleuth：13.6 秒
+R05 AirSleuth：1.0 秒
+K01 AirSleuth：12.6 秒
+K02 AirSleuth：9.9 秒
+K03 AirSleuth：7.3 秒
+K04 AirSleuth：8.8 秒
+K05 AirSleuth：7.7 秒
+評審驗證：AirSleuth 回答的第一優先行動，評審判斷與系統實際排序一致 100%（24 題）；關鍵字法一致 100%
+        做法  數字可追溯率  含無法追溯數字的回答  宣稱沒有根據的即時數值  建議一致率  區域型卻建議換地點  局部／次區域型沒建議換地點  追問正確率  拒答正確率  領域知識正確率  平均 LLM 呼叫次數   平均秒數
+    只看 AQI   1.000       0.000        0.000  0.458          0              3    NaN    NaN      NaN        0.000  0.000
+     純 LLM     NaN       0.000        0.458  0.250          1              3  0.667    0.2      0.8        1.000  5.330
+LLM＋原始資料工具   0.909       0.458        0.000  0.333          1              3  1.000    0.8      0.8        2.275  9.808
+ AirSleuth   1.000       0.000        0.000  0.958          0              0  1.000    1.0      0.6        2.375 11.067

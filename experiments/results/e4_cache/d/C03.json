@@ -1,0 +1,10 @@
+{
+ "text": "請問您在臺中的哪一個行政區呢？",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 3.8
+}

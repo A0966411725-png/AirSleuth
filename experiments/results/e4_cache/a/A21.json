@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「橋頭」11:00 為 10 μg/m³（新版 AQI「良好」）。建議：照常活動",
+ "key": "as_planned",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "48",
+    "sitename": "橋頭",
+    "distance_km": 8.0,
+    "time": "2026-11-17 11:00:00+08:00",
+    "pm25": 10.0,
+    "rh": 49.0,
+    "wind_speed": 1.3,
+    "wind_dir": 271.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

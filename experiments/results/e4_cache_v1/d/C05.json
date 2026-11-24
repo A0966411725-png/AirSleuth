@@ -1,0 +1,10 @@
+{
+ "text": "請告訴我您目前「公司附近」是在哪一個行政區（例如：臺中市西屯區、高雄市前鎮區等），我才能為您查詢當地的空氣品質並給予戴口罩的建議喔！",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.7
+}

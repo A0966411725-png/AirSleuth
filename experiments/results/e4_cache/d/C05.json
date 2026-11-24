@@ -1,0 +1,10 @@
+{
+ "text": "請問您目前公司在臺中市還是高雄市的哪一區呢？告訴我之後，我馬上幫您查詢當地的空氣品質並給您建議！",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 5.8
+}

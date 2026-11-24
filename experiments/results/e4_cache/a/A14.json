@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「大里」18:00 為 74 μg/m³（新版 AQI「對所有族群不健康」）。建議：改到室內",
+ "key": "move_indoor",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "30",
+    "sitename": "大里",
+    "distance_km": 7.4,
+    "time": "2026-10-29 18:00:00+08:00",
+    "pm25": 74.0,
+    "rh": 69.0,
+    "wind_speed": 1.3,
+    "wind_dir": 339.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

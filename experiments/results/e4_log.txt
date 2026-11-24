@@ -1,0 +1,124 @@
+A01 只看 AQI：0.0 秒
+A01 純 LLM：2.7 秒
+A01 LLM＋原始資料工具：12.7 秒
+A01 AirSleuth：18.2 秒
+A02 只看 AQI：0.0 秒
+A02 純 LLM：3.1 秒
+A02 LLM＋原始資料工具：13.2 秒
+A02 AirSleuth：17.6 秒
+A03 只看 AQI：0.0 秒
+A03 純 LLM：4.3 秒
+A03 LLM＋原始資料工具：12.3 秒
+A03 AirSleuth：17.8 秒
+A04 只看 AQI：0.0 秒
+A04 純 LLM：5.1 秒
+A04 LLM＋原始資料工具：11.7 秒
+A04 AirSleuth：17.7 秒
+A05 只看 AQI：0.0 秒
+A05 純 LLM：4.6 秒
+A05 LLM＋原始資料工具：13.3 秒
+A05 AirSleuth：16.5 秒
+A06 只看 AQI：0.0 秒
+A06 純 LLM：4.1 秒
+A06 LLM＋原始資料工具：14.0 秒
+A06 AirSleuth：17.4 秒
+A07 只看 AQI：0.0 秒
+A07 純 LLM：3.9 秒
+A07 LLM＋原始資料工具：13.2 秒
+A07 AirSleuth：17.8 秒
+A08 只看 AQI：0.0 秒
+A08 純 LLM：4.8 秒
+A08 LLM＋原始資料工具：12.5 秒
+A08 AirSleuth：17.6 秒
+A09 只看 AQI：0.0 秒
+A09 純 LLM：3.6 秒
+A09 LLM＋原始資料工具：14.3 秒
+A09 AirSleuth：16.7 秒
+A10 只看 AQI：0.0 秒
+A10 純 LLM：3.0 秒
+A10 LLM＋原始資料工具：13.3 秒
+A10 AirSleuth：13.8 秒
+A11 只看 AQI：0.0 秒
+A11 純 LLM：3.5 秒
+A11 LLM＋原始資料工具：13.7 秒
+A11 AirSleuth：17.1 秒
+A12 只看 AQI：0.0 秒
+A12 純 LLM：3.5 秒
+A12 LLM＋原始資料工具：17.4 秒
+A12 AirSleuth：15.4 秒
+A13 只看 AQI：0.0 秒
+A13 純 LLM：3.5 秒
+A13 LLM＋原始資料工具：13.7 秒
+A13 AirSleuth：17.3 秒
+A14 只看 AQI：0.0 秒
+A14 純 LLM：7.4 秒
+A14 LLM＋原始資料工具：15.6 秒
+A14 AirSleuth：15.7 秒
+A15 只看 AQI：0.0 秒
+A15 純 LLM：4.8 秒
+A15 LLM＋原始資料工具：12.2 秒
+A15 AirSleuth：17.1 秒
+A16 只看 AQI：0.0 秒
+A16 純 LLM：3.5 秒
+A16 LLM＋原始資料工具：13.0 秒
+A16 AirSleuth：18.0 秒
+A17 只看 AQI：0.0 秒
+A17 純 LLM：3.8 秒
+A17 LLM＋原始資料工具：14.2 秒
+A17 AirSleuth：16.8 秒
+A18 只看 AQI：0.0 秒
+A18 純 LLM：3.6 秒
+A18 LLM＋原始資料工具：14.0 秒
+A18 AirSleuth：17.4 秒
+A19 只看 AQI：0.0 秒
+A19 純 LLM：4.3 秒
+A19 LLM＋原始資料工具：13.0 秒
+A19 AirSleuth：17.3 秒
+A20 只看 AQI：0.0 秒
+A20 純 LLM：4.0 秒
+A20 LLM＋原始資料工具：13.5 秒
+A20 AirSleuth：12.8 秒
+A21 只看 AQI：0.0 秒
+A21 純 LLM：3.9 秒
+A21 LLM＋原始資料工具：14.1 秒
+A21 AirSleuth：16.1 秒
+A22 只看 AQI：0.0 秒
+A22 純 LLM：3.6 秒
+A22 LLM＋原始資料工具：14.0 秒
+A22 AirSleuth：17.0 秒
+A23 只看 AQI：0.0 秒
+A23 純 LLM：3.0 秒
+A23 LLM＋原始資料工具：13.2 秒
+A23 AirSleuth：13.9 秒
+A24 只看 AQI：0.0 秒
+A24 純 LLM：4.1 秒
+A24 LLM＋原始資料工具：12.7 秒
+A24 AirSleuth：18.3 秒
+C01 純 LLM：4.7 秒
+C01 LLM＋原始資料工具：6.0 秒
+C01 AirSleuth：1.9 秒
+C02 純 LLM：4.6 秒
+C02 LLM＋原始資料工具：3.9 秒
+C02 AirSleuth：4.8 秒
+C03 純 LLM：9.0 秒
+C03 LLM＋原始資料工具：5.6 秒
+C03 AirSleuth：8.6 秒
+C04 純 LLM：5.8 秒
+C04 LLM＋原始資料工具：7.5 秒
+C04 AirSleuth：9.0 秒
+C05 純 LLM：5.2 秒
+C05 LLM＋原始資料工具：4.0 秒
+C05 AirSleuth：4.7 秒
+C06 純 LLM：5.9 秒
+C06 LLM＋原始資料工具：2.6 秒
+C06 AirSleuth：4.7 秒
+R01 純 LLM：6.1 秒
+R01 LLM＋原始資料工具：3.0 秒
+R01 AirSleuth：4.7 秒
+R02 純 LLM：6.0 秒
+R02 LLM＋原始資料工具：7.5 秒
+R02 AirSleuth：4.5 秒
+R03 純 LLM：5.4 秒
+R03 LLM＋原始資料工具：3.3 秒
+R03 AirSleuth：5.5 秒
+LLM 無法使用（gemini-3.5-flash-lite: HTTP 503；gemini-3.5-flash-lite: HTTP 503），已完成的結果都在快取，稍後重跑會接續

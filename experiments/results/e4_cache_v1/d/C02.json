@@ -1,0 +1,10 @@
+{
+ "text": "請問您目前所在的具體地點是在臺中市還是高雄市的哪一個行政區呢？（例如：臺中市西屯區、高雄市前金區等）",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.8
+}

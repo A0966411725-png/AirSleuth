@@ -1,0 +1,10 @@
+{
+ "text": "臺南市不在支援範圍內，目前 AirSleuth 空品偵探僅支援臺中市與高雄市，無法提供臺南安平的空氣品質分析。",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.5
+}

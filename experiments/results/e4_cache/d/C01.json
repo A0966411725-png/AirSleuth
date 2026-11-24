@@ -1,0 +1,27 @@
+{
+ "text": "請告訴我您目前所在的**行政區**（目前僅支援臺中市與高雄市），我才能為您查詢當地的 PM2.5 數據並評估現在適不適合出去跑步。",
+ "kind": "knowledge",
+ "trace": [
+  {
+   "step": 1,
+   "tool": "retrieve_knowledge",
+   "args": {
+    "activity": "exercise",
+    "src_type": "all",
+    "group": "general"
+   },
+   "result": {
+    "rules": [
+     "新版 AQI：良好 0–12.4、普通 12.5–30.4、對敏感族群不健康 30.5–50.4 μg/m³（S-029）",
+     "暴露量取決於濃度 × 換氣量 × 停留時間（S-034）",
+     "一般濃度下運動效益大於空污風險；PM2.5 ≥ 25 時效益打折但仍存在（S-033、S-061）"
+    ]
+   }
+  }
+ ],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 2,
+ "seconds": 9.0
+}

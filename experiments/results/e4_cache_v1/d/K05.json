@@ -1,0 +1,10 @@
+{
+ "text": "新版 AQI 的「普通」範圍是 PM2.5 濃度 15.5 至 35.4 $\\mu g/m^3$。\n\n我是一位專注於 PM2.5 與戶外活動分析的 AirSleuth 空品偵探，如果你想知道臺中市或高雄市某個區域目前的空氣品質與戶外活動建議，歡迎告訴我你所在的行政區與預計進行的活動喔！",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 4.4
+}

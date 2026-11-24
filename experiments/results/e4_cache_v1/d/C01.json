@@ -1,0 +1,10 @@
+{
+ "text": "請告訴我您目前在**臺中市**或**高雄市**哪一個行政區，以及您預計在哪一區跑步？（目前 AirSleuth 只支援臺中市與高雄市）",
+ "kind": "clarify",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 1.9
+}

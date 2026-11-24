@@ -1,0 +1,10 @@
+{
+ "text": "我是一個專注於臺灣空氣品質與 PM2.5 分析的空品偵探，目前只能回答與空氣品質、PM2.5 以及戶外活動相關的問題喔！",
+ "kind": "refuse",
+ "trace": [],
+ "model": "gemini-3.5-flash-lite",
+ "notes": [],
+ "facts_key": null,
+ "calls": 1,
+ "seconds": 1.0
+}

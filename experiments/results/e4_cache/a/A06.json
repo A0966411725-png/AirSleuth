@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「沙鹿」13:00 為 19 μg/m³（新版 AQI「普通」）。建議：降低強度",
+ "key": "lower_intensity",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "29",
+    "sitename": "沙鹿",
+    "distance_km": 5.7,
+    "time": "2026-10-19 13:00:00+08:00",
+    "pm25": 19.0,
+    "rh": 65.0,
+    "wind_speed": 2.6,
+    "wind_dir": 323.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

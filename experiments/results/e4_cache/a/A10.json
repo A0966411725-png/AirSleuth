@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「美濃」09:00 為 16 μg/m³（新版 AQI「普通」）。建議：照常活動",
+ "key": "as_planned",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "47",
+    "sitename": "美濃",
+    "distance_km": 12.8,
+    "time": "2026-10-21 09:00:00+08:00",
+    "pm25": 16.0,
+    "rh": 75.0,
+    "wind_speed": 1.3,
+    "wind_dir": 219.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

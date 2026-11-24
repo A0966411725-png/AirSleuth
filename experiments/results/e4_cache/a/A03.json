@@ -1,0 +1,22 @@
+{
+ "text": "最近測站「復興」10:00 為 4 μg/m³（新版 AQI「良好」）。建議：照常活動",
+ "key": "as_planned",
+ "trace": [
+  {
+   "tool": "get_station",
+   "result": {
+    "ok": true,
+    "siteid": "71",
+    "sitename": "復興",
+    "distance_km": 2.5,
+    "time": "2026-10-23 10:00:00+08:00",
+    "pm25": 4.0,
+    "rh": 65.0,
+    "wind_speed": 2.8,
+    "wind_dir": 267.0
+   }
+  }
+ ],
+ "calls": 0,
+ "seconds": 0.0
+}

@@ -101,7 +101,8 @@ def transcript(path: Path) -> str:
 
 
 def similarity(a: str, b: str) -> float:
-    norm = lambda s: re.sub(r"[\s，。、；：！？「」（）,.;:!?()\-]", "", s).lower()  # noqa: E731
+    """講稿和轉錄文字的相似度。轉錄常把「二零二五」寫成「2025」，所以先去掉數字（國字與阿拉伯數字）與標點再比。"""
+    norm = lambda s: re.sub(r"[\s，。、；：！？「」（）,.;:!?()\-0-9零一二三四五六七八九十百千萬兩點]", "", s).lower()  # noqa: E731
     return SequenceMatcher(None, norm(a), norm(b)).ratio()
 
 

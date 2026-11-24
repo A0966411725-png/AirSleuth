@@ -1,0 +1,30 @@
+schema: spec-driven
+
+context: |
+  Project: AirSleuth, a domain AI agent for PM2.5 air quality in Taiwan (Taichung City and Kaohsiung City).
+  Users ask in Traditional Chinese, for example "Why is PM2.5 high near my home, and can my child exercise outside?"
+
+  Tech stack: Python 3.11+ (developed on 3.13), pandas, numpy; Streamlit for the demo site; Gemini API for the LLM planner.
+
+  Data sources:
+  - Civil IoT Taiwan SensorThings API (EPA smart-city micro sensors, about 5-minute PM2.5, RH, temperature)
+  - Ministry of Environment open data (national monitoring stations, hourly)
+  - Central Weather Administration open data (automatic weather stations)
+
+  Core principle: the LLM plans, reasons and explains; every number and every threshold decision comes from
+  deterministic tools whose inputs and outputs are logged, so each answer is reproducible and traceable.
+
+  Research integrity: requirements describe what the system does today or what a change will add.
+  Expected outcomes are never written as measured results.
+
+rules:
+  specs:
+    - Describe observable behavior; put internal mechanisms in design.md
+    - Every requirement needs at least one scenario that a test or an experiment can check
+    - State units (μg/m³, km, hours) and Taiwan time (Asia/Taipei) explicitly
+  design:
+    - Keep the LLM out of numeric computation; tools return structured data
+    - Never disable TLS certificate verification; government hosts use src/data/http.py gov_session()
+    - API keys come only from environment variables or the hosting platform's secret store
+  tasks:
+    - Each task names the file it changes and the test or experiment that verifies it

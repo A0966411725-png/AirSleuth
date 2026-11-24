@@ -75,10 +75,12 @@ def candidate_actions(c_now: float, c_best: float, best_hour: int, src_type: str
     if c_away is not None and src_type in ("local", "subregional") and c_away < c_now:
         actions.append(Action("shift_place", f"換到 8 km 以外的地點（區域背景約 {c_away:.0f} μg/m³）",
                               c_away, rate, benefit, note="只有局部或次區域事件時有效"))
-    if activity != "rest":
-        actions.append(Action("lower_intensity", f"降低強度，改成散步或伸展", c_now,
-                              BREATHING_RATE["walk"] if activity == "exercise" else BREATHING_RATE["rest"],
-                              ACTIVITY_BENEFIT["walk"] if activity == "exercise" else 0.2))
+    if activity == "exercise":
+        actions.append(Action("lower_intensity", "降低強度，改成散步或伸展", c_now,
+                              BREATHING_RATE["walk"], ACTIVITY_BENEFIT["walk"]))
+    elif activity == "walk":  # 本來就是散步，「改成散步」沒有意義：改成縮短時間、以靜態活動為主
+        actions.append(Action("lower_intensity", "縮短戶外時間，改成靜態活動", c_now,
+                              BREATHING_RATE["rest"], 0.2))
     actions.append(Action("move_indoor", "改到室內並關閉門窗（可開空氣清淨機）", c_now * INDOOR_RATIO,
                           rate, benefit * INDOOR_BENEFIT))
     return actions

@@ -48,6 +48,7 @@ class Answer:
     confidence_reasons: list[str]
     sources: list[str]
     trace: list[dict] = field(default_factory=list)
+    facts: dict = field(default_factory=dict)   # 結構化的數字與判斷，給 LLM 改寫成口語、給 demo 畫圖用
 
     def to_text(self) -> str:
         lines = [f"**結論：**{self.conclusion}", "", "**為什麼：**"] + [f"- {r}" for r in self.reasons]
@@ -120,7 +121,8 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
     sources = ["民生公共物聯網微型感測器", "環境部國家空品測站", "中央氣象署自動氣象站", f"查詢時間 {q.time}"]
     if np.isnan(c_now):  # 例外處理：微型感測器與國家測站都沒有資料
         return Answer("查詢時間附近沒有可用的空品資料，無法判斷。", ["本地資料庫與國家測站在這個時間都沒有資料"],
-                      ["請改查其他時間或地點，或稍後再試"], "低", ["沒有可用資料"], sources, trace)
+                      ["請改查其他時間或地點，或稍後再試"], "低", ["沒有可用資料"], sources, trace,
+                      {"has_data": False, "query": vars(q)})
 
     fcst = _log(trace, "forecast_trend", common, tools.forecast_trend(q.city, q.time, q.lat, q.lon, root=root))
     # 測站預測的變化量套到目標位置：c(h) = c_now + (預測值 − 測站現值)
@@ -168,4 +170,17 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
     if future:
         reasons.append("未來趨勢（MLR）：" + "、".join(f"{h} 小時後約 {v:.0f}" for h, v in sorted(future.items())) + " μg/m³")
     reasons += know["rules"][:2]
-    return Answer(conclusion, reasons, actions, conf, conf_why, sources, trace)
+    indicators = {k: src.get(k) for k in ("B", "L", "E", "C", "C_sub", "C_ring", "n_local", "n_region")}
+    facts = {
+        "has_data": True, "query": vars(q), "pm25_now": round(c_now, 1), "calibrated": cal.get("calibrated", False),
+        "aqi_category": aqi, "personal_level": health.AQI_NAMES[min(level, len(health.AQI_NAMES) - 1)],
+        "group_name": group_name, "source_type": src["type"], "source_type_name": TYPE_NAMES[src["type"]],
+        "indicators": {k: (None if v is None or (isinstance(v, float) and np.isnan(v)) else v) for k, v in indicators.items()},
+        "local_radius_km": src.get("r_local_km"),
+        "station": {k: station.get(k) for k in ("sitename", "distance_km", "time", "pm25", "wind_speed")} if station.get("ok") else None,
+        "weather": {k: weather.get(k) for k in ("station_name", "wind_dir", "wind_speed", "rh")} if weather.get("ok") else None,
+        "forecast_local": {int(h): round(v, 1) for h, v in sorted(future.items())},
+        "away_pm25": c_away, "actions": actions, "top_action": ranked[0].text,
+        "confidence": conf, "confidence_reasons": conf_why,
+    }
+    return Answer(conclusion, reasons, actions, conf, conf_why, sources, trace, facts)

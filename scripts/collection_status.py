@@ -17,6 +17,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from scripts.collect_scheduled import redact
+
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 TZ = "Asia/Taipei"
@@ -96,7 +98,7 @@ def main() -> None:
     log = RAW / "logs" / "scheduled.log"
     if log.exists():
         lines = log.read_text(encoding="utf-8").splitlines()
-        errors = [l for l in lines if "失敗" in l]
+        errors = [redact(l) for l in lines if "失敗" in l]
         print(f"\n排程紀錄：共 {len(lines)} 行，失敗 {len(errors)} 行；最後一行：{lines[-1] if lines else '—'}")
         for l in errors[-5:]:
             print("  ", l)

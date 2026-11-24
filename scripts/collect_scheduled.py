@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -45,12 +46,17 @@ def save_daily(df: pd.DataFrame, out_dir: Path, keys: list[str]) -> list[str]:
     return written
 
 
+def redact(text: str) -> str:
+    """錯誤訊息裡的網址會帶 API key（環境部、氣象署），寫進紀錄前遮掉。"""
+    return re.sub(r"((?:api_key|Authorization)=)[^&\s'\")]+", r"\1***", text)
+
+
 def run(name: str, func) -> None:
     """執行一項收集；失敗只記錄，不影響其他項目。"""
     try:
         logging.info("%s：%s", name, func())
     except Exception as exc:
-        logging.error("%s 失敗：%s", name, exc)
+        logging.error("%s 失敗：%s", name, redact(str(exc)))
 
 
 def main() -> None:

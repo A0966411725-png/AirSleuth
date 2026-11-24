@@ -25,10 +25,12 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = ROOT / "data" / "raw"
 TZ = "Asia/Taipei"
 
-# T-22 以 5 天共置資料估計的「線性＋濕度」校正係數：ref = a + b·sensor + c·RH（濕度用最近氣象站）
+# 「線性＋濕度」校正係數：ref = a + b·sensor + c·RH（濕度用最近氣象站）。
+# E2 以 10/19～11/18 共置資料估計（臺中 3,028、高雄 5,499 個測站‧小時；experiments/results/e2_coefficients.csv）。
+# Proposal 階段 T-22 只有 5 天：臺中 3.212／1.101／−0.105 與 4 週結果相近，高雄的濕度係數從 −0.095 變成接近 0。
 CALIBRATION = {
-    "臺中市": {"intercept": 3.212, "sensor": 1.101, "rh": -0.105},
-    "高雄市": {"intercept": 5.445, "sensor": 1.226, "rh": -0.095},
+    "臺中市": {"intercept": 3.2087, "sensor": 1.0800, "rh": -0.0936},
+    "高雄市": {"intercept": 0.5865, "sensor": 1.1689, "rh": -0.0054},
 }
 
 
@@ -150,13 +152,13 @@ def forecast_trend(city: str, time, lat: float, lon: float, horizons=(1, 3, 6), 
 
 
 def calibrate(city: str, sensor_pm25: float, rh: float | None) -> dict:
-    """⑤ 以 T-22 的在地係數校正微型感測器讀數；沒有係數或濕度時回傳原值並註明。"""
+    """⑤ 以 E2 的在地係數校正微型感測器讀數；沒有係數或濕度時回傳原值並註明。"""
     c = CALIBRATION.get(city)
     if c is None or rh is None or np.isnan(rh):
         return {"calibrated": False, "pm25": round(float(sensor_pm25), 1), "note": "沒有在地校正係數或濕度，使用原始讀數"}
     value = c["intercept"] + c["sensor"] * sensor_pm25 + c["rh"] * rh
     return {"calibrated": True, "pm25": round(max(value, 0.0), 1),
-            "note": f"T-22 在地校正（{city}，線性＋氣象站濕度 {rh:.0f}%）"}
+            "note": f"在地校正（{city}，4 週共置資料，線性＋氣象站濕度 {rh:.0f}%）"}
 
 
 def retrieve_knowledge(group: str, activity: str, src_type: str) -> dict:

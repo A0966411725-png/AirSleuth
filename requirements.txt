@@ -14,3 +14,8 @@ ipykernel==7.4.0
 python-docx==1.2.0  # scripts/export_docx.py：產生繳交用的 Word 檔
 # demo 網站（app/streamlit_app.py）
 streamlit==1.66.1
+# 期末實驗（experiments/）
+# scipy 1.17 以後的部分 DLL 會被 Windows「智慧型應用程式控制」封鎖（2026-11-24 實測），固定用 1.16.3
+scipy==1.16.3
+scikit-learn==1.9.1
+optuna==5.0.0

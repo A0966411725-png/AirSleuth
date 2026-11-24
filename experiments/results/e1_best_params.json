@@ -1,0 +1,41 @@
+{
+  "隨機森林_1h": {
+    "n_estimators": 350,
+    "max_depth": 14,
+    "min_samples_leaf": 30,
+    "max_features": 0.664007440732961
+  },
+  "梯度提升樹_1h": {
+    "learning_rate": 0.05560311214658656,
+    "max_iter": 450,
+    "max_leaf_nodes": 9,
+    "min_samples_leaf": 73,
+    "l2_regularization": 0.0003729200634768448
+  },
+  "隨機森林_3h": {
+    "n_estimators": 150,
+    "max_depth": 19,
+    "min_samples_leaf": 28,
+    "max_features": 0.36615234181462164
+  },
+  "梯度提升樹_3h": {
+    "learning_rate": 0.0264891626801987,
+    "max_iter": 350,
+    "max_leaf_nodes": 9,
+    "min_samples_leaf": 74,
+    "l2_regularization": 0.0010842262717330165
+  },
+  "隨機森林_6h": {
+    "n_estimators": 100,
+    "max_depth": 20,
+    "min_samples_leaf": 30,
+    "max_features": 0.5854819285165779
+  },
+  "梯度提升樹_6h": {
+    "learning_rate": 0.03289575848598508,
+    "max_iter": 150,
+    "max_leaf_nodes": 21,
+    "min_samples_leaf": 71,
+    "l2_regularization": 0.1169430729607053
+  }
+}

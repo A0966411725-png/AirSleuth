@@ -148,7 +148,10 @@ def forecast_trend(city: str, time, lat: float, lon: float, horizons=(1, 3, 6), 
     if not preds:
         return {"ok": False, "reason": "資料不足，無法預測"}
     current = float(hist.loc[hist["time"] == hour, "pm25"].iloc[0])
-    return {"ok": True, "siteid": siteid, "base_time": str(hour), "station_now": current, "forecast": preds}
+    before = hist[(hist["time"] < hour) & (hist["time"] >= hour - pd.Timedelta(hours=6))]["pm25"]
+    median6 = round(float(before.median()), 1) if before.notna().any() else None
+    return {"ok": True, "siteid": siteid, "base_time": str(hour), "station_now": current,
+            "station_median_6h": median6, "forecast": preds}
 
 
 def calibrate(city: str, sensor_pm25: float, rh: float | None) -> dict:

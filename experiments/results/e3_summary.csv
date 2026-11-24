@@ -1,0 +1,5 @@
+method,accuracy,macro_F1,recall_local,recall_subregional,recall_regional,recall_fault,recall_control,false_local_under_fault
+AirSleuth,0.8409,0.802,0.7375,0.875,0.8125,0.9875,0.9875,0.0125
+消融：無 8 km 層,0.6182,0.5089,0.7958,0.0,0.8125,0.9875,0.9875,0.0125
+基準 A：只看 AQI,0.1852,0.1468,0.0,0.0,0.3625,0.0,0.95,0.0
+基準 B：最近感測器,0.5136,0.489,0.7917,0.0,0.7792,0.0,0.9375,1.0

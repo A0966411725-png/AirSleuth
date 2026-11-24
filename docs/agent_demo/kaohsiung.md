@@ -41,5 +41,5 @@
 | 4 | `get_station` | {"ok": true, "siteid": "56", "sitename": "前金", "distance_km": 0.7, "time": "2026-10-23 10:00:00+08:00", "pm25": 5.0, "rh": 73.0, "wind_speed": 7.3, "wind_dir": 337.0} |
 | 5 | `get_weather` | {"ok": true, "station_id": "C0V490", "station_name": "新興", "distance_km": 1.1, "time": "2026-10-23 11:00:00+08:00", "wind_dir": 337.0, "wind_speed": 4.5, "rh": 77.0, "temp": 27.7} |
 | 6 | `calibrate` | {"calibrated": true, "pm25": 21.4, "note": "在地校正（高雄市，4 週共置資料，線性＋氣象站濕度 77%）"} |
-| 7 | `forecast_trend` | {"ok": true, "siteid": "56", "base_time": "2026-10-23 10:00:00+08:00", "station_now": 5.0, "forecast": {"1": 6.1, "3": 8.9, "6": 10.2}} |
+| 7 | `forecast_trend` | {"ok": true, "siteid": "56", "base_time": "2026-10-23 10:00:00+08:00", "station_now": 5.0, "station_median_6h": 3.5, "forecast": {"1": 6.1, "3": 8.9, "6": 10.2}} |
 | 8 | `retrieve_knowledge` | {"rules": "5 條規則"} |

@@ -1,0 +1,20 @@
+臺中市：感測器 1190、乾淨整點 464、候選查詢點 1052
+高雄市：感測器 1369、乾淨整點 375、候選查詢點 1299
+案例數：{'臺中市': 40, '高雄市': 40} 個背景 × 11 種情境 × 4 種方法
+     method  accuracy  macro_F1  recall_local  recall_subregional  recall_regional  recall_fault  recall_control  false_local_under_fault
+  AirSleuth     0.841     0.802         0.738               0.875            0.812         0.988           0.988                    0.012
+消融：無 8 km 層     0.618     0.509         0.796               0.000            0.812         0.988           0.988                    0.012
+基準 A：只看 AQI     0.185     0.147         0.000               0.000            0.362         0.000           0.950                    0.000
+ 基準 B：最近感測器     0.514     0.489         0.792               0.000            0.779         0.000           0.938                    1.000
+scenario    control fault local             regional             subregional           
+delta            0     40    10    15    25       8     12    20          8     12   20
+method                                                                                 
+AirSleuth      0.99  0.99  0.38  0.92  0.91     0.52  0.91  1.00        0.65  0.98  1.0
+基準 A：只看 AQI    0.95  0.00  0.00  0.00  0.00     0.12  0.21  0.75        0.00  0.00  0.0
+基準 B：最近感測器     0.94  0.00  0.45  0.92  1.00     0.51  0.89  0.94        0.00  0.00  0.0
+消融：無 8 km 層    0.99  0.99  0.39  1.00  1.00     0.52  0.91  1.00        0.00  0.00  0.0
+method                AirSleuth     基準 A：只看 AQI      基準 B：最近感測器     消融：無 8 km 層
+event                                                                          
+臺中 10/21 平常日     no_clear_event  no_clear_event  no_clear_event  no_clear_event
+臺中沿海 10/19 次區域型     subregional        regional  no_clear_event           local
+高雄 10/23 區域型           regional  no_clear_event        regional        regional

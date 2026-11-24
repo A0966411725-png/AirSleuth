@@ -19,6 +19,7 @@ from src.agent import tools
 from src.knowledge import health
 
 N_MIN = 5            # Algorithm 1 第 10 行：局部範圍內至少要有的可信感測器數
+SPIKE_ABS = 15.0     # 測站比自己前 6 小時中位數高 2 倍以上、且至少高這麼多，視為短暫尖峰，預測不套用到目標位置
 TYPE_NAMES = {
     "regional": "區域型（整個區域一起升高）", "subregional": "次區域型（約 8 km 內的群聚升高）",
     "local": "局部型（附近有污染來源）", "mixed": "混合型（區域升高加上局部來源）",
@@ -126,8 +127,15 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
                       {"has_data": False, "query": vars(q)})
 
     fcst = _log(trace, "forecast_trend", common, tools.forecast_trend(q.city, q.time, q.lat, q.lon, root=root))
-    # 測站預測的變化量套到目標位置：c(h) = c_now + (預測值 − 測站現值)
-    future = {h: max(c_now + v - fcst["station_now"], 0.0) for h, v in fcst.get("forecast", {}).items()}
+    # 測站預測的變化量套到目標位置：c(h) = c_now + (預測值 − 測站現值)。
+    # 例外（臺中大里測站 10/29 18:00 實例：測站 74、附近 23 個感測器中位數約 14）：測站剛出現短暫尖峰時，
+    # 預測主要反映尖峰回落，套到這裡會變成「降到 0」，所以不套用；其餘情況變化量限制在 −50%～+100% 的目前濃度內。
+    station_now, median6 = fcst.get("station_now"), fcst.get("station_median_6h")
+    station_spike = (station_now is not None and median6 is not None
+                     and station_now >= 2 * median6 and station_now - median6 >= SPIKE_ABS)
+    future = {} if station_spike else {
+        h: max(c_now + float(np.clip(v - station_now, -0.5 * c_now, c_now)), 0.0)
+        for h, v in fcst.get("forecast", {}).items()}
     best_h, c_best = min(future.items(), key=lambda kv: kv[1]) if future else (0, c_now)
     if c_best >= c_now:
         best_h, c_best = 0, c_now
@@ -170,6 +178,9 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
                        f"濕度 {weather['rh']:.0f}%")
     if future:
         reasons.append("未來趨勢（MLR）：" + "、".join(f"{h} 小時後約 {v:.0f}" for h, v in sorted(future.items())) + " μg/m³")
+    elif station_spike:
+        reasons.append(f"最近的國家測站剛出現短暫尖峰（{station_now:.0f}，前 6 小時中位數 {median6:.0f} μg/m³），"
+                       "測站的預測主要反映尖峰回落，不套用到這裡，所以不建議改時段")
     reasons += know["rules"][:2]
     indicators = {k: src.get(k) for k in ("B", "L", "E", "C", "C_sub", "C_ring", "n_local", "n_region")}
     facts = {
@@ -180,7 +191,7 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
         "local_radius_km": src.get("r_local_km"),
         "station": {k: station.get(k) for k in ("sitename", "distance_km", "time", "pm25", "wind_speed")} if station.get("ok") else None,
         "weather": {k: weather.get(k) for k in ("station_name", "wind_dir", "wind_speed", "rh")} if weather.get("ok") else None,
-        "forecast_local": {int(h): round(v, 1) for h, v in sorted(future.items())},
+        "forecast_local": {int(h): round(v, 1) for h, v in sorted(future.items())}, "station_spike": station_spike,
         "away_pm25": c_away, "actions": actions, "top_action": ranked[0].text,
         "confidence": conf, "confidence_reasons": conf_why,
     }

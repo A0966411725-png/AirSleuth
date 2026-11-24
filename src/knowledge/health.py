@@ -33,6 +33,12 @@ HIGH_PM_THRESHOLD = 25.0
 INDOOR_RATIO = 0.6
 # 改到室內時保留的活動效益比例：假設值（室內通常活動量較小）
 INDOOR_BENEFIT = 0.5
+# 改時段、換地點至少要降低這麼多濃度才提出；不然在乾淨空氣裡也會為了 1～2 μg/m³ 建議延後幾小時
+# （期末用真實資料發現：臺中 10/29 18:30 濃度 11.5「良好」，卻建議延後 6 小時）
+MIN_IMPROVEMENT = 5.0
+# 改時段、換地點的代價（效益折扣）：假設值。延後每小時扣 5%（行程被打亂），換到 8 km 外扣 15%（交通）
+DELAY_COST_PER_HOUR = 0.05
+TRAVEL_COST = 0.15
 # 各 AQI 等級的風險權重 λ（Algorithm 3 第 8 行）：假設值，調整成與環境部的活動建議一致（S-032）：
 # 「普通」時一般人照常活動；到了「對敏感族群不健康」，敏感族群改成減少體力消耗
 RISK_WEIGHT = [0.02, 0.05, 0.12, 0.3, 0.8, 2.0]
@@ -69,12 +75,12 @@ def candidate_actions(c_now: float, c_best: float, best_hour: int, src_type: str
     rate, benefit = BREATHING_RATE[activity], ACTIVITY_BENEFIT[activity]
     act = ACTIVITY_NAMES[activity]
     actions = [Action("as_planned", f"照原計畫進行{act}", c_now, rate, benefit)]
-    if best_hour > 0 and c_best < c_now:
+    if best_hour > 0 and c_now - c_best >= MIN_IMPROVEMENT:
         actions.append(Action("shift_time", f"延後約 {best_hour} 小時再出門（預估降到 {c_best:.0f} μg/m³）",
-                              c_best, rate, benefit))
-    if c_away is not None and src_type in ("local", "subregional") and c_away < c_now:
+                              c_best, rate, benefit * (1 - DELAY_COST_PER_HOUR * best_hour)))
+    if c_away is not None and src_type in ("local", "subregional") and c_now - c_away >= MIN_IMPROVEMENT:
         actions.append(Action("shift_place", f"換到 8 km 以外的地點（區域背景約 {c_away:.0f} μg/m³）",
-                              c_away, rate, benefit, note="只有局部或次區域事件時有效"))
+                              c_away, rate, benefit * (1 - TRAVEL_COST), note="只有局部或次區域事件時有效"))
     if activity == "exercise":
         actions.append(Action("lower_intensity", "降低強度，改成散步或伸展", c_now,
                               BREATHING_RATE["walk"], ACTIVITY_BENEFIT["walk"]))

@@ -92,3 +92,27 @@ def test_pipeline_falls_back_to_station_without_microsensors(tmp_path):
     assert ans.trace[0]["result"]["ok"] is False
     assert ans.confidence == "低"
     assert "沒有可用" in ans.conclusion
+
+
+def test_clean_air_does_not_suggest_delaying_for_small_gains():
+    # 臺中 10/29 18:30 實例：11.5 μg/m³（良好），預測 6 小時後 6 → 不應建議延後 6 小時
+    actions = health.candidate_actions(11.5, 6.0, 6, "no_clear_event", None, "exercise")
+    ranked = health.rank_actions(actions, health.personal_level(11.5, "general"))
+    assert ranked[0].key == "as_planned"
+    # 改善不到 5 μg/m³ 就不提出換時段
+    assert "shift_time" not in [a.key for a in health.candidate_actions(20, 17, 3, "regional", None, "exercise")]
+
+
+def test_station_spike_is_not_transferred_to_the_query_point(tmp_path):
+    _synthetic_store(tmp_path)
+    # 讓測站最後一小時出現短暫尖峰（前 6 小時約 8，尖峰 74）
+    path = tmp_path / "moenv" / "高雄市" / "2026-10-23.csv.gz"
+    st = pd.read_csv(path, dtype={"siteid": str})
+    st.loc[st.index[-1], "pm25"] = 74.0
+    st.to_csv(path, index=False)
+    ans = run(Query("高雄市", LAT, LON, "2026-10-23 12:10"), root=tmp_path)
+    fc = next(t["result"] for t in ans.trace if t["tool"] == "forecast_trend")
+    assert fc["station_now"] == 74.0
+    assert ans.facts["station_spike"] is True
+    assert ans.facts["forecast_local"] == {}
+    assert not any("延後" in a for a in ans.actions)

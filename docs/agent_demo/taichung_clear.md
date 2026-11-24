@@ -40,5 +40,5 @@
 | 4 | `get_station` | {"ok": true, "siteid": "88", "sitename": "臺灣大道", "distance_km": 3.3, "time": "2026-10-21 09:00:00+08:00", "pm25": 14.0, "rh": 60.0, "wind_speed": 1.6, "wind_dir": 345.0} |
 | 5 | `get_weather` | {"ok": true, "station_id": "467490", "station_name": "臺中", "distance_km": 0.2, "time": "2026-10-21 10:00:00+08:00", "wind_dir": 350.0, "wind_speed": 1.6, "rh": 60.0, "temp": 30.0} |
 | 6 | `calibrate` | {"calibrated": true, "pm25": 15.1, "note": "在地校正（臺中市，4 週共置資料，線性＋氣象站濕度 60%）"} |
-| 7 | `forecast_trend` | {"ok": true, "siteid": "88", "base_time": "2026-10-21 09:00:00+08:00", "station_now": 14.0, "forecast": {"1": 17.9, "3": 18.7, "6": 20.1}} |
+| 7 | `forecast_trend` | {"ok": true, "siteid": "88", "base_time": "2026-10-21 09:00:00+08:00", "station_now": 14.0, "station_median_6h": 30.5, "forecast": {"1": 17.9, "3": 18.7, "6": 20.1}} |
 | 8 | `retrieve_knowledge` | {"rules": "4 條規則"} |

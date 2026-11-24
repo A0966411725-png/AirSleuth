@@ -1,0 +1,21 @@
+method,scenario,local,no_clear_event,regional,subregional
+AirSleuth,control,1,79,0,0
+AirSleuth,fault,1,79,0,0
+AirSleuth,local,177,46,0,17
+AirSleuth,regional,0,40,195,5
+AirSleuth,subregional,1,29,0,210
+基準 A：只看 AQI,control,0,76,4,0
+基準 A：只看 AQI,fault,0,0,80,0
+基準 A：只看 AQI,local,0,129,111,0
+基準 A：只看 AQI,regional,0,153,87,0
+基準 A：只看 AQI,subregional,0,158,82,0
+基準 B：最近感測器,control,5,75,0,0
+基準 B：最近感測器,fault,80,0,0,0
+基準 B：最近感測器,local,190,50,0,0
+基準 B：最近感測器,regional,16,37,187,0
+基準 B：最近感測器,subregional,129,111,0,0
+消融：無 8 km 層,control,1,79,0,0
+消融：無 8 km 層,fault,1,79,0,0
+消融：無 8 km 層,local,191,49,0,0
+消融：無 8 km 層,regional,0,45,195,0
+消融：無 8 km 層,subregional,63,177,0,0

@@ -40,5 +40,5 @@
 | 4 | `get_station` | {"ok": true, "siteid": "29", "sitename": "沙鹿", "distance_km": 3.3, "time": "2026-10-19 13:00:00+08:00", "pm25": 19.0, "rh": 65.0, "wind_speed": 2.6, "wind_dir": 323.0} |
 | 5 | `get_weather` | {"ok": false, "reason": "沒有氣象站資料"} |
 | 6 | `calibrate` | {"calibrated": true, "pm25": 36.9, "note": "在地校正（臺中市，4 週共置資料，線性＋氣象站濕度 65%）"} |
-| 7 | `forecast_trend` | {"ok": true, "siteid": "29", "base_time": "2026-10-19 13:00:00+08:00", "station_now": 19.0, "forecast": {"1": 18.6, "3": 17.3, "6": 16.9}} |
+| 7 | `forecast_trend` | {"ok": true, "siteid": "29", "base_time": "2026-10-19 13:00:00+08:00", "station_now": 19.0, "station_median_6h": 24.5, "forecast": {"1": 18.6, "3": 17.3, "6": 16.9}} |
 | 8 | `retrieve_knowledge` | {"rules": "4 條規則"} |

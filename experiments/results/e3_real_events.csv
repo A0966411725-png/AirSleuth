@@ -1,0 +1,13 @@
+event,truth,method,predicted,correct
+臺中沿海 10/19 次區域型,subregional,AirSleuth,subregional,True
+臺中沿海 10/19 次區域型,subregional,消融：無 8 km 層,local,False
+臺中沿海 10/19 次區域型,subregional,基準 A：只看 AQI,regional,False
+臺中沿海 10/19 次區域型,subregional,基準 B：最近感測器,no_clear_event,False
+臺中 10/21 平常日,no_clear_event,AirSleuth,no_clear_event,True
+臺中 10/21 平常日,no_clear_event,消融：無 8 km 層,no_clear_event,True
+臺中 10/21 平常日,no_clear_event,基準 A：只看 AQI,no_clear_event,True
+臺中 10/21 平常日,no_clear_event,基準 B：最近感測器,no_clear_event,True
+高雄 10/23 區域型,regional,AirSleuth,regional,True
+高雄 10/23 區域型,regional,消融：無 8 km 層,regional,True
+高雄 10/23 區域型,regional,基準 A：只看 AQI,no_clear_event,False
+高雄 10/23 區域型,regional,基準 B：最近感測器,regional,True

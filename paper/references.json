@@ -1,0 +1,1022 @@
+[
+ {
+  "sid": "S-060",
+  "kind": "web",
+  "author": "Health Effects Institute",
+  "title": "State of Global Air 2025",
+  "year": "2025",
+  "url": "https://www.stateofglobalair.org/news-events/2025/new-state-global-air-2025-report-shows-nearly-nine-ten-global-air-pollution-deaths"
+ },
+ {
+  "sid": "S-020",
+  "kind": "web",
+  "author": "WHO",
+  "title": "WHO global air quality guidelines",
+  "year": "2021",
+  "url": "https://www.who.int/publications/i/item/9789240034228"
+ },
+ {
+  "sid": "S-016",
+  "kind": "web",
+  "author": "環境部",
+  "title": "接軌國際 環境部修正發布「空氣品質標準」並調整空氣品質指標 達亞洲最嚴",
+  "year": "2024",
+  "url": "https://air.moenv.gov.tw/News/news.aspx?type=news&ID=6073"
+ },
+ {
+  "sid": "S-032",
+  "kind": "web",
+  "author": "環境部",
+  "title": "空氣品質指標（113 年前版本）",
+  "year": "2018",
+  "url": "https://airtw.moenv.gov.tw/CHT/Information/Standard/AirQualityIndicator.aspx"
+ },
+ {
+  "sid": "S-013",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Chen",
+    "given": "Fan-Lun"
+   },
+   {
+    "family": "Liu",
+    "given": "Kun-Hsing"
+   }
+  ],
+  "title": "Method for rapid deployment of low-cost sensors for a nationwide project in the Internet of things era: Air quality monitoring in Taiwan",
+  "journal": "International Journal of Distributed Sensor Networks",
+  "journal_abbrev": "International Journal of Distributed Sensor Networks",
+  "year": 2020,
+  "volume": "16",
+  "issue": "8",
+  "pages": "155014772095133",
+  "doi": "10.1177/1550147720951334",
+  "publisher": "SAGE Publications"
+ },
+ {
+  "sid": "S-012",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Chen",
+    "given": "Ling-Jyh"
+   },
+   {
+    "family": "Ho",
+    "given": "Yao-Hua"
+   },
+   {
+    "family": "Lee",
+    "given": "Hu-Cheng"
+   },
+   {
+    "family": "Wu",
+    "given": "Hsuan-Cho"
+   },
+   {
+    "family": "Liu",
+    "given": "Hao-Min"
+   },
+   {
+    "family": "Hsieh",
+    "given": "Hsin-Hung"
+   },
+   {
+    "family": "Huang",
+    "given": "Yu-Te"
+   },
+   {
+    "family": "Lung",
+    "given": "Shih-Chun Candice"
+   }
+  ],
+  "title": "An Open Framework for Participatory PM2.5 Monitoring in Smart Cities",
+  "journal": "IEEE Access",
+  "journal_abbrev": "IEEE Access",
+  "year": 2017,
+  "volume": "5",
+  "issue": "",
+  "pages": "14441-14454",
+  "doi": "10.1109/access.2017.2723919",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)"
+ },
+ {
+  "sid": "S-001",
+  "kind": "web",
+  "author": "民生公共物聯網",
+  "title": "空品微型感測器 SensorThings API",
+  "year": "2026",
+  "url": "https://sta.colife.org.tw/STA_AirQuality_EPAIoT/v1.0/"
+ },
+ {
+  "sid": "S-008",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Barkjohn",
+    "given": "Karoline K."
+   },
+   {
+    "family": "Gantt",
+    "given": "Brett"
+   },
+   {
+    "family": "Clements",
+    "given": "Andrea L."
+   }
+  ],
+  "title": "Development and application of a United States-wide correction for PM\n                    <sub>2.5</sub>\n                    data collected with the PurpleAir sensor",
+  "journal": "Atmospheric Measurement Techniques",
+  "journal_abbrev": "Atmos. Meas. Tech.",
+  "year": 2021,
+  "volume": "14",
+  "issue": "6",
+  "pages": "4617-4637",
+  "doi": "10.5194/amt-14-4617-2021",
+  "publisher": "Copernicus GmbH"
+ },
+ {
+  "sid": "S-009",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Mathieu-Campbell",
+    "given": "Martine E."
+   },
+   {
+    "family": "Guo",
+    "given": "Chuqi"
+   },
+   {
+    "family": "Grieshop",
+    "given": "Andrew P."
+   },
+   {
+    "family": "Richmond-Bryant",
+    "given": "Jennifer"
+   }
+  ],
+  "title": "Calibration of PurpleAir low-cost particulate matter sensors: model development for air quality under high relative humidity conditions",
+  "journal": "Atmospheric Measurement Techniques",
+  "journal_abbrev": "Atmos. Meas. Tech.",
+  "year": 2024,
+  "volume": "17",
+  "issue": "22",
+  "pages": "6735-6749",
+  "doi": "10.5194/amt-17-6735-2024",
+  "publisher": "Copernicus GmbH"
+ },
+ {
+  "sid": "S-010",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Nilson",
+    "given": "Brayden"
+   },
+   {
+    "family": "Jackson",
+    "given": "Peter L."
+   },
+   {
+    "family": "Schiller",
+    "given": "Corinne L."
+   },
+   {
+    "family": "Parsons",
+    "given": "Matthew T."
+   }
+  ],
+  "title": "Development and evaluation of correction models for a low-cost fine particulate matter monitor",
+  "journal": "Atmospheric Measurement Techniques",
+  "journal_abbrev": "Atmos. Meas. Tech.",
+  "year": 2022,
+  "volume": "15",
+  "issue": "11",
+  "pages": "3315-3328",
+  "doi": "10.5194/amt-15-3315-2022",
+  "publisher": "Copernicus GmbH"
+ },
+ {
+  "sid": "S-058",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Tzeng",
+    "given": "ShengLi"
+   },
+   {
+    "family": "Lai",
+    "given": "Chi-Wei"
+   },
+   {
+    "family": "Huang",
+    "given": "Hsin-Cheng"
+   }
+  ],
+  "title": "Spatially Adaptive Calibrations of Airbox PM<b>2.5</b> Data",
+  "journal": "Biometrics",
+  "journal_abbrev": "",
+  "year": 2023,
+  "volume": "79",
+  "issue": "4",
+  "pages": "3637-3649",
+  "doi": "10.1111/biom.13819",
+  "publisher": "Oxford University Press (OUP)"
+ },
+ {
+  "sid": "S-041",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Wen-Cheng Vincent"
+   },
+   {
+    "family": "Lung",
+    "given": "Shih-Chun Candice"
+   },
+   {
+    "family": "Liu",
+    "given": "Chun-Hu"
+   }
+  ],
+  "title": "Application of Machine Learning for the in-Field Correction of a PM2.5 Low-Cost Sensor Network",
+  "journal": "Sensors",
+  "journal_abbrev": "Sensors",
+  "year": 2020,
+  "volume": "20",
+  "issue": "17",
+  "pages": "5002",
+  "doi": "10.3390/s20175002",
+  "publisher": "MDPI AG"
+ },
+ {
+  "sid": "S-005",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Shen",
+    "given": "Huazhen"
+   },
+   {
+    "family": "Yang",
+    "given": "Tsung-mou"
+   },
+   {
+    "family": "Lu",
+    "given": "Chun-chung"
+   },
+   {
+    "family": "Yuan",
+    "given": "Chung-shin"
+   },
+   {
+    "family": "Hung",
+    "given": "Chung-Hsuang"
+   },
+   {
+    "family": "Lin",
+    "given": "Chi-tsan"
+   },
+   {
+    "family": "Lee",
+    "given": "Chia-wei"
+   },
+   {
+    "family": "Jing",
+    "given": "Guohua"
+   },
+   {
+    "family": "Hu",
+    "given": "Gongren"
+   },
+   {
+    "family": "Lo",
+    "given": "Kuo-cheng"
+   }
+  ],
+  "title": "Chemical fingerprint and source apportionment of PM2.5 in highly polluted events of southern Taiwan",
+  "journal": "Environmental Science and Pollution Research",
+  "journal_abbrev": "Environ Sci Pollut Res",
+  "year": 2020,
+  "volume": "27",
+  "issue": "7",
+  "pages": "6918-6935",
+  "doi": "10.1007/s11356-019-07328-8",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-004",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Chuang",
+    "given": "Ming-Tung"
+   },
+   {
+    "family": "Ooi",
+    "given": "Maggie Chel Gee"
+   },
+   {
+    "family": "Lin",
+    "given": "Neng-Huei"
+   },
+   {
+    "family": "Fu",
+    "given": "Joshua S."
+   },
+   {
+    "family": "Lee",
+    "given": "Chung-Te"
+   },
+   {
+    "family": "Wang",
+    "given": "Sheng-Hsiang"
+   },
+   {
+    "family": "Yen",
+    "given": "Ming-Cheng"
+   },
+   {
+    "family": "Kong",
+    "given": "Steven Soon-Kai"
+   },
+   {
+    "family": "Huang",
+    "given": "Wei-Syun"
+   }
+  ],
+  "title": "Study on the impact of three Asian industrial regions on PM\n                    <sub>2.5</sub>\n                    in Taiwan and the process analysis during transport",
+  "journal": "Atmospheric Chemistry and Physics",
+  "journal_abbrev": "Atmos. Chem. Phys.",
+  "year": 2020,
+  "volume": "20",
+  "issue": "23",
+  "pages": "14947-14967",
+  "doi": "10.5194/acp-20-14947-2020",
+  "publisher": "Copernicus GmbH"
+ },
+ {
+  "sid": "S-057",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Frischmon",
+    "given": "Caroline"
+   },
+   {
+    "family": "Berg",
+    "given": "Grace E."
+   },
+   {
+    "family": "Harjamaki",
+    "given": "MiKyla"
+   },
+   {
+    "family": "Cortes",
+    "given": "Gabriela"
+   },
+   {
+    "family": "Coffey",
+    "given": "Evan R."
+   },
+   {
+    "family": "Hannigan",
+    "given": "Michael P."
+   }
+  ],
+  "title": "Spatial and temporal approaches for differentiating local source and background air quality impacts using low-cost sensor networks",
+  "journal": "",
+  "journal_abbrev": "",
+  "year": 2026,
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "doi": "10.5194/egusphere-2026-4589",
+  "publisher": "Copernicus GmbH"
+ },
+ {
+  "sid": "S-047",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Perry",
+    "given": "Niál"
+   },
+   {
+    "family": "Pedersen",
+    "given": "Peter P."
+   },
+   {
+    "family": "Christensen",
+    "given": "Charles N."
+   },
+   {
+    "family": "Nussli",
+    "given": "Emanuel"
+   },
+   {
+    "family": "Heinonen",
+    "given": "Sanelma"
+   },
+   {
+    "family": "Dagallier",
+    "given": "Lorena Gordillo"
+   },
+   {
+    "family": "Jacquat",
+    "given": "Raphaël"
+   },
+   {
+    "family": "Horstmann",
+    "given": "Sebastian"
+   },
+   {
+    "family": "Franck",
+    "given": "Christoph"
+   }
+  ],
+  "title": "Detecting urban PM2.5 hotspots with mobile sensing and Gaussian process regression",
+  "journal": "npj Clean Air",
+  "journal_abbrev": "npj Clean Air",
+  "year": 2025,
+  "volume": "1",
+  "issue": "1",
+  "pages": "38",
+  "doi": "10.1038/s44407-025-00038-1",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-059",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Aman",
+    "given": "Nishit"
+   },
+   {
+    "family": "Panyametheekul",
+    "given": "Sirima"
+   },
+   {
+    "family": "Pawarmart",
+    "given": "Ittipol"
+   },
+   {
+    "family": "Xian",
+    "given": "Di"
+   },
+   {
+    "family": "Gao",
+    "given": "Ling"
+   },
+   {
+    "family": "Tian",
+    "given": "Lin"
+   },
+   {
+    "family": "Manomaiphiboon",
+    "given": "Kasemsan"
+   },
+   {
+    "family": "Wang",
+    "given": "Yangjun"
+   }
+  ],
+  "title": "Machine learning-based quantification and separation of emissions and meteorological effects on PM2.5 in Greater Bangkok",
+  "journal": "Scientific Reports",
+  "journal_abbrev": "Sci Rep",
+  "year": 2025,
+  "volume": "15",
+  "issue": "1",
+  "pages": "14775",
+  "doi": "10.1038/s41598-025-99094-6",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-035",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Yao",
+    "given": "Shunyu"
+   },
+   {
+    "family": "Zhao",
+    "given": "Jeffrey"
+   },
+   {
+    "family": "Yu",
+    "given": "Dian"
+   },
+   {
+    "family": "Du",
+    "given": "Nan"
+   },
+   {
+    "family": "Shafran",
+    "given": "Izhak"
+   },
+   {
+    "family": "Narasimhan",
+    "given": "Karthik"
+   },
+   {
+    "family": "Cao",
+    "given": "Yuan"
+   }
+  ],
+  "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+  "year": 2022,
+  "arxiv": "2210.03629"
+ },
+ {
+  "sid": "S-056",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Xu",
+    "given": "Haoyuan"
+   },
+   {
+    "family": "Li",
+    "given": "Chang"
+   },
+   {
+    "family": "Ma",
+    "given": "Xinyan"
+   },
+   {
+    "family": "Ou",
+    "given": "Xianhao"
+   },
+   {
+    "family": "Zhang",
+    "given": "Zihan"
+   },
+   {
+    "family": "He",
+    "given": "Tao"
+   },
+   {
+    "family": "Liu",
+    "given": "Xiangyu"
+   },
+   {
+    "family": "Wang",
+    "given": "Zixiang"
+   },
+   {
+    "family": "Liang",
+    "given": "Jiafeng"
+   },
+   {
+    "family": "Chu",
+    "given": "Zheng"
+   },
+   {
+    "family": "Liu",
+    "given": "Runxuan"
+   },
+   {
+    "family": "Mu",
+    "given": "Rongchuan"
+   },
+   {
+    "family": "Tu",
+    "given": "Dandan"
+   },
+   {
+    "family": "Liu",
+    "given": "Ming"
+   },
+   {
+    "family": "Qin",
+    "given": "Bing"
+   }
+  ],
+  "title": "The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration",
+  "year": 2026,
+  "arxiv": "2603.22862"
+ },
+ {
+  "sid": "S-055",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Rahman",
+    "given": "Mizanur"
+   },
+   {
+    "family": "Bhuiyan",
+    "given": "Amran"
+   },
+   {
+    "family": "Islam",
+    "given": "Mohammed Saidul"
+   },
+   {
+    "family": "Laskar",
+    "given": "Md Tahmid Rahman"
+   },
+   {
+    "family": "Mahbub",
+    "given": "Ridwan"
+   },
+   {
+    "family": "Masry",
+    "given": "Ahmed"
+   },
+   {
+    "family": "Joty",
+    "given": "Shafiq"
+   },
+   {
+    "family": "Hoque",
+    "given": "Enamul"
+   }
+  ],
+  "title": "LLM-Based Data Science Agents: A Survey of Capabilities, Challenges, and Future Directions",
+  "year": 2025,
+  "arxiv": "2510.04023"
+ },
+ {
+  "sid": "S-053",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Ma",
+    "given": "Chendong"
+   },
+   {
+    "family": "Ran",
+    "given": "Maohao"
+   },
+   {
+    "family": "Song",
+    "given": "Jun"
+   },
+   {
+    "family": "Gao",
+    "given": "Meng"
+   }
+  ],
+  "title": "Multi-agent AI for end-to-end air quality analysis and decision support",
+  "journal": "npj Clean Air",
+  "journal_abbrev": "npj Clean Air",
+  "year": 2026,
+  "volume": "2",
+  "issue": "1",
+  "pages": "59",
+  "doi": "10.1038/s44407-026-00102-4",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-054",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Gao",
+    "given": "Kyle"
+   },
+   {
+    "family": "Lu",
+    "given": "Dening"
+   },
+   {
+    "family": "Li",
+    "given": "Liangzhi"
+   },
+   {
+    "family": "Chen",
+    "given": "Nan"
+   },
+   {
+    "family": "He",
+    "given": "Hongjie"
+   },
+   {
+    "family": "Xu",
+    "given": "Linlin"
+   },
+   {
+    "family": "Li",
+    "given": "Jonathan"
+   }
+  ],
+  "title": "Instructor-Worker Large Language Model System for Policy Recommendation: a Case Study on Air Quality Analysis of the January 2025 Los Angeles Wildfires",
+  "year": 2025,
+  "arxiv": "2503.00566"
+ },
+ {
+  "sid": "S-036",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Pan",
+    "given": "Yu-Erh"
+   },
+   {
+    "family": "Nipu",
+    "given": "Ayesha Siddika"
+   }
+  ],
+  "title": "LLM-enhanced Air Quality Monitoring Interface via Model Context Protocol",
+  "year": 2025,
+  "arxiv": "2511.03706"
+ },
+ {
+  "sid": "S-037",
+  "kind": "arxiv",
+  "authors": [
+   {
+    "family": "Acharya",
+    "given": "Vedant"
+   },
+   {
+    "family": "Pisharodi",
+    "given": "Abhay"
+   },
+   {
+    "family": "Mondal",
+    "given": "Rishabh"
+   },
+   {
+    "family": "Rafiuddin",
+    "given": "Mohammad"
+   },
+   {
+    "family": "Batra",
+    "given": "Nipun"
+   }
+  ],
+  "title": "VayuChat: An LLM-Powered Conversational Interface for Air Quality Data Analytics",
+  "year": 2025,
+  "arxiv": "2511.01046"
+ },
+ {
+  "sid": "S-048",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Su",
+    "given": "I-Fang"
+   },
+   {
+    "family": "Chung",
+    "given": "Yu-Chi"
+   },
+   {
+    "family": "Lee",
+    "given": "Chiang"
+   },
+   {
+    "family": "Huang",
+    "given": "Pin-Man"
+   }
+  ],
+  "title": "Effective PM2.5 concentration forecasting based on multiple spatial–temporal GNN for areas without monitoring stations",
+  "journal": "Expert Systems with Applications",
+  "journal_abbrev": "Expert Systems with Applications",
+  "year": 2023,
+  "volume": "234",
+  "issue": "",
+  "pages": "121074",
+  "doi": "10.1016/j.eswa.2023.121074",
+  "publisher": "Elsevier BV"
+ },
+ {
+  "sid": "S-061",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Ku",
+    "given": "Po-Wen"
+   },
+   {
+    "family": "Steptoe",
+    "given": "Andrew"
+   },
+   {
+    "family": "Hamer",
+    "given": "Mark"
+   },
+   {
+    "family": "Zaninotto",
+    "given": "Paola"
+   },
+   {
+    "family": "Stamatakis",
+    "given": "Emmanuel"
+   },
+   {
+    "family": "Lin",
+    "given": "Ching-Heng"
+   },
+   {
+    "family": "Yu",
+    "given": "Bin"
+   },
+   {
+    "family": "Hvidtfeldt",
+    "given": "Ulla Arthur"
+   },
+   {
+    "family": "Lao",
+    "given": "Xiang Qian"
+   },
+   {
+    "family": "Lin",
+    "given": "Hsien-Ho"
+   },
+   {
+    "family": "Lo",
+    "given": "Wei-Cheng"
+   },
+   {
+    "family": "Raaschou-Nielsen",
+    "given": "Ole"
+   },
+   {
+    "family": "Sun",
+    "given": "Shengzhi"
+   },
+   {
+    "family": "Tian",
+    "given": "Linwei"
+   },
+   {
+    "family": "Wang",
+    "given": "Su-Fen"
+   },
+   {
+    "family": "Zeng",
+    "given": "Yiqian"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yunquan"
+   },
+   {
+    "family": "Chen",
+    "given": "Shang-Ti"
+   },
+   {
+    "family": "Huang",
+    "given": "Chien-Fong"
+   },
+   {
+    "family": "Xia",
+    "given": "Yang"
+   },
+   {
+    "family": "Chen",
+    "given": "Li-Jung"
+   }
+  ],
+  "title": "Does ambient PM2.5 reduce the protective association of leisure-time physical activity with mortality? A systematic review, meta-analysis, and individual-level pooled analysis of cohort studies involving 1.5 million adults",
+  "journal": "BMC Medicine",
+  "journal_abbrev": "BMC Med",
+  "year": 2025,
+  "volume": "23",
+  "issue": "1",
+  "pages": "647",
+  "doi": "10.1186/s12916-025-04496-y",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-033",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "Tainio",
+    "given": "Marko"
+   },
+   {
+    "family": "de Nazelle",
+    "given": "Audrey J."
+   },
+   {
+    "family": "Götschi",
+    "given": "Thomas"
+   },
+   {
+    "family": "Kahlmeier",
+    "given": "Sonja"
+   },
+   {
+    "family": "Rojas-Rueda",
+    "given": "David"
+   },
+   {
+    "family": "Nieuwenhuijsen",
+    "given": "Mark J."
+   },
+   {
+    "family": "de Sá",
+    "given": "Thiago Hérick"
+   },
+   {
+    "family": "Kelly",
+    "given": "Paul"
+   },
+   {
+    "family": "Woodcock",
+    "given": "James"
+   }
+  ],
+  "title": "Can air pollution negate the health benefits of cycling and walking?",
+  "journal": "Preventive Medicine",
+  "journal_abbrev": "Preventive Medicine",
+  "year": 2016,
+  "volume": "87",
+  "issue": "",
+  "pages": "233-236",
+  "doi": "10.1016/j.ypmed.2016.02.002",
+  "publisher": "Elsevier BV"
+ },
+ {
+  "sid": "S-034",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "KLEPEIS",
+    "given": "NEIL E"
+   },
+   {
+    "family": "NELSON",
+    "given": "WILLIAM C"
+   },
+   {
+    "family": "OTT",
+    "given": "WAYNE R"
+   },
+   {
+    "family": "ROBINSON",
+    "given": "JOHN P"
+   },
+   {
+    "family": "TSANG",
+    "given": "ANDY M"
+   },
+   {
+    "family": "SWITZER",
+    "given": "PAUL"
+   },
+   {
+    "family": "BEHAR",
+    "given": "JOSEPH V"
+   },
+   {
+    "family": "HERN",
+    "given": "STEPHEN C"
+   },
+   {
+    "family": "ENGELMANN",
+    "given": "WILLIAM H"
+   }
+  ],
+  "title": "The National Human Activity Pattern Survey (NHAPS): a resource for assessing exposure to environmental pollutants",
+  "journal": "Journal of Exposure Science &amp; Environmental Epidemiology",
+  "journal_abbrev": "J Expo Sci Environ Epidemiol",
+  "year": 2001,
+  "volume": "11",
+  "issue": "3",
+  "pages": "231-252",
+  "doi": "10.1038/sj.jea.7500165",
+  "publisher": "Springer Science and Business Media LLC"
+ },
+ {
+  "sid": "S-028",
+  "kind": "journal",
+  "authors": [
+   {
+    "family": "D’Antoni",
+    "given": "Donatella"
+   },
+   {
+    "family": "Smith",
+    "given": "Louise"
+   },
+   {
+    "family": "Auyeung",
+    "given": "Vivian"
+   },
+   {
+    "family": "Weinman",
+    "given": "John"
+   }
+  ],
+  "title": "Psychosocial and demographic predictors of adherence and non-adherence to health advice accompanying air quality warning systems: a systematic review",
+  "journal": "Environmental Health",
+  "journal_abbrev": "Environ Health",
+  "year": 2017,
+  "volume": "16",
+  "issue": "1",
+  "pages": "100",
+  "doi": "10.1186/s12940-017-0307-4",
+  "publisher": "Springer Science and Business Media LLC"
+ }
+]

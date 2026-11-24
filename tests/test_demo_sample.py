@@ -9,7 +9,8 @@ from pathlib import Path
 from src.agent.pipeline import Query, run
 
 SAMPLE = Path(__file__).resolve().parents[1] / "data" / "sample" / "demo"
-EXPECTED = {"kaohsiung_regional": "regional", "taichung_subregional": "subregional", "taichung_clear": "no_clear_event"}
+EXPECTED = {"kaohsiung_regional": "regional", "taichung_subregional": "subregional", "taichung_clear": "no_clear_event",
+            "kaohsiung_local": "local"}
 
 
 def test_each_recorded_event_replays_from_the_sample_alone():

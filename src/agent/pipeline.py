@@ -128,11 +128,13 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
 
     fcst = _log(trace, "forecast_trend", common, tools.forecast_trend(q.city, q.time, q.lat, q.lon, root=root))
     # 測站預測的變化量套到目標位置：c(h) = c_now + (預測值 − 測站現值)。
-    # 例外（臺中大里測站 10/29 18:00 實例：測站 74、附近 23 個感測器中位數約 14）：測站剛出現短暫尖峰時，
-    # 預測主要反映尖峰回落，套到這裡會變成「降到 0」，所以不套用；其餘情況變化量限制在 −50%～+100% 的目前濃度內。
+    # 例外（臺中大里測站 10/29 18:00 實例：測站 74、附近 23 個感測器中位數約 14）：測站剛出現短暫尖峰、
+    # 而附近感測器沒有跟著升高時，預測主要反映尖峰回落，套到這裡會變成「降到 0」，所以不套用。
+    # 附近感測器也一起升高（例如臺中 11/14 中午的區域型升高）就不算尖峰。其餘情況變化量限制在 −50%～+100% 的目前濃度內。
     station_now, median6 = fcst.get("station_now"), fcst.get("station_median_6h")
     station_spike = (station_now is not None and median6 is not None
-                     and station_now >= 2 * median6 and station_now - median6 >= SPIKE_ABS)
+                     and station_now >= 2 * median6 and station_now - median6 >= SPIKE_ABS
+                     and station_now - c_now >= SPIKE_ABS)
     future = {} if station_spike else {
         h: max(c_now + float(np.clip(v - station_now, -0.5 * c_now, c_now)), 0.0)
         for h, v in fcst.get("forecast", {}).items()}
@@ -192,7 +194,7 @@ def run(q: Query, root: Path = tools.DATA_ROOT) -> Answer:
         "station": {k: station.get(k) for k in ("sitename", "distance_km", "time", "pm25", "wind_speed")} if station.get("ok") else None,
         "weather": {k: weather.get(k) for k in ("station_name", "wind_dir", "wind_speed", "rh")} if weather.get("ok") else None,
         "forecast_local": {int(h): round(v, 1) for h, v in sorted(future.items())}, "station_spike": station_spike,
-        "away_pm25": c_away, "actions": actions, "top_action": ranked[0].text,
+        "away_pm25": c_away, "actions": actions, "top_action": ranked[0].text, "action_keys": [a.key for a in ranked],
         "confidence": conf, "confidence_reasons": conf_why,
     }
     return Answer(conclusion, reasons, actions, conf, conf_why, sources, trace, facts)

@@ -93,8 +93,13 @@ def candidate_actions(c_now: float, c_best: float, best_hour: int, src_type: str
 
 
 def score(a: Action, level: int, hours: float = 1.0) -> float:
-    """Algorithm 3 第 8 行：效益 − λ(等級) × 暴露。暴露 = 濃度 × 換氣量 × 時間（S-034：濃度不等於暴露量）。"""
-    benefit = a.benefit * (HIGH_PM_BENEFIT_FACTOR if a.concentration >= HIGH_PM_THRESHOLD else 1.0)
+    """Algorithm 3 第 8 行：效益 − λ(等級) × 暴露。暴露 = 濃度 × 換氣量 × 時間（S-034：濃度不等於暴露量）。
+
+    高濃度的效益折扣（S-061）只在個人風險等級已達「對敏感族群不健康」以上時套用：環境部指引在「普通」時
+    一般民眾可正常活動（S-032），若一律套用，一般民眾在 25～30 μg/m³ 運動也會被建議改到室內（E4 準備時發現）。
+    """
+    discounted = a.concentration >= HIGH_PM_THRESHOLD and level >= 2
+    benefit = a.benefit * (HIGH_PM_BENEFIT_FACTOR if discounted else 1.0)
     exposure = a.concentration * a.rate * hours / 10.0
     return benefit - RISK_WEIGHT[level] * exposure
 

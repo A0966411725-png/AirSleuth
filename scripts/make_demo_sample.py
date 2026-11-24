@@ -36,6 +36,9 @@ EVENTS = [
     {"id": "taichung_clear", "title": "臺中 10/21 平常日", "city": "臺中市", "place": "臺中市西屯區",
      "lat": 24.1438, "lon": 120.6844, "time": "2026-10-21 10:00",
      "story": "沒有明顯的污染事件，照原計畫活動即可。"},
+    {"id": "kaohsiung_local", "title": "高雄彌陀 11/17 局部型事件", "city": "高雄市", "place": "高雄市彌陀區",
+     "lat": 22.78265, "lon": 120.23222, "time": "2026-11-17 12:00",
+     "story": "附近 9 個感測器比區域背景高約 14 μg/m³，區域內其他地方沒有升高。換到 8 km 外就能避開。"},
 ]
 KEYS = {"colife": "station_id", "moenv": "siteid", "cwa": "station_id"}
 

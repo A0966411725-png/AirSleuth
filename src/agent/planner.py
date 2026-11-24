@@ -64,10 +64,10 @@ SYSTEM_PROMPT = """你是 AirSleuth 空品偵探，一個分析臺灣 PM2.5 的�
    名詞：B 是 15 km 內感測器的中位數（區域背景），L 是局部範圍內感測器的中位數，E = L − B 是局部超量，
    C 是區域內比自己前 6 小時明顯升高的感測器比例（空間一致性）。中位數不要寫成平均。
 6. 用繁體中文，依序寫四段：
-   **結論：**一句話說明目前濃度、新版 AQI 等級、污染屬於哪一型，以及最建議的做法。
-   **為什麼：**2～4 點證據（區域背景、局部超量、空間一致性、測站、氣象、預測）。
-   **建議：**照工具排序列出建議。
-   **信心：**信心程度與原因。
+   **結論**：一句話說明目前濃度、新版 AQI 等級、污染屬於哪一型，以及最建議的做法。
+   **為什麼**：2～4 點證據（區域背景、局部超量、空間一致性、測站、氣象、預測）。
+   **建議**：照工具排序列出建議。
+   **信心**：信心程度與原因。
    最後一行寫「資料來源：民生公共物聯網微型感測器、環境部國家空品測站、中央氣象署自動氣象站」。
 7. 問題和空氣品質無關時，簡短說明你只能回答 PM2.5 與戶外活動的問題。"""
 
@@ -225,6 +225,11 @@ def unsupported_numbers(text: str, trace: list[dict]) -> list[str]:
     return bad
 
 
+def fix_bold(text: str) -> str:
+    """把「**結論：**文字」改成「**結論**：文字」：粗體結尾緊接全形標點再接中文時，Markdown 不會轉成粗體。"""
+    return re.sub(r"\*\*([^*\n]+?)([：:。，；])\*\*", r"**\1**\2", text)
+
+
 def classify_reply(text: str, trace: list[dict]) -> str:
     """沒有做分析的回覆：clarify（追問地點等資訊）或 refuse（不支援的地點、與空品無關）。"""
     if any(t.get("result", {}).get("reason") == "unsupported" for t in trace):
@@ -242,7 +247,7 @@ def _mentions(text: str, action: str) -> bool:
 
 
 def _text_of(content: dict) -> str:
-    return "".join(p.get("text", "") for p in content.get("parts", []) if "text" in p and not p.get("thought")).strip()
+    return fix_bold("".join(p.get("text", "") for p in content.get("parts", []) if "text" in p and not p.get("thought")).strip())
 
 
 def _json_safe(obj):

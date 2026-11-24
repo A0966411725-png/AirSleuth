@@ -16,4 +16,4 @@ The final deliverable requires "GitHub with demo site": reviewers must be able t
 
 ## Impact
 - Code: `app/`, `scripts/make_demo_sample.py`, `requirements.txt` (streamlit, pydeck via streamlit)
-- Data: `data/sample/events/*.csv.gz` (a few MB)
+- Data: `data/sample/demo/ (same layout as data/raw/)` (a few MB)

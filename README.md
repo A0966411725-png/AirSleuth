@@ -33,13 +33,33 @@ AirSleuth 會：
 
 ```bash
 pip install -r requirements.txt
-python -m pytest -q tests                      # 33 個離線測試
-python -m src.agent.demo --case kaohsiung      # Agent 原型：高雄 10/23 區域型事件（需要 data/raw 的收集資料）
-python -m src.agent.schema                     # 給 LLM function calling 用的工具規格
+python -m pytest -q tests                      # 47 個離線測試（不打真實 API）
+streamlit run app/streamlit_app.py             # demo 網站（用 data/sample/demo 的真實事件樣本）
+python -m src.agent.ask "我在高雄前金區，現在可以帶小孩去公園跑步嗎？" --time "2026-10-23 11:30" --trace
+python -m src.agent.demo --case kaohsiung      # 確定性流程（不用 LLM）：高雄 10/23 區域型事件
 python -m scripts.collection_status            # 資料收集狀況
 ```
 
-原型輸出範例（含每一步的工具呼叫紀錄）見 [docs/agent_demo/](docs/agent_demo/)。
+- 有 `GEMINI_API_KEY`（填在 `.env`）時，由 Gemini 理解問題並決定呼叫哪些工具；沒有 key 時自動改用確定性流程，網站與指令一樣能用。
+- 原型輸出範例（含每一步的工具呼叫紀錄）見 [docs/agent_demo/](docs/agent_demo/)。
+- 規格驅動開發（OpenSpec）：需求、情境與追溯矩陣見 [openspec/](openspec/README.md)。
+
+## Demo 網站
+
+網站有三頁：
+- **問 AirSleuth**：用中文提問，回答附上工具呼叫紀錄。
+- **真實事件重播**：顯示感測器地圖、空間指標，並比較不同族群拿到的建議。
+- **資料與方法**：說明資料來源與方法。
+
+網站使用 `data/sample/demo/` 的真實事件樣本：高雄 10/23 區域型、臺中沿海 10/19 次區域型、臺中 10/21 平常日。所以部署時不需要原始資料。
+
+**部署到 Streamlit Community Cloud**（由 repo 擁有者操作一次）：
+1. 用 GitHub 帳號登入 https://share.streamlit.io ，按 **Create app**。
+2. Repository 選 `A0966411725-png/AirSleuth`，Branch 選 `main`，Main file path 填 `app/streamlit_app.py`。
+3. **Advanced settings** 的 Python version 選 3.13；Secrets 填入一行 `GEMINI_API_KEY = "你的 key"`（不填也能用，只是不啟用 LLM）。
+4. 按 Deploy，幾分鐘後會得到公開網址。
+
+重建 demo 樣本（需要本機的 `data/raw/`）：`python -m scripts.make_demo_sample`。
 
 重建繳交文件：`python scripts/build_references.py` → `python scripts/build_proposal.py` → `python scripts/export_docx.py`。
 

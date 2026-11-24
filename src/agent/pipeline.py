@@ -51,10 +51,11 @@ class Answer:
     facts: dict = field(default_factory=dict)   # 結構化的數字與判斷，給 LLM 改寫成口語、給 demo 畫圖用
 
     def to_text(self) -> str:
-        lines = [f"**結論：**{self.conclusion}", "", "**為什麼：**"] + [f"- {r}" for r in self.reasons]
-        lines += ["", "**建議：**"] + [f"{i}. {a}" for i, a in enumerate(self.actions, 1)]
-        lines += ["", f"**信心：{self.confidence}。**" + "；".join(self.confidence_reasons)]
-        lines += ["", "**資料來源：**" + "；".join(self.sources)]
+        # 粗體結尾不能緊接全形標點再接中文，否則 GitHub、Streamlit 的 Markdown 不會轉成粗體
+        lines = [f"**結論**：{self.conclusion}", "", "**為什麼**："] + [f"- {r}" for r in self.reasons]
+        lines += ["", "**建議**："] + [f"{i}. {a}" for i, a in enumerate(self.actions, 1)]
+        lines += ["", f"**信心：{self.confidence}**。" + "；".join(self.confidence_reasons)]
+        lines += ["", "**資料來源**：" + "；".join(self.sources)]
         return "\n".join(lines)
 
 

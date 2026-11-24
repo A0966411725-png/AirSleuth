@@ -8,7 +8,7 @@ The final deliverable requires "GitHub with demo site": reviewers must be able t
   1. **Ask AirSleuth**: chat in Traditional Chinese; shows the four-part answer and an expandable tool trace.
   2. **Event replay**: pick a recorded event (Kaohsiung 10/23 regional, Taichung 10/19 coastal subregional, a clear day) and see the sensor map, the B/L/E/C indicators and the answer for different user groups.
   3. **About the data**: data sources, collection coverage, limitations.
-- Replay data come from a small, versioned extract in `data/sample/` (only the sensors within 15 km of each event, ±7 hours), so the deployed site does not need `data/raw/`.
+- Replay data come from a small, versioned extract in `data/sample/demo/` (all sensors of both cities in the 7 hours before each event time, stations for the 60 days before, weather for the event days), so the deployed site does not need `data/raw/`.
 - Deployment on Streamlit Community Cloud from the public GitHub repo; the Gemini key is stored in the platform's Secrets by the repository owner.
 
 ## Capabilities

@@ -20,10 +20,10 @@ Research claims → OpenSpec requirements → implementation → verification. E
 | Past events can be replayed exactly | data-acquisition: Point-in-time reads | `src/agent/tools.py` (`_read`, `get_station`) | `tests/test_agent.py::test_pipeline_end_to_end_on_synthetic_regional_event` |
 | Data pipeline is secure | data-acquisition: Verified TLS and secret hygiene | `src/data/http.py`, `scripts/collect_scheduled.py::redact` | `tests/test_collect_scheduled.py` |
 | The agent never invents numbers | llm-planner: Number traceability check; Deterministic fallback | `src/agent/planner.py` | `tests/test_llm_planner.py`; E4 hallucinated-number rate |
-| Reviewers can try the system without setup | demo-site: all | `app/streamlit_app.py`, `data/sample/` | Local run check; public deployment |
+| Reviewers can try the system without setup | demo-site: all | `app/streamlit_app.py`, `data/sample/` | Local run check; public deployment at https://airsleuth.streamlit.app (2026-11-26: all three pages load and the Gemini planner answers) |
 
 ## Status
 
 - 2026-10-27 (Proposal stage): `data-acquisition`, `data-quality`, `source-attribution`, `sensor-calibration`, `pm25-forecasting`, `health-recommendation`, `agent-answer` implemented and tested.
 - 2026-11-24: `add-llm-planner` and `add-evaluation-suite` implemented, verified (52 offline tests; experiments E1–E4 in `experiments/results/`) and archived into `specs/llm-planner` and `specs/evaluation`.
-- `add-demo-site`: the app and sample data are done; the change is archived after the public deployment URL is added to the README.
+- 2026-11-26: `add-demo-site` deployed to Streamlit Community Cloud (https://airsleuth.streamlit.app) and archived into `specs/demo-site`.

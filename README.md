@@ -18,7 +18,7 @@
 | 繳交項目 | 位置 |
 |---|---|
 | GitHub（完整程式、資料來源、執行與測試方式） | 本 repo |
-| Demo site | `app/streamlit_app.py`（部署步驟見下方「Demo 網站」） |
+| Demo site | https://airsleuth.streamlit.app （程式在 `app/streamlit_app.py`，部署步驟見下方「Demo 網站」） |
 | 研討會格式論文初稿（ICEIB 2027，Engineering Proceedings 範本） | [paper/AirSleuth_ICEIB2027_draft.docx](paper/AirSleuth_ICEIB2027_draft.docx)、[PDF](paper/AirSleuth_ICEIB2027_draft.pdf)；原稿 [paper/airsleuth_iceib2027.md](paper/airsleuth_iceib2027.md) |
 | 期末簡報（> 20 頁，附講稿） | [slides/final/](slides/final/) |
 | 影片（> 10 分鐘，AI 語音旁白） | `slides/final/AirSleuth_期末報告影片.mp4`（檔案大，不進版控；上傳 YouTube） |
@@ -51,6 +51,8 @@ python -m scripts.collection_status            # 資料收集狀況
 - 沒有 key 時自動改用確定性流程，網站與指令一樣能用。
 
 ## Demo 網站
+
+公開網址：**https://airsleuth.streamlit.app**
 
 網站有三頁：
 - **問 AirSleuth**：用中文提問，回答附上工具呼叫紀錄。

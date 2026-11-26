@@ -10,4 +10,4 @@
 - [x] 2.4 Local check: `streamlit run app/streamlit_app.py` loads all pages without errors
 
 ## 3. Deployment
-- [ ] 3.1 README section "Demo" with the public URL (steps written; URL pending the owner's deployment) and deployment steps (owner deploys on Streamlit Community Cloud and adds `GEMINI_API_KEY` in Secrets)
+- [x] 3.1 README section "Demo" with the public URL (https://airsleuth.streamlit.app, deployed 2026-11-26; all three pages load and the Gemini planner answers) and deployment steps (owner deploys on Streamlit Community Cloud and adds `GEMINI_API_KEY` in Secrets)
